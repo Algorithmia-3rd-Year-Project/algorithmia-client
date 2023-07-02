@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //pages
 import Home from "./views/pages/Home";
 import Devlog from "./views/pages/Devlogs";
-import AddDevlog from "./views/pages/AddDevlog";
+import Signup from "./views/pages/Signup";
+import Login from "./views/pages/Login";
 
 //components
 import Navbar from "./views/components/Navbar";
@@ -17,6 +18,10 @@ function App() {
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
+
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+
             <Route path="/devlogs" element={<Devlog />} />
             <Route path="/devlogs/add" element={<DevlogForm />} />
           </Routes>
