@@ -9,7 +9,12 @@ const {
   updateDevlog,
 } = require("../controllers/Devlog_Controller");
 
+//const requireAuth = require("../middleware/requireAuth");
+
 const router = express.Router();
+
+//require auth for all devlog routes
+//router.use(requireAuth);
 
 //declaring routes
 
