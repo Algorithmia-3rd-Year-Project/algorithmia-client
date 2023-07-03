@@ -5,10 +5,10 @@ import Home from "./views/pages/Home";
 import Devlog from "./views/pages/Devlogs";
 import Signup from "./views/pages/Signup";
 import Login from "./views/pages/Login";
+import AddDevlog from "./views/pages/AddDevlog";
 
 //components
 import Navbar from "./views/components/Navbar";
-import DevlogForm from "./views/components/DevlogForm";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
 
             <Route path="/devlogs" element={<Devlog />} />
-            <Route path="/devlogs/add" element={<DevlogForm />} />
+            <Route path="/devlogs/add" element={<AddDevlog />} />
           </Routes>
         </div>
       </BrowserRouter>
