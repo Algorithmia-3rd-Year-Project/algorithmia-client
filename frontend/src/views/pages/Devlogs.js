@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 //components
 import DevlogTile from "../components/DevlogTile";
+import icon from "../../images/user.png";
 
 const Devlog = () => {
   const [devlogs, setDevlogs] = useState(null);
@@ -66,7 +67,7 @@ const Devlog = () => {
         <div class="row">
           <div class="col-lg-4 mb-3">
             <div class="card text-center" style={{ width: 350 }}>
-              <img class="card-img-top" src="user.png" alt=".." />
+              <img class="card-img-top" src={icon} alt=".." height="300"/>
               <div class="card-body">
                 <h5 class="card-title">Devlog Title</h5>
                 <p class="card-text">
@@ -79,7 +80,7 @@ const Devlog = () => {
           </div>
           <div class="col-lg-6 mb-4">
             <div class="card text-center" style={{ width: 350 }}>
-              <img class="card-img-top" src="user.png" alt=".." />
+              <img class="card-img-top" src={icon} alt=".." height="300"/>
               <div class="card-body">
                 <h5 class="card-title">Devlog Title</h5>
                 <p class="card-text">
