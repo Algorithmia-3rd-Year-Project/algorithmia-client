@@ -20,9 +20,9 @@ const Navbar = () => {
       <div className="content">
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <div className="container">
-            <a href="#" className="navbar-brand">
+            <Link to="/" className="navbar-brand">
               Algorithmia
-            </a>
+            </Link>
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link to="/" className="nav-link">
@@ -103,37 +103,6 @@ const Navbar = () => {
             </ul>
           </div>
         </nav>
-        {user && (
-          <div>
-            <span>{user.email}</span>
-            <button onClick={handleClick}>Log out</button>
-          </div>
-        )}
-        <div>
-          <Link to="/">
-            <h1>Algorithmia</h1>
-          </Link>
-          {!user && (
-            <div>
-              <Link to="/login">
-                <p>Login</p>
-              </Link>
-              <Link to="/signup">
-                <p>Signup</p>
-              </Link>
-
-              <Link to="/">
-                <p>Features</p>
-              </Link>
-              <Link to="/">
-                <p>Reviews</p>
-              </Link>
-              <Link to="/">
-                <p>Top-Ups</p>
-              </Link>
-            </div>
-          )}
-        </div>
       </div>
     </header>
   );
