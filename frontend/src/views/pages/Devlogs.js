@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+// import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 //components
 import DevlogTile from "../components/DevlogTile";
@@ -22,41 +24,41 @@ const Devlog = () => {
   return (
     <div className="devlog">
       <h2>Devlogs Page</h2>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 mb-4">
-            <div class="dropdown">
-              <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-6 mb-4">
+            <div className="dropdown">
+              <button className="btn btn-primary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Filters
               </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Filter 1</a></li>
-                <li><a class="dropdown-item" href="#">Filter 2</a></li>
-                <li><a class="dropdown-item" href="#">Filter3</a></li>
+              <ul className="dropdown-menu">
+                <li><a className="dropdown-item" href="#">Filter 1</a></li>
+                <li><a className="dropdown-item" href="#">Filter 2</a></li>
+                <li><a className="dropdown-item" href="#">Filter3</a></li>
               </ul>
             </div>
           </div>
 
-          <div class="col-lg-6 mb-4">
-            <div class="dropdown">
-              <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div className="col-lg-6 mb-4">
+            <div className="dropdown">
+              <button className="btn btn-primary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Sort
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">A-Z Order</a></li>
-                <li><a class="dropdown-item" href="#">By Date</a></li>
-                <li><a class="dropdown-item" href="#">By Title</a></li>
+                <li><a className="dropdown-item" href="#">A-Z Order</a></li>
+                <li><a className="dropdown-item" href="#">By Date</a></li>
+                <li><a className="dropdown-item" href="#">By Title</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
-      {devlogs &&
-        devlogs.map((devlog) => (
-          <DevlogTile key={devlog._id} devlog={devlog} />
-        ))}
-        </div>
+      <div className="row">
+        {devlogs &&
+          devlogs.map((devlog) => (
+            <DevlogTile key={devlog._id} devlog={devlog} />
+          ))}
+      </div>
     </div>
   );
 };
