@@ -6,7 +6,7 @@ const Home = () => {
     <div className="home">
       <h2>Home</h2>
       <p>Other Pages</p>
-      <Link to="/devlogs">See all devlogs</Link>
+      <Link to="/pplform">Product Placement</Link>
 
       <div class="container-fluid my-5">
         <div class="row p-5 pb-0 align-items-center rounded-3 border text-center mx-5">
