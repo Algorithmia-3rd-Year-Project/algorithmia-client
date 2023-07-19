@@ -7,28 +7,28 @@ const DevlogSingle = () => {
   return (
     <div className="container mt-3 pt-3 border rounded-4" style={{backgroundColor: "#ACDBDF"}}>
       <h2 className="fw-bold" style={{color: "#002B5B"}}>Devlog Title</h2>
-      <h5 class="text-muted">Published 23/09/2022</h5><hr/>
-      <div class="row pt-3">
-        <div class="col-12 col-md-6 col-lg-4">
+      <h5 className="text-muted">Published 23/09/2022</h5><hr/>
+      <div className="row pt-3">
+        <div className="col-12 col-md-6 col-lg-4">
           <img
             src={image}
-            class="w-100 shadow-1-strong rounded mb-4"
+            className="w-100 shadow-1-strong rounded mb-4"
             alt="Waves at Sea"
           />
         </div>
 
-        <div class="col-12 col-md-6 col-lg-4">
+        <div className="col-12 col-md-6 col-lg-4">
           <img
             src={image}
-            class="w-100 shadow-1-strong rounded mb-4"
+            className="w-100 shadow-1-strong rounded mb-4"
             alt="Waves at Sea"
           />
         </div>
 
-        <div class="col-12 col-md-6 col-lg-4">
+        <div className="col-12 col-md-6 col-lg-4">
           <img
             src={image}
-            class="w-100 shadow-1-strong rounded mb-4"
+            className="w-100 shadow-1-strong rounded mb-4"
             alt="Waves at Sea"
           />
         </div>
@@ -55,21 +55,21 @@ const DevlogSingle = () => {
       </section><hr/>
 
       <section>
-        <div class="container my-5">
-          <div class="row">
+        <div className="container my-5">
+          <div className="row">
           <h5>Comments</h5>
-            <div class="d-flex flex-start w-75">
-              <img class="rounded-circle shadow-1-strong me-3"
+            <div className="d-flex flex-start w-75">
+              <img className="rounded-circle shadow-1-strong me-3"
                 src={icon} alt="avatar" width="65"
                 height="65" />
-              <div class="flex-grow-1 flex-shrink-1">
+              <div className="flex-grow-1 flex-shrink-1">
                 <div>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p class="mb-1">
-                      Maria Smantha <span class="small">- 2 hours ago</span>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <p className="mb-1">
+                      Maria Smantha <span className="small">- 2 hours ago</span>
                     </p>
                   </div>
-                  <p class="small mb-0">
+                  <p className="small mb-0">
                     It is a long established fact that a reader will be distracted by
                     the readable content of a page.
                   </p>
@@ -78,19 +78,19 @@ const DevlogSingle = () => {
             </div>
           </div><br/><br/><br/>
 
-          <div class="row">
-            <div class="d-flex flex-start w-75">
-              <img class="rounded-circle shadow-1-strong me-3"
+          <div className="row">
+            <div className="d-flex flex-start w-75">
+              <img className="rounded-circle shadow-1-strong me-3"
                 src={icon} alt="avatar" width="65"
                 height="65" />
-              <div class="flex-grow-1 flex-shrink-1">
+              <div className="flex-grow-1 flex-shrink-1">
                 <div>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p class="mb-1">
-                      Maria Smantha <span class="small">- 2 hours ago</span>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <p className="mb-1">
+                      Maria Smantha <span className="small">- 2 hours ago</span>
                     </p>
                   </div>
-                  <p class="small mb-0">
+                  <p className="small mb-0">
                     It is a long established fact that a reader will be distracted by
                     the readable content of a page.
                   </p>
@@ -99,16 +99,16 @@ const DevlogSingle = () => {
             </div>
           </div><br/><br/><br/>
 
-          <div class="row">
-            <div class="d-flex flex-start w-75">
-              <img class="rounded-circle shadow-1-strong me-3" src={icon} alt="avatar" width="65" height="65" />
-              <div class="w-100">
+          <div className="row">
+            <div className="d-flex flex-start w-75">
+              <img className="rounded-circle shadow-1-strong me-3" src={icon} alt="avatar" width="65" height="65" />
+              <div className="w-100">
                 <h5>Add a comment</h5>
-                <div class="form-outline">
-                  <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
+                <div className="form-outline">
+                  <textarea className="form-control" id="textAreaExample" rows="4"></textarea>
                 </div>
-                <div class="d-flex justify-content-between mt-3">
-                  <button type="button" class="btn btn-success">Add Comment</button>
+                <div className="d-flex justify-content-between mt-3">
+                  <button type="button" className="btn btn-success">Add Comment</button>
                 </div>
               </div>
             </div>
