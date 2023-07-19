@@ -13,7 +13,7 @@ const Home = () => {
 
       <section style={{backgroundColor: "#002b5b"}}>
       <div className="container-fluid vh-100">
-        <div className="row align-items-center vh-100" style={{ backgroundImage: `url(${require('../images/background_img.jpg')})`, backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#002b5b", borderColor: "white"}}>
+        <div className="row align-items-center vh-100" style={{ backgroundImage: `url(${require('../../images/background_img.jpg')})`, backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#002b5b", borderColor: "white"}}>
           <div className="col-md-6 offset-md-3 text-center p-5 my-5">
             <h1 className="display-4 fw-bold lh-1" style={{ fontSize: '150px', color: 'white', WebkitTextStroke: "5px #002b5b", textStroke: "5px #002b5b" }}>Algorithmia</h1>
             <p className="lead fw-bold text-white"  style={{ fontSize: '40px', WebkitTextStroke: "2px #002b5b", textStroke: "2px #002b5b"}}> 
