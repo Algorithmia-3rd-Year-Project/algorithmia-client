@@ -38,6 +38,6 @@ router.delete("/devlog/deletedevlog/:id", deleteDevlog);
 
 router.patch("/devlog/updatedevlog/:id", updateDevlog);
 
-router.patch("/pplform/addppl", addPpl);
+router.post("/pplform/addppl", addPpl);
 
 module.exports = router;
