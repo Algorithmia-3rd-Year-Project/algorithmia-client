@@ -27,7 +27,7 @@ function App() {
             <Route path="/devlogs" element={<Devlog />} />
             <Route path="/devlogs/add" element={<AddDevlog />} />
 
-            <Route path="/devlogsingle" element={<DevlogSingle />} />
+            <Route path="/devlogsingle/:id" element={<DevlogSingle />} />
 
             <Route
               path="/advertiser/dashboard"
