@@ -7,6 +7,7 @@ const {
   createDevlog,
   deleteDevlog,
   updateDevlog,
+  getComments,
 } = require("../controllers/Devlog_Controller");
 
 //const requireAuth = require("../middleware/requireAuth");
@@ -33,5 +34,8 @@ router.post("/devlog/adddevlog", createDevlog);
 router.delete("/devlog/deletedevlog/:id", deleteDevlog);
 
 router.patch("/devlog/updatedevlog/:id", updateDevlog);
+
+//routes related to comments
+router.get("/comments/:id", getComments);
 
 module.exports = router;

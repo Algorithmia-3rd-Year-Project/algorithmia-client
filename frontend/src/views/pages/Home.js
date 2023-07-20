@@ -6,6 +6,8 @@ const Home = () => {
     <div className="home">
       <h2>Home</h2>
       <p>Other Pages</p>
+
+      <Link to="/devlogsingle/649925302740d709ec4399fb">See one devlog</Link>
       <Link to="/devlogs">See all devlogs</Link>
 
       <div class="container-fluid my-5">
@@ -135,7 +137,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

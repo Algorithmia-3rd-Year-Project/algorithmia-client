@@ -7,6 +7,7 @@ import Signup from "./views/pages/Signup";
 import Login from "./views/pages/Login";
 import AddDevlog from "./views/pages/AddDevlog";
 import AdvertiserDashboard from "./views/pages/AdvertiserDashboard";
+import DevlogSingle from "./views/pages/DevlogSingle";
 
 //components
 import Navbar from "./views/components/Navbar";
@@ -25,6 +26,8 @@ function App() {
 
             <Route path="/devlogs" element={<Devlog />} />
             <Route path="/devlogs/add" element={<AddDevlog />} />
+
+            <Route path="/devlogsingle/:id" element={<DevlogSingle />} />
 
             <Route
               path="/advertiser/dashboard"
