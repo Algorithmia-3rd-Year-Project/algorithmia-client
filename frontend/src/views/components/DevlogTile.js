@@ -14,7 +14,7 @@ const DevlogTile = ({ devlog }) => {
           <p className="card-text" style={{color: "white"}}>
             {devlog.type}
           </p>
-          <Link to="/devlogsingle"><a href="" class="btn btn-primary btn-sm mb-2 border-0" style={{backgroundColor: "#1a5f7a"}}>View More</a></Link>
+          <Link to={`/devlogsingle/${devlog._id}`}><a href="" class="btn btn-primary btn-sm mb-2 border-0" style={{backgroundColor: "#1a5f7a"}}>View More</a></Link>
           <div className="card-footer" style={{color: "white"}}>35 comments</div>
         </div>
       </div>
