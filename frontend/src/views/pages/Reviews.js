@@ -1,6 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import icon from "../../images/star-solid.png"
 
 const Review = () => {
+    const elements = [];
+    for (let i = 0; i < 5; i++) {
+        elements.push(<img src={icon} class="img-fluid" style={{width: '24px', height: '20px', filter: "brightness(0.5) saturate(2)"}} alt="Icon" />
+        );
+    }
     return(
         <section class="p-4 p-md-5 text-center text-lg-start shadow-1-strong rounded"  style={{backgroundColor: "#acdbdf"}}>
             <div className='text-center'>
@@ -31,8 +37,7 @@ const Review = () => {
                             corrupti magnam.
                         </p>
                         <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                        <p class="fw-bold text-muted mb-0">Product manager</p>
-                        <i class="bi bi-star"></i>
+                        {elements}
                         </div>
                     </div>
                     </div>
@@ -54,8 +59,7 @@ const Review = () => {
                             corrupti magnam.
                         </p>
                         <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                        <p class="fw-bold text-muted mb-0">Product manager</p>
-                        <i class="bi bi-star"></i>
+                        {elements}
                         </div>
                     </div>
                     </div>
@@ -77,8 +81,7 @@ const Review = () => {
                             corrupti magnam.
                         </p>
                         <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                        <p class="fw-bold text-muted mb-0">Product manager</p>
-                        <i class="bi bi-star"></i>
+                        {elements}
                         </div>
                     </div>
                     </div>
