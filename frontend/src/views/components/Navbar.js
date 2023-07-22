@@ -87,12 +87,20 @@ const Navbar = () => {
                   {!user && (
                     <>
                       <li>
-                        <Link to="/login" className="dropdown-item">
+                        <Link
+                          className="dropdown-item"
+                          data-bs-toggle="modal"
+                          data-bs-target="#login"
+                        >
                           Login
                         </Link>
                       </li>
                       <li>
-                        <Link to="/signup" className="dropdown-item">
+                        <Link
+                          className="dropdown-item"
+                          data-bs-toggle="modal"
+                          data-bs-target="#signUp"
+                        >
                           Sign-Up
                         </Link>
                       </li>
