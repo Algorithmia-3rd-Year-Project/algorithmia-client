@@ -46,7 +46,7 @@ const Login = () => {
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content" style={{backgroundColor:"#1A5F7A"}}>
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
                 Algorithmia Account Login
@@ -102,7 +102,7 @@ const Login = () => {
                     Sign In with google
                   </button>
                 </div>
-                <br></br>
+                <br />
               </form>
             </div>
           </div>

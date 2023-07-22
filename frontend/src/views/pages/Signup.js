@@ -45,7 +45,7 @@ const Signup = () => {
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content" style={{backgroundColor:"#1A5F7A"}}>
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
                 Algorithmia Account Sign Up
@@ -92,35 +92,27 @@ const Signup = () => {
                   <label for="recipient-name" class="col-form-label">
                     Password
                   </label>
-                  <input
-                    type="password"
-                    className="form-control mt-1"
-                    
-                  />
+                  <input type="password" className="form-control mt-1" />
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">
                     Confirm Password
                   </label>
-                  <input
-                    type="password"
-                    className="form-control mt-1"
-                  
-                  />
+                  <input type="password" className="form-control mt-1" />
                 </div>
-                
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      I accept Terms and Conditions
-                    </label>
-                  </div>
-                
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    I accept Terms and Conditions
+                  </label>
+                </div>
+
                 <br />
                 <div class="d-grid gap-2 col-6 mx-auto">
                   <button class="btn btn-primary" type="button">
@@ -128,7 +120,7 @@ const Signup = () => {
                   </button>
                 </div>
                 <br />
-                <div class="row mb-4">
+                <div class="row mb-4 ">
                   <div class="col-md-6 d-flex justify-content-center">
                     <a href="#!">Already have an Account?</a>
                   </div>
@@ -136,7 +128,6 @@ const Signup = () => {
                     <a href="#!">Login</a>
                   </div>
                 </div>
-                
               </form>
             </div>
           </div>
