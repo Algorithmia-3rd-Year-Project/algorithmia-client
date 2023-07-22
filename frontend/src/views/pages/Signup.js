@@ -71,6 +71,23 @@ const Signup = () => {
                     value={email}
                   />
                 </div>
+                <label for="recipient-name" class="col-form-label">
+                  Verification Code
+                </label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" />
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">
+                      Send
+                    </button>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">
+                    Date of Birth
+                  </label>
+                  <input type="text" class="form-control" />
+                </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">
                     Password
@@ -78,7 +95,7 @@ const Signup = () => {
                   <input
                     type="password"
                     className="form-control mt-1"
-                    placeholder="Enter password"
+                    
                   />
                 </div>
                 <div class="mb-3">
@@ -88,28 +105,40 @@ const Signup = () => {
                   <input
                     type="password"
                     className="form-control mt-1"
-                    placeholder="Enter password"
+                  
                   />
                 </div>
+                
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      I accept Terms and Conditions
+                    </label>
+                  </div>
+                
                 <br />
                 <div class="d-grid gap-2 col-6 mx-auto">
                   <button class="btn btn-primary" type="button">
                     Register
                   </button>
                 </div>
-
                 <br />
+                <div class="row mb-4">
+                  <div class="col-md-6 d-flex justify-content-center">
+                    <a href="#!">Already have an Account?</a>
+                  </div>
+                  <div class="col-md-6 d-flex justify-content-center">
+                    <a href="#!">Login</a>
+                  </div>
+                </div>
+                
               </form>
             </div>
-            {/* <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div> */}
           </div>
         </div>
       </div>
