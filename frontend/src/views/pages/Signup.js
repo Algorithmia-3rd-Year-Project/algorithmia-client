@@ -48,7 +48,7 @@ const Signup = () => {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
-                Sign Up
+                Algorithmia Account Sign Up
               </h5>
               <button
                 type="button"
@@ -81,9 +81,27 @@ const Signup = () => {
                     placeholder="Enter password"
                   />
                 </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control mt-1"
+                    placeholder="Enter password"
+                  />
+                </div>
+                <br />
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button class="btn btn-primary" type="button">
+                    Register
+                  </button>
+                </div>
+
+                <br />
               </form>
             </div>
-            <div class="modal-footer">
+            {/* <div class="modal-footer">
               <button
                 type="button"
                 class="btn btn-secondary"
@@ -91,10 +109,7 @@ const Signup = () => {
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
-                Login
-              </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

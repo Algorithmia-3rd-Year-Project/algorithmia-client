@@ -49,7 +49,7 @@ const Login = () => {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
-                Log In
+                Algorithmia Account Login
               </h5>
               <button
                 type="button"
@@ -82,19 +82,28 @@ const Login = () => {
                     placeholder="Enter password"
                   />
                 </div>
+                <br />
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button class="btn btn-primary" type="button">
+                    Log In
+                  </button>
+                </div>
+                <br />
+                <div class="row mb-4">
+                  <div class="col-md-6 d-flex justify-content-center">
+                    <a href="#!">Forgot password?</a>
+                  </div>
+                  <div class="col-md-6 d-flex justify-content-center">
+                    <a href="#!">Register</a>
+                  </div>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button class="btn btn-primary" type="button">
+                    Sign In with google
+                  </button>
+                </div>
+                <br></br>
               </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Login
-              </button>
             </div>
           </div>
         </div>
