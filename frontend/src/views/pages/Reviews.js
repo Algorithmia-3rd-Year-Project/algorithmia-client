@@ -1,5 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import icon from "../../images/star-solid.png"
+import ReviewModal from '../components/ReviewModal'; 
+import { useState } from "react";
+
 
 const Review = () => {
     const elements = [];
@@ -7,6 +10,15 @@ const Review = () => {
         elements.push(<img src={icon} class="img-fluid" style={{width: '24px', height: '20px', filter: "brightness(0.5) saturate(2)"}} alt="Icon" />
         );
     }
+    const [showModal, setShowModal] = useState(false);
+
+    const handleShowModal = () => {
+      setShowModal(true);
+    };
+  
+    const handleCloseModal = () => {
+      setShowModal(false);
+    };
     return(
         <section class="p-4 p-md-5 text-center text-lg-start shadow-1-strong rounded"  style={{backgroundColor: "#acdbdf"}}>
             <div className='text-center'>
@@ -16,7 +28,7 @@ const Review = () => {
                 <div class="col-md-10">
 
                 <div className="d-flex justify-content-end">
-                    <button type="button" className="btn btn-primary btn-lg px-4 me-md-2 fw-bold" style={{ backgroundColor: '#002b5b', color: 'white', borderColor: '#002b5b' }}>
+                    <button type="button" className="btn btn-primary btn-lg px-4 me-md-2 fw-bold" style={{ backgroundColor: '#002b5b', color: 'white', borderColor: '#002b5b' }} onClick={handleShowModal}>
                         Add Review
                     </button>
                 </div>
@@ -88,6 +100,28 @@ const Review = () => {
                 </div>
                 </div>
             </div>
+            {/* review modal */}
+            <div class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <ReviewModal showModal={showModal} handleCloseModal={handleCloseModal} />
+
         </section>
     );
 };
