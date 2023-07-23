@@ -8,6 +8,7 @@ import Login from "./views/pages/Login";
 import AddDevlog from "./views/pages/AddDevlog";
 import AdvertiserDashboard from "./views/pages/Admin/AdvertiserDashboard";
 import ProfileOverview from "./views/pages/Advertiser/ProfileOverview";
+import Review from "./views/pages/Reviews"
 
 //components
 import Navbar from "./views/components/Navbar";
@@ -26,6 +27,8 @@ function App() {
 
             <Route path="/devlogs" element={<Devlog />} />
             <Route path="/devlogs/add" element={<AddDevlog />} />
+
+            <Route path="/reviews" element={<Review />} />
 
             <Route
               path="/advertiser/dashboard"
