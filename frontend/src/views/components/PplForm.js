@@ -44,10 +44,10 @@ const PplForm = () => {
                 <h2 className="text-center mb-5" style={{ color: "#002B5B" }}>Product Placement Request Form</h2>
                 <h5 className="mb-5">Fill the below form and advertise your product, brand in Algorithmia</h5>
 
-                <div class="fields mb-3">
-                    <label class="form-label fw-bold" for="type">Placement Type</label>
-                    <label class="star fw-bold" style={{ color: "red" }}> *</label>
-                    <select class="form-select" aria-label="Default select example" name="type" value={type}
+                <div className="fields mb-3">
+                    <label className="form-label fw-bold" htmlFor="type">Placement Type</label>
+                    <label className="star fw-bold" style={{ color: "red" }}> *</label>
+                    <select className="form-select" aria-label="Default select example" name="type" value={type}
                         onChange={(e) => setType(e.target.value)}>
                         <option selected></option>
                         <option value="1" id="type" required>One</option>
@@ -56,10 +56,11 @@ const PplForm = () => {
                     </select>
                 </div>
 
-                <div class="fields mb-3">
-                    <label class="form-label fw-bold" for="product">Product</label>
-                    <label class="star fw-bold" style={{ color: "red" }}> *</label>
-                    <select class="form-select" aria-label="Default select example">
+                <div className="fields mb-3">
+                    <label className="form-label fw-bold" htmlFor="product">Product</label>
+                    <label className="star fw-bold" style={{ color: "red" }}> *</label>
+                    <select className="form-select" aria-label="Default select example" name="product" value={product}
+                        onChange={(e) => setProduct(e.target.value)}>
                         <option selected></option>
                         <option value="1" id="product" required>One</option>
                         <option value="2" id="product" required>Two</option>
@@ -67,40 +68,40 @@ const PplForm = () => {
                     </select>
                 </div>
 
-                <div class="fields mb-3">
-                    <label class="form-label fw-bold" for="description">Description</label>
-                    <label class="star fw-bold" style={{ color: "red" }}> *</label>
-                    <textarea class="form-control" rows="4" name="description"
+                <div className="fields mb-3">
+                    <label className="form-label fw-bold" htmlFor="description">Description</label>
+                    <label className="star fw-bold" style={{ color: "red" }}> *</label>
+                    <textarea className="form-control" rows="4" name="description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)} required></textarea>
                 </div>
 
-                <div class="fields mb-3">
-                    <label class="form-label fw-bold" for="duration">Select duration for the placement</label>
-                    <div class="row pb-3">
-                        <div class="form-group col-6">
-                            <label class="form-label" for="sdate">Start Date</label>
-                            <label class="star fw-bold" style={{ color: "red" }}> *</label>
-                            <input type="date" class="form-control"  name="sdate"
+                <div className="fields mb-3">
+                    <label className="form-label fw-bold" htmlFor="duration">Select duration for the placement</label>
+                    <div className="row pb-3">
+                        <div className="form-group col-6">
+                            <label className="form-label" htmlFor="sdate">Start Date</label>
+                            <label className="star fw-bold" style={{ color: "red" }}> *</label>
+                            <input type="date" className="form-control"  name="sdate"
             value={sdate}
             onChange={(e) => setSdate(e.target.value)} required />
                         </div>
-                        <div class="form-group col-6">
-                            <label class="form-label" for="edate">End Date</label>
-                            <label class="star fw-bold" style={{ color: "red" }}> *</label>
-                            <input type="date" class="form-control"  name="edate"
+                        <div className="form-group col-6">
+                            <label className="form-label" htmlFor="edate">End Date</label>
+                            <label className="star fw-bold" style={{ color: "red" }}> *</label>
+                            <input type="date" className="form-control"  name="edate"
             value={edate}
             onChange={(e) => setEdate(e.target.value)} required />
                         </div>
                     </div>
                 </div>
 
-                <div class="fields mb-3">
-                    <label class="form-label fw-bold" for="formfile">Attachments</label>
-                    <input type="file" class="form-control" id="formfile" />
+                <div className="fields mb-3">
+                    <label className="form-label fw-bold" htmlFor="formfile">Attachments</label>
+                    <input type="file" className="form-control" id="formfile" />
                 </div>
 
-                <button type="submit" class="btn btn-primary w-25 mb-4 border-0" style={{ backgroundColor: "#002B5B" }}>Submit</button>
+                <button type="submit" className="btn btn-primary w-25 mb-4 border-0" style={{ backgroundColor: "#002B5B" }}>Submit</button>
                 { error && <div className="error"> {error} </div> }
             </form>
         </div>
