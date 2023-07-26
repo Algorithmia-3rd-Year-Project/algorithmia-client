@@ -26,7 +26,7 @@ const pplSchema = new Schema(
     },
     file: {
       type: String,
-    }
+    },
   },
   { timestamps: true }
 );
