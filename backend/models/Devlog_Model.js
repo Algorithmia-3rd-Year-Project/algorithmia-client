@@ -16,8 +16,8 @@ const devlogSchema = new Schema(
       type: String,
       required: true,
     },
-    CoverImage: {
-      type: File,
+    coverImage: {
+      type: String,
       required: true,
     },
   },

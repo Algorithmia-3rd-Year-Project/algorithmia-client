@@ -5,7 +5,7 @@ const DevlogForm = () => {
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
   const [content, setContent] = useState("");
-  const [coverImage, setCoverImage] = useState(""); // Changed state variable name to lowercase
+  const [coverImage, setCoverImage] = useState("");
   const [error, setError] = useState("");
 
   const handleImageChange = (e) => {
@@ -24,7 +24,7 @@ const DevlogForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const devlog = { title, type, content, coverImage }; // Changed variable name to lowercase
+    const devlog = { title, type, content, coverImage }; 
 
     const response = await fetch("/algorithmia/devlog/adddevlog", {
       method: "POST",

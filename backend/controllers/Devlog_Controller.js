@@ -1,6 +1,7 @@
 const Devlog = require("../models/Devlog_Model");
 const mongoose = require("mongoose");
 
+
 //Get all devlogs
 const getDevlogs = async (req, res) => {
   const devlogs = await Devlog.find({}).sort({ createdAt: -1 });
@@ -27,10 +28,10 @@ const getDevlog = async (req, res) => {
 
 //Create a new devlog
 const createDevlog = async (req, res) => {
-  const { title, type, content, CoverImage } = req.body;
+  const { title, type, content, coverImage } = req.body;
 
   try {
-    const devlog = await Devlog.create({ title, type, content, CoverImage });
+    const devlog = await Devlog.create({ title, type, content, coverImage });
     res.status(200).json(devlog);
   } catch (error) {
     res.status(400).json({ error: error.message });
