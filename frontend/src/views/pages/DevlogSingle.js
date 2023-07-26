@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import icon from "../../images/user.png";
 import image from "../../images/beach.webp";
 
+import CommentBlock from "../components/CommentBlock";
+
 import { useEffect, useState } from "react";
 
 const DevlogSingle = () => {
@@ -31,6 +33,26 @@ const DevlogSingle = () => {
     };
 
     fetchDevlog();
+  }, [id]);
+
+  const [comments, setComments] = useState(null);
+  useEffect(() => {
+    const fetchComments = async () => {
+      try{
+      const response = await fetch("/algorithmia/comments/" + id, {
+        method: "GET",
+      });
+      const json = await response.json();
+
+    if (response.ok) {
+        setComments(json);
+      }
+    }
+    catch (error) {
+      console.log(error)
+    }};
+
+    fetchComments();
   }, [id]);
   
 
@@ -115,56 +137,10 @@ const DevlogSingle = () => {
         <div className="container my-5">
           <div className="row">
             <h5>Comments</h5>
-            <div className="d-flex flex-start w-75">
-              <img
-                className="rounded-circle shadow-1-strong me-3"
-                src={icon}
-                alt="avatar"
-                width="65"
-                height="65"
-              />
-              <div className="flex-grow-1 flex-shrink-1">
-                <div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <p className="mb-1">
-                      Maria Smantha <span className="small">- 2 hours ago</span>
-                    </p>
-                  </div>
-                  <p className="small mb-0">
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br />
-          <br />
-          <br />
-
-          <div className="row">
-            <div className="d-flex flex-start w-75">
-              <img
-                className="rounded-circle shadow-1-strong me-3"
-                src={icon}
-                alt="avatar"
-                width="65"
-                height="65"
-              />
-              <div className="flex-grow-1 flex-shrink-1">
-                <div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <p className="mb-1">
-                      Maria Smantha <span className="small">- 2 hours ago</span>
-                    </p>
-                  </div>
-                  <p className="small mb-0">
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page.
-                  </p>
-                </div>
-              </div>
-            </div>
+            {comments &&
+              comments.map((comment) => (
+                <CommentBlock key={comment._id} comment={comment} />
+              ))}
           </div>
           <br />
           <br />

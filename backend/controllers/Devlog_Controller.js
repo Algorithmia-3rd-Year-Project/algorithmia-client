@@ -85,7 +85,7 @@ const getComments = async (req, res) => {
     return res.status(404).json({ error: "No comments" });
   }
 
-  const comments = await Comment.findBy(devlog_id, dev_id);
+  const comments = await Comment.findOne({'devlog_id': dev_id});
 
   if (!comments) {
     return res.status(400).json({ error: "No comments" });
