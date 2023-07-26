@@ -23,7 +23,7 @@ const addPpl = async (req, res) => {
 
 const images = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../uploads"));
+    cb(null, path.join(__dirname, "../../utilities/uploads/ppl_images"));
   },
   filename: (req, file, cb) => {
     console.log(file);
