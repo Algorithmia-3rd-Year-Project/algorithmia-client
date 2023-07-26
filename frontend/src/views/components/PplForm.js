@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios';
 
 const PplForm = () => {
     const [type, setType] = useState("");
@@ -6,41 +7,55 @@ const PplForm = () => {
     const [description, setDescription] = useState("");
     const [sdate, setSdate] = useState("");
     const [edate, setEdate] = useState("");
+    const [file, setFile] = useState("");
     const [error, setError] = useState("");
+
+    const fileChangeHandler = (e) => {
+        setFile(e.target.files[0]);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const ppl = { type, product, description, sdate, edate };
+        const formData =  new FormData();
 
-        const response = await fetch("/algorithmia/pplform/addppl", {
-            method: "POST",
-            body: JSON.stringify(ppl),
-            headers: {
-                "Content-Type": "application/json",
-            },
+        formData.append("type", type);
+        formData.append("product", product);
+        formData.append("description", description);
+        formData.append("sdate", sdate);
+        formData.append("edate", edate);
+        formData.append("file", file);
+
+        // const response = await fetch("/algorithmia/pplform/addppl", {
+        //     method: "POST",
+        //     body: new FormData(formData),
+        // });
+
+        axios.post("/algorithmia/pplform/addppl", formData)
+        .then(response => {
+          // Handle the response data here
+          console.log(response.data);
+        })
+        .catch(error => {
+          // Handle any errors that occurred during the request
+          console.error(error);
         });
 
-        const json = await response.json();
-
-        if (!response.ok) {
-            setError(json.error);
-        }
-
-        if (response.ok) {
+        
             setType("");
             setProduct("");
             setDescription("");
             setSdate("");
             setEdate("");
+            setFile("");
             setError(null);
-            console.log("Placement request sent!", json);
-        }
+            console.log("Placement request sent!");
+        
     };
 
     return (
         <div className="container border w-50 mt-5 p-5 rounded-4" style={{ backgroundColor: "#ACDBDF" }}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <h2 className="text-center mb-5" style={{ color: "#002B5B" }}>Product Placement Request Form</h2>
                 <h5 className="mb-5">Fill the below form and advertise your product, brand in Algorithmia</h5>
 
@@ -98,7 +113,7 @@ const PplForm = () => {
 
                 <div className="fields mb-3">
                     <label className="form-label fw-bold" htmlFor="formfile">Attachments</label>
-                    <input type="file" className="form-control" id="formfile" />
+                    <input type="file" onChange={fileChangeHandler} className="form-control" name="file" multiple />
                 </div>
 
                 <button type="submit" className="btn btn-primary w-25 mb-4 border-0" style={{ backgroundColor: "#002B5B" }}>Submit</button>

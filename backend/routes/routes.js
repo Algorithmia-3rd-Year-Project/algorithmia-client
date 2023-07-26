@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 
 //Getting controller functions
 const {
@@ -27,6 +28,16 @@ router.get("/", (req, res) => {
   res.json({ msg: "Home Page" });
 });
 
+const fileStorageEngine = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "../../images")
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + ' - ' + file.originalname)
+  }
+})
+const upload = multer({storage: fileStorageEngine})
+
 //routes related to devlogs
 router.get("/devlogs", getDevlogs);
 
@@ -38,6 +49,6 @@ router.delete("/devlog/deletedevlog/:id", deleteDevlog);
 
 router.patch("/devlog/updatedevlog/:id", updateDevlog);
 
-router.post("/pplform/addppl", addPpl);
+router.post("/pplform/addppl",upload.single("file"), addPpl);
 
 module.exports = router;
