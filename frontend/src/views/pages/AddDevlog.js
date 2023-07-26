@@ -5,28 +5,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const AddDevlog = () => {
   return (
-    <>
-    <div class="container-fluid px-1 py-5 mx-auto">
-      <div class="row d-flex justify-content-center">
-        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-            <div class="card"
-                style={{
-                padding: '30px 40px',
-                marginTop: '60px',
-                marginBottom: '60px',
-                border: 'none !important',
-                boxShadow: '0 6px 12px 0 rgba(0, 0, 0, 0.2)',
-            }}>
+    
+      <div className="container border w-50 mt-5 p-5 rounded-4" style={{ backgroundColor: "#ACDBDF" }}>
+      
+            
             <div className="form-card">
-              <h2 class="text-center mb-4">Add New Devlog</h2>
+              <h2 className="text-center mb-5" style={{ color: "#002B5B" }}>Add New Devlog</h2>
               <DevlogForm />
             </div>
-          </div>
-      </div>
+          
       
-      </div>
+      
     </div>
-    </>
+   
     
   );
 };
