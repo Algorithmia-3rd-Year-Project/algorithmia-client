@@ -1,7 +1,9 @@
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import icon from "../../images/star-solid.png"
-import ReviewModal from '../components/ReviewModal'; 
-import { useState } from "react";
+import icon from "../../images/star-fill.png";
+import emptyicon from "../../images/star.png"
+import ReviewModal from '../components/ReviewModal';
+import { useEffect, useState } from "react";
 
 
 const Review = () => {
@@ -19,6 +21,23 @@ const Review = () => {
     const handleCloseModal = () => {
       setShowModal(false);
     };
+
+    //backend
+    const [reviews, setReviews] = useState(null);
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+        const response = await fetch("/algorithmia/reviews");
+        const json = await response.json();
+
+        if (response.ok) {
+            setReviews(json);
+        }
+        };
+
+        fetchReviews();
+    }, []);
+
     return(
         <section class="p-4 p-md-5 text-center text-lg-start shadow-1-strong rounded"  style={{backgroundColor: "#acdbdf"}}>
             <div className='text-center'>
@@ -35,71 +54,64 @@ const Review = () => {
 
                 <br></br><br></br>
 
-                <div class="card">
-                    <div class="card-body m-3">
-                    <div class="row">
-                        <div class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
-                            class="rounded-circle img-fluid shadow-1" alt="woman avatar" width="200" height="200" />
-                        </div>
-                        <div class="col-lg-8">
-                        <p class="text-muted fw-light mb-4">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
-                            molestiae numquam quas, voluptates omnis nulla ea odio quia similique
-                            corrupti magnam.
-                        </p>
-                        <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                        {elements}
-                        </div>
-                    </div>
-                    </div>
+        {reviews && reviews.map((review) => (
+            <React.Fragment>
+            <div className="card">
+              <div className="card-body m-3">
+                <div className="row">
+                  <div className="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
+                      className="rounded-circle img-fluid shadow-1"
+                      alt="woman avatar"
+                      width="200"
+                      height="200"
+                    />
+                  </div>
+                  <div className="col-lg-8">
+                    <p className="text-muted fw-light mb-4">{review.content}</p>
+                    <p className="fw-bold lead mb-2">
+                      <strong>Anna Smith</strong>
+                      <br></br>
+                      {/* <strong>{review.rate}</strong> */}
+                      {[...Array(review.rate)].map((_, index) => (
+                <img
+                  key={index}
+                  src={icon}
+                  className="img-fluid"
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    filter: "brightness(0.5) saturate(2)",
+                  }}
+                  alt="Icon"
+                />
+              ))}
+              {[...Array(5 - review.rate)].map((_, index) => (
+                <img
+                  key={index}
+                  src={emptyicon}
+                  className="img-fluid"
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    filter: "brightness(0.5) saturate(2)",
+                  }}
+                  alt="Empty Star"
+                />
+              ))}
+                    </p>
+                  </div>
                 </div>
-
-                <br></br><br></br>
-
-                <div class="card">
-                    <div class="card-body m-3">
-                    <div class="row">
-                        <div class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
-                            class="rounded-circle img-fluid shadow-1" alt="woman avatar" width="200" height="200" />
-                        </div>
-                        <div class="col-lg-8">
-                        <p class="text-muted fw-light mb-4">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
-                            molestiae numquam quas, voluptates omnis nulla ea odio quia similique
-                            corrupti magnam.
-                        </p>
-                        <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                        {elements}
-                        </div>
-                    </div>
-                    </div>
-                </div>
-
-                <br></br><br></br>
-
-                <div class="card">
-                    <div class="card-body m-3">
-                    <div class="row">
-                        <div class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
-                            class="rounded-circle img-fluid shadow-1" alt="woman avatar" width="200" height="200" />
-                        </div>
-                        <div class="col-lg-8">
-                        <p class="text-muted fw-light mb-4">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
-                            molestiae numquam quas, voluptates omnis nulla ea odio quia similique
-                            corrupti magnam.
-                        </p>
-                        <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                        {elements}
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
+              </div>
             </div>
+            <br></br>
+            </React.Fragment>
+        ))}
+
+                <br></br><br></br>
+                </div>
+            </div> 
             <ReviewModal showModal={showModal} handleCloseModal={handleCloseModal} />
 
         </section>
