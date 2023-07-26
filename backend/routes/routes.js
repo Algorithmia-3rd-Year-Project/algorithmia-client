@@ -7,8 +7,11 @@ const {
   createDevlog,
   deleteDevlog,
   updateDevlog,
-  getComments,
 } = require("../controllers/Devlog_Controller");
+
+const {
+  getComments,
+} = require("../controllers/Comment_Controller");
 
 //const requireAuth = require("../middleware/requireAuth");
 
