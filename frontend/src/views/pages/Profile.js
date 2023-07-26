@@ -1,10 +1,20 @@
-import badge from "../../images/badge_example.png"
-import item from "../../images/item.png"
+import badge from "../../images/badge_example.png";
+import item from "../../images/item.png";
+import { useState } from "react";
+import EditProfileModal from '../components/EditProfileForm'; 
 
 const Profile = () => {
+  const [showModal, setShowModal] = useState(false);
+
+    const handleShowModal = () => {
+      setShowModal(true);
+    };
+  
+    const handleCloseModal = () => {
+      setShowModal(false);
+    };
+
     return (
-        // <section class="h-100 gradient-custom-2">
-        // <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-9 col-xl-8">
               <div class="card">
@@ -14,7 +24,7 @@ const Profile = () => {
                       alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                       style={{width: "150px", zIndex: "1"}}/>
                     <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
-                      style={{zIndex: "1", borderColor: 'white',color: 'white', backgroundColor: '#002b5b'}}> 
+                      style={{zIndex: "1", borderColor: 'white',color: 'white', backgroundColor: '#002b5b'}}  onClick={handleShowModal}> 
                       Edit profile
                     </button>
                   </div>
@@ -89,9 +99,8 @@ const Profile = () => {
                 
               </div>
             </div>
+            <EditProfileModal showModal={showModal} handleCloseModal={handleCloseModal} />
         </div>
-        // </div>
-    //   </section>
     );
   };
 export default Profile;
