@@ -30,7 +30,6 @@ const PplForm = () => {
     formData.append("ppl-images", file);
 
     console.log(file);
-    const boundary = "mine";
     const response = await fetch("/algorithmia/pplform/addppl", {
       method: "POST",
       body: formData,
@@ -185,6 +184,7 @@ const PplForm = () => {
             type="file"
             onChange={handleFileChange}
             className="form-control"
+            multiple
           />
         </div>
 
