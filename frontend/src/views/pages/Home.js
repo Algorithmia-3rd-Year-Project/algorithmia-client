@@ -10,7 +10,7 @@ const Home = () => {
       <h2>Home</h2>
       <p>Other Pages</p>
 
-      <Link to="/devlogs">See all devlogs</Link>
+      <Link to="/pplform/add">Product placement</Link>
       <section style={{backgroundColor: "#002b5b"}}>
       <div className="container-fluid vh-100">
         <div className="row align-items-center vh-100" style={{ backgroundImage: `url(${require('../../images/background_img.jpg')})`, backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#002b5b", borderColor: "white"}}>

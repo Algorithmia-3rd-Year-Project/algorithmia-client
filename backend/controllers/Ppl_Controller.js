@@ -27,7 +27,7 @@ const images = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     console.log(file);
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, Date.now() + file.originalname);
   },
   onError: (err, next) => {
     console.log(err);
@@ -35,7 +35,9 @@ const images = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: images });
+const upload = multer({ storage: images }).array('images', 5);
+
+//const upload = multer({ storage: images });
 
 module.exports = {
   addPpl,

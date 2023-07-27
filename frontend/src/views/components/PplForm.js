@@ -1,5 +1,4 @@
 import { useState } from "react";
-//import axios from 'axios';
 
 const PplForm = () => {
   const [type, setType] = useState("");
@@ -11,22 +10,26 @@ const PplForm = () => {
   const [error, setError] = useState("");
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    setFile(e.target.files);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
+    var filenames = [];
 
-    var filename = file.name;
+    for(let i=0; i<file.length; i++) {
+      filenames[i] = Date.now() + file[i].name;
+     }
+    //var filename = Date.now() + file.name;
 
     formData.append("type", type);
     formData.append("product", product);
     formData.append("description", description);
     formData.append("sdate", sdate);
     formData.append("edate", edate);
-    formData.append("file", filename);
+    formData.append("file", filenames);
     formData.append("ppl-images", file);
 
     console.log(file);
@@ -184,6 +187,7 @@ const PplForm = () => {
             type="file"
             onChange={handleFileChange}
             className="form-control"
+            name="images"
             multiple
           />
         </div>
