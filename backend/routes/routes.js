@@ -4,7 +4,7 @@ const express = require("express");
 const {
   getDevlogs,
   getDevlog,
-  createDevlog,
+  createDevlog, upload, 
   deleteDevlog,
   updateDevlog,
 } = require("../controllers/Devlog_Controller");
@@ -28,10 +28,11 @@ router.get("/devlogs", getDevlogs);
 
 router.get("/devlog/:id", getDevlog);
 
-router.post("/devlog/adddevlog", createDevlog);
+router.post("/devlog/adddevlog", upload.single("devlog-image"), createDevlog);
 
 router.delete("/devlog/deletedevlog/:id", deleteDevlog);
 
 router.patch("/devlog/updatedevlog/:id", updateDevlog);
+
 
 module.exports = router;

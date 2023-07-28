@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Form from 'react-bootstrap/Form';
 
 const DevlogForm = () => {
   const [title, setTitle] = useState("");
@@ -8,37 +7,58 @@ const DevlogForm = () => {
   const [coverImage, setCoverImage] = useState("");
   const [error, setError] = useState("");
 
+  // const handleImageChange = (e) => {
+  //   const imageFile = e.target.files[0];
+  //   const reader = new FileReader();
+
+  //   reader.onloadend = () => {
+  //     setCoverImage(reader.result);
+  //   };
+
+  //   if (imageFile) {
+  //     reader.readAsDataURL(imageFile);
+  //   }
+  // };
+
   const handleImageChange = (e) => {
-    const imageFile = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setCoverImage(reader.result);
-    };
-
-    if (imageFile) {
-      reader.readAsDataURL(imageFile);
-    }
+    setCoverImage(e.target.files[0]);
   };
 
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   const devlog = { title, type, content, coverImage }; 
+
+  //   const response = await fetch("/algorithmia/devlog/adddevlog", {
+  //     method: "POST",
+  //     body: JSON.stringify(devlog),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+
+  //   const json = await response.json();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const devlog = { title, type, content, coverImage }; 
+    const formData = new FormData();
 
+    var imagename = coverImage.name;
+
+    formData.append("title", title);
+    formData.append("type", type);
+    formData.append("content", content);
+    formData.append("coverImg", imagename);
+    formData.append("devlog-image", coverImage);
+
+    console.log(coverImage);
     const response = await fetch("/algorithmia/devlog/adddevlog", {
       method: "POST",
-      body: JSON.stringify(devlog),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: formData,
     });
 
-    const json = await response.json();
-
-    if (!response.ok) {
-      setError(json.error);
-    }
 
     if (response.ok) {
       setTitle("");
@@ -46,13 +66,13 @@ const DevlogForm = () => {
       setContent("");
       setCoverImage("");
       setError(null);
-      console.log("New Devlog added", json);
+      console.log("New Devlog added");
     }
   };
 
   return (
     <div className="devlog-form">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="row g-5">
           <div className="col">
             <div className="row justify-content-between text-left">
@@ -67,10 +87,25 @@ const DevlogForm = () => {
             </div>
             <div className="row justify-content-between text-left">
               <label htmlFor="type" className="form-label" style={{ textAlign: 'left' }}>Type</label>
-              <Form.Select aria-label="Default select example" onChange={(e) => setType(e.target.value)}>
+              {/* <Form.Select aria-label="Default select example" onChange={(e) => setType(e.target.value)}>
                 <option value="News">News</option>
                 <option value="Features">Features</option>
-              </Form.Select>
+              </Form.Select> */}
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                name="type"
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+              >
+                <option selected value="News" required>
+                  News
+                </option>
+                <option value="Features" required>
+                  Fetures
+                </option>
+              </select>
+
             </div>
             <div className="row justify-content-between text-left">
               <label htmlFor="content" className="form-label" style={{ textAlign: 'left' }}>Content</label>
@@ -92,10 +127,11 @@ const DevlogForm = () => {
                 type="file"
                 name="coverImage"
                 onChange={handleImageChange}
+                multiple
               />
-              <div className="image-holder" style={{ marginLeft: '45px', width: '300px', height: '210px', borderStyle:'groove'}}>
+              {/* <div className="image-holder" style={{ marginLeft: '45px', width: '300px', height: '210px', borderStyle:'groove'}}>
                 {coverImage && <img src={coverImage} style={{ width: '270px', height: '205px', objectFit: 'cover' }} alt="Cover Preview" />}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
