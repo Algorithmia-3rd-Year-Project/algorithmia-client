@@ -36,6 +36,6 @@ router.delete("/devlog/deletedevlog/:id", deleteDevlog);
 
 router.patch("/devlog/updatedevlog/:id", updateDevlog);
 
-router.post("/pplform/addppl", upload("ppl-images"), addPpl);
+router.post("/pplform/addppl", upload.single("ppl-images"), addPpl);
 
 module.exports = router;
