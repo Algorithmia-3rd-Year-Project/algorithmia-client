@@ -7,50 +7,25 @@ const DevlogForm = () => {
   const [coverImage, setCoverImage] = useState("");
   const [error, setError] = useState("");
 
-  // const handleImageChange = (e) => {
-  //   const imageFile = e.target.files[0];
-  //   const reader = new FileReader();
 
-  //   reader.onloadend = () => {
-  //     setCoverImage(reader.result);
-  //   };
-
-  //   if (imageFile) {
-  //     reader.readAsDataURL(imageFile);
-  //   }
-  // };
 
   const handleImageChange = (e) => {
     setCoverImage(e.target.files[0]);
   };
 
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const devlog = { title, type, content, coverImage }; 
-
-  //   const response = await fetch("/algorithmia/devlog/adddevlog", {
-  //     method: "POST",
-  //     body: JSON.stringify(devlog),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-
-  //   const json = await response.json();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
 
-    var imagename = coverImage.name;
+    // var imagename = coverImage.name;
 
     formData.append("title", title);
     formData.append("type", type);
     formData.append("content", content);
-    formData.append("coverImg", imagename);
+    // formData.append("coverImg", imagename);
     formData.append("devlog-image", coverImage);
 
     console.log(coverImage);

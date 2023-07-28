@@ -14,7 +14,7 @@ const {
 const router = express.Router();
 
 //require auth for all devlog routes
-//router.use(requireAuth);
+
 
 //declaring routes
 

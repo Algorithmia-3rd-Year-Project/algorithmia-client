@@ -30,10 +30,10 @@ const getDevlog = async (req, res) => {
 
 //Create a new devlog
 const createDevlog = async (req, res) => {
-  const { title, type, content, coverImage } = req.body;
+  const { title, type, content } = req.body;
 
   try {
-    const devlog = await Devlog.create({ title, type, content, coverImage });
+    const devlog = await Devlog.create({ title, type, content });
     res.status(200).json(devlog);
   } catch (error) {
     res.status(400).json({ error: error.message });
