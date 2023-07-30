@@ -14,12 +14,22 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  dob: {
+    type: String,
+    required: false,
+  },
 });
 
 //static signup method
-userSchema.statics.signup = async function (email, password) {
+userSchema.statics.signup = async function (
+  email,
+  password,
+  confirm_password,
+  dob,
+  isAcceptedTerms
+) {
   //validation
-  if (!email || !password) {
+  if (!email || !password || !confirm_password || !dob || !isAcceptedTerms) {
     throw Error("All fields must be filled");
   }
 
@@ -31,6 +41,10 @@ userSchema.statics.signup = async function (email, password) {
     throw Error("Password not strong enough");
   }
 
+  if (password !== confirm_password) {
+    throw Error("Password missmatch");
+  }
+
   const exists = await this.findOne({ email });
 
   if (exists) {
@@ -40,7 +54,7 @@ userSchema.statics.signup = async function (email, password) {
   const saltValue = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, saltValue);
 
-  const user = await this.create({ email, password: hash });
+  const user = await this.create({ email, password: hash, dob });
 
   return user;
 };
