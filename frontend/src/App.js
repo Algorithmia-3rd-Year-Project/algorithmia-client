@@ -9,7 +9,11 @@ import AddDevlog from "./views/pages/AddDevlog";
 import AdvertiserDashboard from "./views/pages/Admin/AdvertiserDashboard";
 import ProfileOverview from "./views/pages/Advertiser/ProfileOverview";
 
+import Profile from "./views/pages/Profile";
+
+
 import AddPpl from "./views/pages/AddPpl";
+
 import Review from "./views/pages/Reviews"
 
 
@@ -32,7 +36,11 @@ function App() {
             <Route path="/devlogs/add" element={<AddDevlog />} />
 
 
+            <Route path="/profile" element={<Profile />} />
+
+
             <Route path="/pplform/add" element={<AddPpl />} />
+
             <Route path="/reviews" element={<Review />} />
 
 
