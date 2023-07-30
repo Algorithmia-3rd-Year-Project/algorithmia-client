@@ -9,6 +9,7 @@ const Home = () => {
     <div className="home">
       <h2>Home</h2>
       <p>Other Pages</p>
+
       <Link to="/devlogs">See all devlogs</Link>
       <section style={{backgroundColor: "#002b5b"}}>
       <div className="container-fluid vh-100">
@@ -22,6 +23,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+
 
       <div class="container my-5">
       <h1 class="display-5 fw-bold lh-1 mb-3 text-center" style={{ color: 'white' }}>About Us</h1>
