@@ -4,13 +4,21 @@ import { useSignup } from "../../hooks/useSignup";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm_password, setConfirmPassword] = useState("");
+  const [dob, setDob] = useState("");
+  const [isAcceptedTerms, setIsAcceptedTerms] = useState(false);
   const { signup, error, isLoading } = useSignup();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //console.log(email, password);
-    await signup(email, password);
+    await signup(email, password, confirm_password, dob, isAcceptedTerms).then(
+      () => {
+        if (error === null) {
+          window.location.reload(false);
+        }
+      }
+    );
   };
 
   // return
@@ -45,7 +53,7 @@ const Signup = () => {
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <div class="modal-content" style={{backgroundColor:"#1A5F7A"}}>
+          <div class="modal-content" style={{ backgroundColor: "#ACDBDF" }}>
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
                 Algorithmia Account Sign Up
@@ -86,26 +94,42 @@ const Signup = () => {
                   <label for="recipient-name" class="col-form-label">
                     Date of Birth
                   </label>
-                  <input type="text" class="form-control" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    onChange={(e) => setDob(e.target.value)}
+                    value={dob}
+                  />
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">
                     Password
                   </label>
-                  <input type="password" className="form-control mt-1" />
+                  <input
+                    type="password"
+                    className="form-control mt-1"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                  />
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">
                     Confirm Password
                   </label>
-                  <input type="password" className="form-control mt-1" />
+                  <input
+                    type="password"
+                    className="form-control mt-1"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    value={confirm_password}
+                  />
                 </div>
 
                 <div class="form-check">
                   <input
                     class="form-check-input"
                     type="checkbox"
-                    value=""
+                    onChange={(e) => setIsAcceptedTerms(e.target.value)}
+                    value={isAcceptedTerms}
                     id="flexCheckDefault"
                   />
                   <label class="form-check-label" for="flexCheckDefault">
@@ -115,7 +139,11 @@ const Signup = () => {
 
                 <br />
                 <div class="d-grid gap-2 col-6 mx-auto">
-                  <button class="btn btn-primary" type="button">
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    onClick={handleSubmit}
+                  >
                     Register
                   </button>
                 </div>

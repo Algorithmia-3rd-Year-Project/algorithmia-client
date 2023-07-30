@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
+import { useNavigate } from "react-router-dom";
+
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const Login = () => {
@@ -9,9 +11,12 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    //console.log(email, password);
-    await login(email, password);
+    await login(email, password).then(() => {
+      //console.log(error,isLoading,'-----------------------------------error-------------');
+      if (error === null) {
+        window.location.reload(false);
+      }
+    });
   };
 
   // return (
@@ -39,14 +44,14 @@ const Login = () => {
   return (
     <>
       <div
-        class="modal fade"
+        class="modal"
         id="login"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <div class="modal-content" style={{backgroundColor:"#1A5F7A"}}>
+          <div class="modal-content" style={{ backgroundColor: "#ACDBDF" }}>
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
                 Algorithmia Account Login
@@ -80,11 +85,17 @@ const Login = () => {
                     type="password"
                     className="form-control mt-1"
                     placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <br />
                 <div class="d-grid gap-2 col-6 mx-auto">
-                  <button class="btn btn-primary" type="button">
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    onClick={handleSubmit}
+                  >
                     Log In
                   </button>
                 </div>
