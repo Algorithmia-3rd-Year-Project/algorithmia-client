@@ -8,6 +8,8 @@ import Login from "./views/pages/Login";
 import AddDevlog from "./views/pages/AddDevlog";
 import AdvertiserDashboard from "./views/pages/Admin/AdvertiserDashboard";
 import ProfileOverview from "./views/pages/Advertiser/ProfileOverview";
+import GameUpdate from "./views/pages/GameUpdate";
+import GameComplain from "./views/pages/Complaints";
 
 //components
 import Navbar from "./views/components/Navbar";
@@ -32,6 +34,9 @@ function App() {
               element={<AdvertiserDashboard />}
             />
             <Route path="/advertiser/profile" element={<ProfileOverview />} />
+            
+            <Route path="/Gameupdate" element={<GameUpdate/>} />
+            <Route path="/Complaints" element={<GameComplain/>} />
           </Routes>
         </div>
       </BrowserRouter>
