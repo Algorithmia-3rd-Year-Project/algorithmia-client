@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 const DevlogSingle = () => {
   const [devlog, setDevlog] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [commentLoading, setCommentLoading] = useState(true);
 
   const { id } = useParams();
 
@@ -50,7 +51,7 @@ const DevlogSingle = () => {
       } catch (error) {
         //do something
       } finally {
-        setLoading(false);
+        setCommentLoading(false);
       }
     };
     fetchComments();
