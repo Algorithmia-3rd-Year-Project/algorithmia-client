@@ -8,9 +8,8 @@ const getComments = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(dev_id)) {
       return res.status(404).json({ error: "No comments" });
     }
-  
-    const comments = await Comment.findOne({'devlog_id': dev_id});
-  
+    const comments = await Comment.find({ devlog_id: dev_id });
+    console.log(comments);
     if (!comments) {
       return res.status(400).json({ error: "No comments" });
     }

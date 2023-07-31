@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { useParams } from "react-router-dom";
+//import { useSessionContext } from "../../hooks/useSessionContext"
 
 import icon from "../../images/user.png";
 import image from "../../images/beach.webp";
@@ -35,28 +36,29 @@ const DevlogSingle = () => {
     fetchDevlog();
   }, [id]);
 
-  // const [comments, setComments] = useState(null);
-  // useEffect(() => {
-  //   const fetchComments = async () => {
-  //     try{
-  //     const response = await fetch("/algorithmia/comments/" + id, {
-  //       method: "GET",
-  //     });
-  //     const json = await response.json();
+  const [comments, setComments] = useState(null);
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await fetch("/algorithmia/comments/" + id, {
+          method: "GET",
+        });
+        const json = await response.json();
+        if (response.ok) {
+          setComments(json);
+        }
+      } catch (error) {
+        //do something
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchComments();
+  }, [id]);
 
-  //   if (response.ok) {
-  //       setComments(json);
-  //     }
-  //   }
-  //   catch (error) {
-  //     console.log(error)
-  //   }};
-
-  //   fetchComments();
-  // }, [id]);
-
+  //const {user} = useSessionContext();
   const [content, setComment] = useState("");
-  //const [user_id, setUser] = useState("");
+  //const user_id = {user.id};
   const user_id = "testID";
   const [error, setError] = useState("");
   const devlog_id = id;
@@ -169,10 +171,10 @@ const DevlogSingle = () => {
         <div className="container my-5">
           <div className="row">
             <h5>Comments</h5>
-            {/* {comments &&
+            {comments &&
               comments.map((comment) => (
                 <CommentBlock key={comment._id} comment={comment} />
-              ))} */}
+              ))}
           </div>
           <br />
           <br />
