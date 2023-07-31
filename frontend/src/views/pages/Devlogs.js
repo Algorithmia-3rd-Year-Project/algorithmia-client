@@ -7,19 +7,31 @@ import DevlogTile from "../components/DevlogTile";
 
 const Devlog = () => {
   const [devlogs, setDevlogs] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDevlogs = async () => {
+
+      try {
       const response = await fetch("/algorithmia/devlogs");
       const json = await response.json();
 
       if (response.ok) {
         setDevlogs(json);
       }
+    } catch (error) {
+      //do something if error is found
+    } finally {
+      setLoading(false);
+    }
     };
 
     fetchDevlogs();
   }, []);
+
+  if (loading) {
+    return <p>loading...</p>;
+  }
 
   return (
     <section style={{ backgroundColor: "#acdbdf" }}>

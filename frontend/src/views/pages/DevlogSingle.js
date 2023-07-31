@@ -35,26 +35,58 @@ const DevlogSingle = () => {
     fetchDevlog();
   }, [id]);
 
-  const [comments, setComments] = useState(null);
-  useEffect(() => {
-    const fetchComments = async () => {
-      try{
-      const response = await fetch("/algorithmia/comments/" + id, {
-        method: "GET",
-      });
-      const json = await response.json();
+  // const [comments, setComments] = useState(null);
+  // useEffect(() => {
+  //   const fetchComments = async () => {
+  //     try{
+  //     const response = await fetch("/algorithmia/comments/" + id, {
+  //       method: "GET",
+  //     });
+  //     const json = await response.json();
+
+  //   if (response.ok) {
+  //       setComments(json);
+  //     }
+  //   }
+  //   catch (error) {
+  //     console.log(error)
+  //   }};
+
+  //   fetchComments();
+  // }, [id]);
+
+  const [content, setComment] = useState("");
+  //const [user_id, setUser] = useState("");
+  const user_id = "testID";
+  const [error, setError] = useState("");
+  const devlog_id = id;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const newComment = { content, user_id, devlog_id };
+
+    const response = await fetch("/algorithmia/devlog/addcomment", {
+      method: "POST",
+      body: JSON.stringify(newComment),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      setError(json.error);
+    }
 
     if (response.ok) {
-        setComments(json);
-      }
+      setComment("");
+      setError(null);
+      console.log("New Comment added", json);
     }
-    catch (error) {
-      console.log(error)
-    }};
+  };
 
-    fetchComments();
-  }, [id]);
-  
 
   if (loading) {
     return <p>loading...</p>;
@@ -137,10 +169,10 @@ const DevlogSingle = () => {
         <div className="container my-5">
           <div className="row">
             <h5>Comments</h5>
-            {comments &&
+            {/* {comments &&
               comments.map((comment) => (
                 <CommentBlock key={comment._id} comment={comment} />
-              ))}
+              ))} */}
           </div>
           <br />
           <br />
@@ -155,21 +187,25 @@ const DevlogSingle = () => {
                 width="65"
                 height="65"
               />
-              <div className="w-100">
+              <form onSubmit={handleSubmit} className="w-100">
                 <h5>Add a comment</h5>
                 <div className="form-outline">
                   <textarea
                     className="form-control"
-                    id="textAreaExample"
+                    name="content"
                     rows="4"
+                    value={content}
+                    onChange={(e) => setComment(e.target.value)}
                   ></textarea>
+
+                  <div className="d-flex justify-content-between mt-3">
+                    <button type="submit" className="btn btn-success">
+                      Add Comment
+                    </button>
+                    {error && <div className="error"> {error} </div>}
+                  </div>
                 </div>
-                <div className="d-flex justify-content-between mt-3">
-                  <button type="button" className="btn btn-success">
-                    Add Comment
-                  </button>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
