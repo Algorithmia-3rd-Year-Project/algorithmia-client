@@ -7,6 +7,8 @@ const {
   createDevlog,
   deleteDevlog,
   updateDevlog,
+  getDevlogNews,
+  getDevlogFeatures,
 } = require("../controllers/Devlog_Controller");
 
 const {
@@ -30,6 +32,10 @@ router.get("/", (req, res) => {
 
 //routes related to devlogs
 router.get("/devlogs", getDevlogs);
+
+router.get("/devlogNews", getDevlogNews);
+
+router.get("/devlogFeatures", getDevlogFeatures);
 
 router.get("/devlog/:id", getDevlog);
 

@@ -9,25 +9,53 @@ const Devlog = () => {
   const [devlogs, setDevlogs] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchDevlogs = async () => {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const type = urlSearchParams.get('type');
 
-      try {
-      const response = await fetch("/algorithmia/devlogs");
+  function reloadPageWithVariable(type) {
+    const currentURL = new URL(window.location.href);
+
+  if (currentURL.searchParams) {
+    // Check if there are any existing query parameters
+      for (const key of currentURL.searchParams.keys()) {
+        currentURL.searchParams.delete(key);
+      }
+    
+  } else {
+    // If searchParams is not available, create a new one
+    currentURL.searchParams = new URLSearchParams();
+  }
+
+  currentURL.searchParams.set('type', type);
+  const newURL = currentURL.href;
+    window.location.href = newURL;
+  }
+
+  const fetchDevlogsByType = async (type) => {
+    try {
+      let response;
+      if (type === "News") {
+        response = await fetch("/algorithmia/devlogNews");
+      } else if (type === "Features") {
+        response = await fetch("/algorithmia/devlogFeatures");
+      } else {
+        response = await fetch("/algorithmia/devlogs");
+      }
+
       const json = await response.json();
-
       if (response.ok) {
         setDevlogs(json);
       }
     } catch (error) {
-      //do something if error is found
+      // Handle errors
     } finally {
       setLoading(false);
     }
-    };
+  };
 
-    fetchDevlogs();
-  }, []);
+  useEffect(() => {
+    fetchDevlogsByType(type);
+  }, [type]);
 
   if (loading) {
     return <p>loading...</p>;
@@ -44,9 +72,8 @@ const Devlog = () => {
                 Filters
               </button>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Filter 1</a></li>
-                <li><a className="dropdown-item" href="#">Filter 2</a></li>
-                <li><a className="dropdown-item" href="#">Filter3</a></li>
+                <li><button className="dropdown-item" onClick={() => reloadPageWithVariable('News')}>News</button></li>
+                <li><button className="dropdown-item" onClick={() => reloadPageWithVariable('Features')}>Features</button></li>
               </ul>
             </div>
           </div>
@@ -56,9 +83,8 @@ const Devlog = () => {
                 Sort
               </button>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">A-Z Order</a></li>
-                <li><a className="dropdown-item" href="#">By Date</a></li>
-                <li><a className="dropdown-item" href="#">By Title</a></li>
+                <li><a className="dropdown-item" href="devlogSort/atoz">A-Z Order</a></li>
+                <li><a className="dropdown-item" href="devlogSort/date">Most recent</a></li>
               </ul>
             </div>
           </div>
