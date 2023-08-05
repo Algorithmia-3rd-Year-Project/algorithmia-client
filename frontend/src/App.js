@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import React from 'react';
+import { CommentProvider } from './views/components/CommentContext';
+
 //pages
 import Home from "./views/pages/Home";
 import Devlog from "./views/pages/Devlogs";
@@ -15,6 +18,7 @@ import Navbar from "./views/components/Navbar";
 function App() {
   return (
     <div className="App">
+      <CommentProvider>
       <BrowserRouter>
         <Navbar />
         <div className="pages">
@@ -36,6 +40,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+    </CommentProvider>
     </div>
   );
 }

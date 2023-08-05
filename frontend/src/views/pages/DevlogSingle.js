@@ -1,13 +1,15 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { useParams } from "react-router-dom";
 //import { useSessionContext } from "../../hooks/useSessionContext"
+import { CommentContext } from '../components/CommentContext';
 
 import icon from "../../images/user.png";
 import image from "../../images/beach.webp";
 
 import CommentBlock from "../components/CommentBlock";
+import AddComment from "../components/AddComment";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 const DevlogSingle = () => {
   const [devlog, setDevlog] = useState(null);
@@ -37,7 +39,7 @@ const DevlogSingle = () => {
     fetchDevlog();
   }, [id]);
 
-  const [comments, setComments] = useState(null);
+  const { comments, setComments } = useContext(CommentContext);
   useEffect(() => {
     const fetchComments = async () => {
       try {
@@ -57,45 +59,13 @@ const DevlogSingle = () => {
     fetchComments();
   }, [id]);
 
-  //const {user} = useSessionContext();
-  const [content, setComment] = useState("");
-  //const user_id = {user.id};
-  const user_id = "testID";
-  const [error, setError] = useState("");
-  const devlog_id = id;
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const newComment = { content, user_id, devlog_id };
-
-    const response = await fetch("/algorithmia/devlog/addcomment", {
-      method: "POST",
-      body: JSON.stringify(newComment),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const json = await response.json();
-
-    if (!response.ok) {
-      setError(json.error);
-    }
-
-    if (response.ok) {
-      setComment("");
-      setError(null);
-      console.log("New Comment added", json);
-    }
-  };
-
 
   if (loading) {
     return <p>loading...</p>;
   }
 
   return (
+
     <div
       className="container mt-3 pt-3 border rounded-4"
       style={{ backgroundColor: "#ACDBDF" }}
@@ -139,35 +109,8 @@ const DevlogSingle = () => {
           into the making of our upcoming game. Join us on this thrilling
           journey as we craft an unforgettable gaming experience.
         </p>
-        <p>
-          Devlog Entry #1: Conception and Inspiration In this inaugural devlog
-          entry, we're excited to share the birth of our game and the
-          inspirations that drive us. Our team has always been captivated by the
-          magical worlds of classic role-playing games, where epic quests and
-          fantastical creatures collide. Thus, we set out on a mission to create
-          a game that evokes the same sense of wonder and adventure we felt as
-          players. During the brainstorming phase, we delved deep into
-          mythology, folklore, and various RPG genres to gather inspiration. We
-          drew inspiration from the immersive storytelling of the "Final
-          Fantasy" series, the strategic combat of "XCOM," and the atmospheric
-          exploration of "The Legend of Zelda: Breath of the Wild." Armed with
-          these influences, we set out to create a unique blend of gameplay
-          mechanics and narrative depth.
-        </p>
-        <p>
-          Devlog Entry #2: The Power of Procedural Generation One of the key
-          pillars of our game's design is procedural generation, allowing for an
-          endlessly diverse and ever-changing world. We've been hard at work
-          developing a robust procedural generation system that creates unique
-          landscapes, dungeons, and encounters for players to explore. Our
-          algorithmic wizardry generates stunning vistas, treacherous mountain
-          ranges, and sprawling forests, each teeming with secrets and
-          challenges. We want players to feel a sense of awe and discovery every
-          time they venture into uncharted territory.
-        </p>
       </section>
       <hr />
-
       <section>
         <div className="container my-5">
           <div className="row">
@@ -190,30 +133,14 @@ const DevlogSingle = () => {
                 width="65"
                 height="65"
               />
-              <form onSubmit={handleSubmit} className="w-100">
-                <h5>Add a comment</h5>
-                <div className="form-outline">
-                  <textarea
-                    className="form-control"
-                    name="content"
-                    rows="4"
-                    value={content}
-                    onChange={(e) => setComment(e.target.value)}
-                  ></textarea>
+              <AddComment />
 
-                  <div className="d-flex justify-content-between mt-3">
-                    <button type="submit" className="btn btn-success">
-                      Add Comment
-                    </button>
-                    {error && <div className="error"> {error} </div>}
-                  </div>
-                </div>
-              </form>
             </div>
           </div>
         </div>
       </section>
     </div>
+
   );
 };
 
