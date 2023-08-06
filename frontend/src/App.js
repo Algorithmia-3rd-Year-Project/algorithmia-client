@@ -8,6 +8,10 @@ import Login from "./views/pages/Login";
 import AddDevlog from "./views/pages/AddDevlog";
 import AdvertiserDashboard from "./views/pages/Admin/AdvertiserDashboard";
 import ProfileOverview from "./views/pages/Advertiser/ProfileOverview";
+
+import GameUpdate from "./views/pages/GameUpdate";
+import GameComplain from "./views/pages/Complaints";
+
 import GameDashboard from "./views/pages/Admin/gameDashboard";
 
 import Profile from "./views/pages/Profile";
@@ -16,6 +20,7 @@ import Profile from "./views/pages/Profile";
 import AddPpl from "./views/pages/AddPpl";
 
 import Review from "./views/pages/Reviews"
+
 
 
 //components
@@ -55,6 +60,9 @@ function App() {
               element={<GameDashboard />}
             />
             <Route path="/advertiser/profile" element={<ProfileOverview />} />
+            
+            <Route path="/Gameupdate" element={<GameUpdate/>} />
+            <Route path="/Complaints" element={<GameComplain/>} />
           </Routes>
         </div>
       </BrowserRouter>
