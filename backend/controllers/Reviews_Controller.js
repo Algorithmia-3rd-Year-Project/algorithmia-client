@@ -25,7 +25,7 @@ const getReview = async (req, res) => {
     res.status(200).json(review);
 };
 
-  //Create a new review
+//Create a new review
 const createReview = async (req, res) => {
     const { content, rate } = req.body;
 

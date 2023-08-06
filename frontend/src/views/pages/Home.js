@@ -3,8 +3,43 @@ import 'bootstrap/dist/css/bootstrap.css';
 import img1 from "../../images/patch1.jpg"
 import img2 from "../../images/patch2.png"
 import img3 from "../../images/patch3.jpg"
+import icon from "../../images/star-fill.png";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
+import { useEffect, useState } from "react";
 
 const Home = () => {
+
+  const elements = [];
+    for (let i = 0; i < 5; i++) {
+        elements.push(<img src={icon} class="img-fluid" style={{width: '24px', height: '20px', filter: "brightness(0.5) saturate(2)"}} alt="Icon" />
+        );
+    }
+    const [reviews, setReviews] = useState(null);
+
+    useEffect(() => {
+      const fetchReviews = async () => {
+        const response = await fetch("/algorithmia/reviews");
+        const json = await response.json();
+  
+        if (response.ok) {
+          // Sort the reviews by date in descending order
+          const sortedReviews = json.sort(
+            (a, b) => new Date(b.date) - new Date(a.date)
+          );
+  
+          // Take only the first 3 reviews
+          const latestReviews = sortedReviews.slice(0, 3);
+  
+          setReviews(latestReviews);
+        }
+      };
+  
+      fetchReviews();
+    }, []);
+
   return (
     <div className="home">
       <h2>Home</h2>
@@ -103,6 +138,110 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+{/* reviews */}
+<div className="container my-5 border-top">
+        <br></br>
+        <br></br>
+        <h1 className="display-5 fw-bold lh-1 mb-3 text-center" style={{ color: "white" }}>Reviews</h1>
+        <Link to="/reviews">See More</Link>
+        <br></br><br></br><br></br>
+        <div className="container">
+          <div id="carouselReviewIndicators" className="carousel slide">
+            <div className="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselReviewIndicators"
+                data-bs-slide-to="0"
+                className="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselReviewIndicators"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselReviewIndicators"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div className="carousel-inner">
+              {reviews &&
+                reviews.map((review, index) => (
+                  <div
+                    key={index}
+                    className={`carousel-item ${index === 0 ? "active" : ""}`}
+                  >
+                    <div className="card"  style={{backgroundColor: "#acdbdf"}}>
+                      <div className="card-body m-3">
+                        <div className="row">
+                          <div className="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
+                            <img
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
+                              className="rounded-circle img-fluid shadow-1"
+                              alt="woman avatar"
+                              width="200"
+                              height="200"
+                            />
+                          </div>
+                          <div className="col-lg-8">
+                            <p className="text-muted fw-light mb-4">
+                              {review.content}
+                            </p>
+                            <p className="fw-bold lead mb-2">
+                              <strong>Anna Smith</strong>
+                              <br></br>
+                              {[...Array(review.rate)].map((_, index) => (
+                                <FontAwesomeIcon
+                                  key={index}
+                                  icon={solidStar}
+                                  style={{ color: "gold" }}
+                                />
+                              ))}
+                              {[...Array(5 - review.rate)].map((_, index) => (
+                                <FontAwesomeIcon
+                                  key={index}
+                                  icon={regularStar}
+                                  style={{ color: "gold" }}
+                                />
+                              ))}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+            <button
+              className="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselReviewIndicators"
+              data-bs-slide="prev"
+            >
+              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button
+              className="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselReviewIndicators"
+              data-bs-slide="next"
+            >
+              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+
       
       </section>
 

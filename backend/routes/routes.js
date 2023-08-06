@@ -10,7 +10,8 @@ const {
 } = require("../controllers/Devlog_Controller");
 
 const {
-  getReviews
+  getReviews,
+  createReview
 } = require("../controllers/Reviews_Controller");
 
 
@@ -41,5 +42,8 @@ router.patch("/devlog/updatedevlog/:id", updateDevlog);
 
 //routes related to reviews
 router.get("/reviews", getReviews);
+
+router.post("/reviews", createReview);
+
 
 module.exports = router;

@@ -1,7 +1,9 @@
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import icon from "../../images/star-fill.png";
-import emptyicon from "../../images/star.png"
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import ReviewModal from '../components/ReviewModal';
 import { useEffect, useState } from "react";
 
@@ -44,76 +46,54 @@ const Review = () => {
             <h1>Reviews</h1>
             </div>
             <div class="row d-flex justify-content-center">
-                <div class="col-md-10">
+              <div class="col-md-10">
 
-                <div className="d-flex justify-content-end">
-                    <button type="button" className="btn btn-primary btn-lg px-4 me-md-2 fw-bold" style={{ backgroundColor: '#002b5b', color: 'white', borderColor: '#002b5b' }} onClick={handleShowModal}>
-                        Add Review
-                    </button>
-                </div>
-
-                <br></br><br></br>
-
-        {reviews && reviews.map((review) => (
-            <React.Fragment>
-            <div className="card">
-              <div className="card-body m-3">
-                <div className="row">
-                  <div className="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
-                    <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
-                      className="rounded-circle img-fluid shadow-1"
-                      alt="woman avatar"
-                      width="200"
-                      height="200"
-                    />
-                  </div>
-                  <div className="col-lg-8">
-                    <p className="text-muted fw-light mb-4">{review.content}</p>
-                    <p className="fw-bold lead mb-2">
-                      <strong>Anna Smith</strong>
-                      <br></br>
-                      {/* <strong>{review.rate}</strong> */}
-                      {[...Array(review.rate)].map((_, index) => (
-                <img
-                  key={index}
-                  src={icon}
-                  className="img-fluid"
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    filter: "brightness(0.5) saturate(2)",
-                  }}
-                  alt="Icon"
-                />
-              ))}
-              {[...Array(5 - review.rate)].map((_, index) => (
-                <img
-                  key={index}
-                  src={emptyicon}
-                  className="img-fluid"
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    filter: "brightness(0.5) saturate(2)",
-                  }}
-                  alt="Empty Star"
-                />
-              ))}
-                    </p>
-                  </div>
-                </div>
+              <div className="d-flex justify-content-end">
+                <button type="button" className="btn btn-primary btn-lg px-4 me-md-2 fw-bold" style={{ backgroundColor: '#002b5b', color: 'white', borderColor: '#002b5b' }} onClick={handleShowModal}>
+                Add Review
+                </button>
               </div>
+
+              <br></br><br></br>
+
+              {reviews && reviews.map((review) => (
+                  <React.Fragment>
+                  <div className="card">
+                    <div className="card-body m-3">
+                      <div className="row">
+                        <div className="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
+                          <img
+                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
+                            className="rounded-circle img-fluid shadow-1"
+                            alt="woman avatar"
+                            width="200"
+                            height="200"
+                          />
+                        </div>
+                        <div className="col-lg-8">
+                          <p className="text-muted fw-light mb-4">{review.content}</p>
+                          <p className="fw-bold lead mb-2">
+                            <strong>Anna Smith</strong>
+                            <br></br>
+                            {[...Array(review.rate)].map((_, index) => (
+                              <FontAwesomeIcon icon={solidStar} style={{ color: 'gold' }}/>
+                            ))}
+                            {[...Array(5 - review.rate)].map((_, index) => (
+                              <FontAwesomeIcon icon={regularStar} style={{ color: 'gold' }} />
+                            ))}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br></br>
+                  </React.Fragment>
+              ))}
+
+              <br></br><br></br>
             </div>
-            <br></br>
-            </React.Fragment>
-        ))}
-
-                <br></br><br></br>
-                </div>
-            </div> 
-            <ReviewModal showModal={showModal} handleCloseModal={handleCloseModal} />
-
+          </div> 
+          <ReviewModal showModal={showModal} handleCloseModal={handleCloseModal} />
         </section>
     );
 };
