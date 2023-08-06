@@ -116,13 +116,13 @@ const Home = () => {
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src={img1} class="d-block w-100" alt="couple"/>
+                <img src={img1} class="d-block w-100"/>
               </div>
               <div class="carousel-item">
-                <img src={img2} class="d-block w-100" alt="dog"/>
+                <img src={img2} class="d-block w-100"/>
               </div>
               <div class="carousel-item">
-                <img src={img3} class="d-block w-100" alt="family"/>
+                <img src={img3} class="d-block w-100"/>
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
