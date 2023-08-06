@@ -7,7 +7,15 @@ const {
   createDevlog,
   deleteDevlog,
   updateDevlog,
+  getDevlogNews,
+  getDevlogFeatures,
 } = require("../controllers/Devlog_Controller");
+
+
+const {
+  getComments,
+  addComment,
+} = require("../controllers/Comment_Controller");
 
 
 const {
@@ -37,6 +45,10 @@ router.get("/", (req, res) => {
 //routes related to devlogs
 router.get("/devlogs", getDevlogs);
 
+router.get("/devlogNews", getDevlogNews);
+
+router.get("/devlogFeatures", getDevlogFeatures);
+
 router.get("/devlog/:id", getDevlog);
 
 router.post("/devlog/adddevlog", createDevlog);
@@ -44,6 +56,11 @@ router.post("/devlog/adddevlog", createDevlog);
 router.delete("/devlog/deletedevlog/:id", deleteDevlog);
 
 router.patch("/devlog/updatedevlog/:id", updateDevlog);
+
+router.post("/devlog/addcomment", addComment);
+
+//routes related to comments
+router.get("/comments/:id", getComments);
 
 
 //routes related to game upload/update

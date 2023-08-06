@@ -9,7 +9,7 @@ const Home = () => {
     <div className="home">
       <h2>Home</h2>
       <p>Other Pages</p>
-
+    
       <Link to="/devlogs">See all devlogs</Link>
       <section style={{ backgroundColor: "#002b5b" }}>
         <div className="container-fluid vh-100">
