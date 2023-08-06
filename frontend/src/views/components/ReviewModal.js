@@ -57,42 +57,41 @@ Rate.defaultProps = {
 
 const ReviewModal = ({ showModal, handleCloseModal }) => {
   const modalStyle = {
-    display: showModal ? 'block' : 'none',
-    position: 'fixed',
+    display: showModal ? "block" : "none",
+    position: "fixed",
     zIndex: 1,
     left: 0,
     top: 0,
-    width: '100%',
-    height: '100%',
-    overflow: 'auto',
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    width: "100%",
+    height: "100%",
+    overflow: "auto",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
   };
 
   const modalContentStyle = {
-    backgroundColor: '#fefefe',
-    margin: '15% auto',
-    padding: '20px',
-    border: '1px solid #888',
-    width: '80%',
+    backgroundColor: "#fefefe",
+    margin: "15% auto",
+    padding: "20px",
+    border: "1px solid #888",
+    width: "80%",
   };
 
   //backend
-  const [content, setContent] = useState('');
-  const [error, setError] = useState('');
+  const [content, setContent] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
-  
     const review = { content, rate: rating }; // Use rating as the selected rate
-  
-    const response = await fetch('/algorithmia/reviews', {
-      method: 'POST',
+
+    const response = await fetch("/algorithmia/reviews", {
+      method: "POST",
       body: JSON.stringify(review),
       headers: {
         "Content-Type": "application/json",
       },
     });
     const json = await response.json();
-  
+
     if (!response.ok) {
       setError(json.error);
     }
@@ -114,14 +113,23 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
           <div className="modal-content" style={{ backgroundColor: "#acdbdf" }}>
             <div className="modal-header">
               <h5 className="modal-title">Add Review</h5>
-              <button type="button" className="close" onClick={handleCloseModal} aria-label="Close">
+              <button
+                type="button"
+                className="close"
+                onClick={handleCloseModal}
+                aria-label="Close"
+              >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div className="modal-body">
               <textarea
                 placeholder="Add your review..."
-                style={{ border: "None", backgroundColor: "#acdbdf", width: "100%" }}
+                style={{
+                  border: "None",
+                  backgroundColor: "#acdbdf",
+                  width: "100%",
+                }}
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
               />
@@ -140,11 +148,23 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
                 type="button"
                 className="btn btn-secondary"
                 onClick={handleCloseModal}
-                style={{ color: "#002b5b", backgroundColor: 'white', borderColor: "white", fontWeight: "bold" }}
+                style={{
+                  color: "#002b5b",
+                  backgroundColor: "white",
+                  borderColor: "white",
+                  fontWeight: "bold",
+                }}
               >
                 Close
               </button>
-              <button className="btn btn-primary" style={{ backgroundColor: '#002b5b', color: 'white', borderColor: '#002b5b' }}>
+              <button
+                className="btn btn-primary"
+                style={{
+                  backgroundColor: "#002b5b",
+                  color: "white",
+                  borderColor: "#002b5b",
+                }}
+              >
                 Submit Review
               </button>
             </div>
@@ -157,4 +177,3 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
 };
 
 export default ReviewModal;
-
