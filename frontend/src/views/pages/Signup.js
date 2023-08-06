@@ -4,7 +4,7 @@ import { useSignup } from "../../hooks/useSignup";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirm_password, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [dob, setDob] = useState("");
   const [isAcceptedTerms, setIsAcceptedTerms] = useState(false);
   const { signup, error, isLoading } = useSignup();
@@ -12,37 +12,9 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signup(email, password, confirm_password, dob, isAcceptedTerms).then(
-      () => {
-        if (error === null) {
-          window.location.reload(false);
-        }
-      }
-    );
+    await signup(email, password, confirmPassword);
   };
 
-  // return
-  // (
-  // <form className="" onSubmit={handleSubmit}>
-  //   <h3>Signup</h3>
-
-  //   <label htmlFor="">Email: </label>
-  //   <input
-  //     type="email"
-  //     onChange={(e) => setEmail(e.target.value)}
-  //     value={email}
-  //   />
-
-  //   <label htmlFor="">Password: </label>
-  //   <input
-  //     type="password"
-  //     onChange={(e) => setPassword(e.target.value)}
-  //     value={password}
-  //   />
-
-  //   <button disabled={isLoading}>Signup</button>
-  //   {error && <div>{error}</div>}
-  // </form>
   return (
     <>
       <div
@@ -120,7 +92,7 @@ const Signup = () => {
                     type="password"
                     className="form-control mt-1"
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    value={confirm_password}
+                    value={confirmPassword}
                   />
                 </div>
 

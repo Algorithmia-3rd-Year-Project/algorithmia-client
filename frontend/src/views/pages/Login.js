@@ -11,36 +11,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(email, password).then(() => {
-      //console.log(error,isLoading,'-----------------------------------error-------------');
-      if (error === null) {
-        window.location.reload(false);
-      }
-    });
+    await login(email, password);
   };
 
-  // return (
-  //   <form className="" onSubmit={handleSubmit}>
-  //     <h3>Login</h3>
-
-  //     <label htmlFor="">Email: </label>
-  //     <input
-  //       type="email"
-  //       onChange={(e) => setEmail(e.target.value)}
-  //       value={email}
-  //     />
-
-  //     <label htmlFor="">Password: </label>
-  //     <input
-  //       type="password"
-  //       onChange={(e) => setPassword(e.target.value)}
-  //       value={password}
-  //     />
-
-  //     <button disabled={isLoading}>Login</button>
-  //     {error && <div>{error}</div>}
-  //   </form>
-  // );
   return (
     <>
       <div
@@ -110,7 +83,7 @@ const Login = () => {
                 </div>
                 <div class="d-grid gap-2 col-6 mx-auto">
                   <button class="btn btn-primary" type="button">
-                    Sign In with google
+                    Login as an Advertiser
                   </button>
                 </div>
                 <br />

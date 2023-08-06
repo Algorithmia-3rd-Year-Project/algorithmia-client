@@ -6,13 +6,7 @@ export const useSignup = () => {
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useSessionContext();
 
-  const signup = async (
-    email,
-    password,
-    confirm_password,
-    dob,
-    isAcceptedTerms
-  ) => {
+  const signup = async (email, password, confirmPassword) => {
     setIsLoading(true);
     setError(null);
 
@@ -22,9 +16,7 @@ export const useSignup = () => {
       body: JSON.stringify({
         email,
         password,
-        confirm_password,
-        dob,
-        isAcceptedTerms,
+        confirmPassword,
       }),
     });
 
