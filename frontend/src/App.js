@@ -11,6 +11,21 @@ import Login from "./views/pages/Login";
 import AddDevlog from "./views/pages/AddDevlog";
 import AdvertiserDashboard from "./views/pages/AdvertiserDashboard";
 import DevlogSingle from "./views/pages/DevlogSingle";
+import AdvertiserDashboard from "./views/pages/Admin/AdvertiserDashboard";
+import ProfileOverview from "./views/pages/Advertiser/ProfileOverview";
+
+import GameUpdate from "./views/pages/GameUpdate";
+import GameComplain from "./views/pages/Complaints";
+
+import GameDashboard from "./views/pages/Admin/gameDashboard";
+
+import Profile from "./views/pages/Profile";
+
+
+import AddPpl from "./views/pages/AddPpl";
+
+import Review from "./views/pages/Reviews"
+
 
 //components
 import Navbar from "./views/components/Navbar";
@@ -33,10 +48,26 @@ function App() {
 
             <Route path="/devlogsingle/:id" element={<DevlogSingle />} />
 
+            <Route path="/profile" element={<Profile />} />
+
+
+            <Route path="/pplform/add" element={<AddPpl />} />
+
+            <Route path="/reviews" element={<Review />} />
+
             <Route
               path="/advertiser/dashboard"
               element={<AdvertiserDashboard />}
             />
+
+            <Route
+              path="/game/dashboard"
+              element={<GameDashboard />}
+            />
+            <Route path="/advertiser/profile" element={<ProfileOverview />} />
+            
+            <Route path="/Gameupdate" element={<GameUpdate/>} />
+            <Route path="/Complaints" element={<GameComplain/>} />
           </Routes>
         </div>
       </BrowserRouter>

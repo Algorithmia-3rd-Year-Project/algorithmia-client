@@ -11,10 +11,22 @@ const {
   getDevlogFeatures,
 } = require("../controllers/Devlog_Controller");
 
+
 const {
   getComments,
   addComment,
 } = require("../controllers/Comment_Controller");
+
+
+const {
+  GameUpdate,
+  uploadCoverImageAndGameFile,
+} = require("../controllers/GameUpdate_Controller");
+
+const { getComplaints } = require("../controllers/Complaints_Controller");
+
+const { addPpl, upload } = require("../controllers/Ppl_Controller");
+
 
 //const requireAuth = require("../middleware/requireAuth");
 
@@ -49,5 +61,15 @@ router.post("/devlog/addcomment", addComment);
 
 //routes related to comments
 router.get("/comments/:id", getComments);
+
+
+//routes related to game upload/update
+router.post("/gameupdate", uploadCoverImageAndGameFile, GameUpdate);
+
+//rotes related to game bug reprts
+router.get("/complainlist", getComplaints);
+
+router.post("/pplform/addppl", upload.single("ppl-images"), addPpl);
+
 
 module.exports = router;
