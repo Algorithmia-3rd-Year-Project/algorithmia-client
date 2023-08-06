@@ -9,7 +9,6 @@ import Devlog from "./views/pages/Devlogs";
 import Signup from "./views/pages/Signup";
 import Login from "./views/pages/Login";
 import AddDevlog from "./views/pages/AddDevlog";
-import AdvertiserDashboard from "./views/pages/AdvertiserDashboard";
 import DevlogSingle from "./views/pages/DevlogSingle";
 import AdvertiserDashboard from "./views/pages/Admin/AdvertiserDashboard";
 import ProfileOverview from "./views/pages/Advertiser/ProfileOverview";
