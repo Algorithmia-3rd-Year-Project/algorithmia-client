@@ -1,18 +1,95 @@
 import badge from "../../images/badge_example.png";
 import item from "../../images/item.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EditProfileModal from '../components/EditProfileForm'; 
+
+
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
 
+
+
+  useEffect(() => {
+    const handleClick = (event) => {
+      const clickedElement = event.target;
+      const elementClassName = clickedElement.className;
+      //console.log("Clicked element className:", elementClassName);
+
+      if(elementClassName === "modal"){
+        setShowModal(false)
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  },[]);
+
+
+
     const handleShowModal = () => {
       setShowModal(true);
+        
+      const id = "64ce7a2f79d5c0428cd012f5";
+      const profileImage = "64ce7a2f79d5c0428cd012f5-MASK.jpg"
+
+      sessionStorage.setItem('playerID', id)
+      sessionStorage.setItem('profileImage', profileImage)
+      
     };
   
     const handleCloseModal = () => {
       setShowModal(false);
     };
+
+
+    
+
+ 
+
+    const [formData, setFormData] = useState({
+      test1:"",
+      test2:"",                 
+    });
+
+    const newFormData = { ...formData };
+
+    function handleChange(e){
+      newFormData[e.target.name] = e.target.value;
+      setFormData(newFormData);
+      console.log(newFormData);
+    }
+
+    function handleSubmit(e){
+      e.preventDefault();
+
+      const formDataToSend = new FormData();
+      
+      formDataToSend.append("test1", formData.test1);
+      formDataToSend.append("test2", formData.test2);
+      
+
+      fetch("/profile/editprofile", {
+        method: "POST",
+        body: formDataToSend,
+       
+      })
+        .then((response) => {
+          // Handle the response
+          if (response.ok) {
+            console.log("Data sent successfully!");
+          } else {
+            console.error("Failed to send data");
+          }
+        })
+        .catch((error) => {
+          console.error("Error sending data:", error);
+        });
+
+    }
 
     return (
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -100,6 +177,12 @@ const Profile = () => {
               </div>
             </div>
             <EditProfileModal showModal={showModal} handleCloseModal={handleCloseModal} />
+
+            <form onSubmit={handleSubmit}>
+               1<input type="text" name="test1" onChange={handleChange}></input>
+               2<input type="text" name="test2" onChange={handleChange}></input>
+               <input type="submit" value="submit"></input>
+            </form>
         </div>
     );
   };
