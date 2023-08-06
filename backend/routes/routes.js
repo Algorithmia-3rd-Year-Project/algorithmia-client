@@ -13,6 +13,12 @@ const {
 
 
 const {
+  getReviews,
+  createReview
+} = require("../controllers/Reviews_Controller");
+
+
+const {
   getComments,
   addComment,
 } = require("../controllers/Comment_Controller");
@@ -26,6 +32,7 @@ const {
 const { getComplaints } = require("../controllers/Complaints_Controller");
 
 const { addPpl, upload } = require("../controllers/Ppl_Controller");
+
 
 
 //const requireAuth = require("../middleware/requireAuth");
@@ -57,6 +64,12 @@ router.delete("/devlog/deletedevlog/:id", deleteDevlog);
 
 router.patch("/devlog/updatedevlog/:id", updateDevlog);
 
+
+//routes related to reviews
+router.get("/reviews", getReviews);
+
+router.post("/reviews", createReview);
+
 router.post("/devlog/addcomment", addComment);
 
 //routes related to comments
@@ -70,6 +83,7 @@ router.post("/gameupdate", uploadCoverImageAndGameFile, GameUpdate);
 router.get("/complainlist", getComplaints);
 
 router.post("/pplform/addppl", upload.single("ppl-images"), addPpl);
+
 
 
 module.exports = router;
