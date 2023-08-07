@@ -6,9 +6,11 @@ export const useSignup = () => {
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useSessionContext();
 
-  const signup = async (email, password, confirmPassword) => {
+  const signup = async (email, password, confirmPassword, dob) => {
     setIsLoading(true);
     setError(null);
+
+    console.log(dob);
 
     const response = await fetch("api/user/signup", {
       method: "POST",
@@ -17,6 +19,7 @@ export const useSignup = () => {
         email,
         password,
         confirmPassword,
+        dob,
       }),
     });
 

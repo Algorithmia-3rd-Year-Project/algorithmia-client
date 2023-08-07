@@ -8,11 +8,13 @@ const Signup = () => {
   const [dob, setDob] = useState("");
   const [isAcceptedTerms, setIsAcceptedTerms] = useState(false);
   const { signup, error, isLoading } = useSignup();
+  const [verifyCode, setVerifyCode] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signup(email, password, confirmPassword);
+    console.log(dob);
+    await signup(email, password, confirmPassword, dob);
   };
 
   return (
@@ -55,7 +57,12 @@ const Signup = () => {
                   Verification Code
                 </label>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    onChange={(e) => setVerifyCode(e.target.value)}
+                    value={verifyCode}
+                  />
                   <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button">
                       Send
