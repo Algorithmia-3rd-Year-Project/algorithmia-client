@@ -18,10 +18,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  verified: {
-    type: Boolean,
-    default: false,
-  },
+  // verified: {
+  //   type: Boolean,
+  //   default: false,
+  // },
 });
 
 //static signup method
@@ -29,11 +29,17 @@ userSchema.statics.signup = async function (
   email,
   password,
   confirmPassword,
-  dob
+  dob,
+  codeSent,
+  verifyCode
 ) {
   //validation
-  if (!email || !password || !confirmPassword || !dob) {
+  if (!email || !password || !confirmPassword || !dob || !verifyCode) {
     throw Error("All fields must be filled");
+  }
+
+  if (verifyCode != codeSent) {
+    throw Error("Validation Failed");
   }
 
   if (!validator.isEmail(email)) {

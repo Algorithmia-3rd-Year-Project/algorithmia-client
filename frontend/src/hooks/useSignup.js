@@ -6,7 +6,14 @@ export const useSignup = () => {
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useSessionContext();
 
-  const signup = async (email, password, confirmPassword, dob) => {
+  const signup = async (
+    email,
+    password,
+    confirmPassword,
+    dob,
+    codeSent,
+    verifyCode
+  ) => {
     setIsLoading(true);
     setError(null);
 
@@ -18,10 +25,13 @@ export const useSignup = () => {
         password,
         confirmPassword,
         dob,
+        codeSent,
+        verifyCode,
       }),
     });
 
     const json = await response.json();
+    console.log(codeSent);
 
     if (!response.ok) {
       setIsLoading(false);

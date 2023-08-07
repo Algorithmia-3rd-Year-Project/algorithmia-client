@@ -9,11 +9,13 @@ const Signup = () => {
   const [isAcceptedTerms, setIsAcceptedTerms] = useState(false);
   const { signup, error, isLoading } = useSignup();
   const [verifyCode, setVerifyCode] = useState("");
+  const [sentCode, setSentCode] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signup(email, password, confirmPassword, dob);
+    await signup(email, password, confirmPassword, dob, sentCode, verifyCode);
+    console.log(sentCode);
   };
 
   const sendEmail = async () => {
@@ -27,9 +29,9 @@ const Signup = () => {
     });
 
     const json = await response.json();
-
-    console.log(json);
-    //console.log(verifyCode);
+    if (response.ok) {
+      setSentCode(json.pinCode);
+    }
   };
 
   return (
@@ -144,6 +146,7 @@ const Signup = () => {
                   >
                     Register
                   </button>
+                  {error && <div>{error}</div>}
                 </div>
                 <br />
                 <div class="row mb-4 ">

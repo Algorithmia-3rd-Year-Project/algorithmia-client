@@ -6,6 +6,8 @@ const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
 };
 
+var pinCode = "0000";
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -24,12 +26,20 @@ const loginUser = async (req, res) => {
 };
 
 const signupUser = async (req, res) => {
-  const { email, password, confirmPassword, dob } = req.body;
+  const { email, password, confirmPassword, dob, codeSent, verifyCode } =
+    req.body;
 
-  console.log(req.body);
+  console.log(pinCode);
 
   try {
-    const user = await User.signup(email, password, confirmPassword, dob);
+    const user = await User.signup(
+      email,
+      password,
+      confirmPassword,
+      dob,
+      codeSent,
+      verifyCode
+    );
 
     //create a token
     const token = createToken(user._id);
@@ -41,7 +51,9 @@ const signupUser = async (req, res) => {
 };
 
 const sendVerifyEmail = async (req, res) => {
-  const { email, verifyCode } = req.body;
+  const { email } = req.body;
+
+  var pinCode = generate4DigitNumber();
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -56,7 +68,7 @@ const sendVerifyEmail = async (req, res) => {
     to: email,
     subject: "Algorithmia Email Verification",
     //text: "Welcome to Algorithmia",
-    html: `<div>Your code is ${verifyCode}</div>`,
+    html: `<div>Your code is ${pinCode}</div>`,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -65,9 +77,15 @@ const sendVerifyEmail = async (req, res) => {
       res.status(400).json({ error: error.message });
     } else {
       console.log("email sent: " + info.response);
-      res.status(200).json({ email, code });
+      res.status(200).json({ pinCode });
     }
   });
 };
+
+function generate4DigitNumber() {
+  const randomDecimal = Math.random();
+  const random4DigitNumber = Math.floor(randomDecimal * 9000) + 1000;
+  return random4DigitNumber;
+}
 
 module.exports = { signupUser, loginUser, sendVerifyEmail };
