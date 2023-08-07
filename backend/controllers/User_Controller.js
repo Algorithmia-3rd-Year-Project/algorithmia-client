@@ -1,5 +1,6 @@
 const User = require("../models/User_Model");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
@@ -37,4 +38,34 @@ const signupUser = async (req, res) => {
   }
 };
 
-module.exports = { signupUser, loginUser };
+const sendVerifyEmail = async (req, res) => {
+  const { email, verifyCode } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "tech2019man@gmail.com",
+      pass: "asrqbppzispnkklq",
+    },
+  });
+
+  const mailOptions = {
+    from: `Algorithmia <tech2019man@gmail.com>`,
+    to: email,
+    subject: "Algorithmia Email Verification",
+    //text: "Welcome to Algorithmia",
+    html: `<div>Your code is ${verifyCode}</div>`,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+      res.status(400).json({ error: error.message });
+    } else {
+      console.log("email sent: " + info.response);
+      res.status(200).json({ email, code });
+    }
+  });
+};
+
+module.exports = { signupUser, loginUser, sendVerifyEmail };

@@ -10,8 +10,6 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
 
-    console.log(dob);
-
     const response = await fetch("api/user/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

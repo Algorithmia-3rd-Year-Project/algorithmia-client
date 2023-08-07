@@ -13,8 +13,23 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(dob);
     await signup(email, password, confirmPassword, dob);
+  };
+
+  const sendEmail = async () => {
+    const response = await fetch("api/user/verifyemail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        verifyCode,
+      }),
+    });
+
+    const json = await response.json();
+
+    console.log(json);
+    //console.log(verifyCode);
   };
 
   return (
@@ -64,7 +79,11 @@ const Signup = () => {
                     value={verifyCode}
                   />
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      onClick={sendEmail}
+                    >
                       Send
                     </button>
                   </div>
