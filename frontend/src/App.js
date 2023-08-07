@@ -35,6 +35,8 @@ function App() {
       <CommentProvider>
       <BrowserRouter>
         <Navbar />
+        <Login/>
+        <Signup/>
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
