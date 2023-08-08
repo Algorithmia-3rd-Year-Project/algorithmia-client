@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
 
+const Advertiser = require("./Advertiser_Model");
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -74,19 +76,39 @@ userSchema.statics.login = async function (email, password) {
     throw Error("All fields are required");
   }
 
+  var currentUser;
   const user = await this.findOne({ email });
 
-  if (!user) {
-    throw Error("Incorrect email");
+  // if (!user) {
+  //   throw Error("Incorrect email");
+  // }
+
+  if (user != null) {
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+      throw Error("Incorrect Password");
+    } else {
+      currentUser = user;
+    }
+  } else if (!user) {
+    const advertiser = await Advertiser.findOne({ email });
+
+    if (advertiser != null) {
+      const advertiserMatch = await bcrypt.compare(
+        password,
+        advertiser.password
+      );
+
+      if (!advertiserMatch) {
+        throw Error("Incorrect Password");
+      } else {
+        currentUser = advertiser;
+      }
+    }
   }
 
-  const match = await bcrypt.compare(password, user.password);
-
-  if (!match) {
-    throw Error("Incorrect Password");
-  }
-
-  return user;
+  return currentUser;
 };
 
 //static advertiser signup method
