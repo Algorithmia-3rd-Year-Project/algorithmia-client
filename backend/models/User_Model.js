@@ -77,11 +77,8 @@ userSchema.statics.login = async function (email, password) {
   }
 
   var currentUser;
+  var userRole;
   const user = await this.findOne({ email });
-
-  // if (!user) {
-  //   throw Error("Incorrect email");
-  // }
 
   if (user != null) {
     const match = await bcrypt.compare(password, user.password);
@@ -90,6 +87,7 @@ userSchema.statics.login = async function (email, password) {
       throw Error("Incorrect Password");
     } else {
       currentUser = user;
+      userRole = "player";
     }
   } else if (!user) {
     const advertiser = await Advertiser.findOne({ email });
@@ -104,11 +102,12 @@ userSchema.statics.login = async function (email, password) {
         throw Error("Incorrect Password");
       } else {
         currentUser = advertiser;
+        userRole = "advertiser";
       }
     }
   }
 
-  return currentUser;
+  return { user: currentUser, role: userRole };
 };
 
 //static advertiser signup method
