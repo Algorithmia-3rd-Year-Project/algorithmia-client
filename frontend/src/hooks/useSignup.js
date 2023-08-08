@@ -45,5 +45,43 @@ export const useSignup = () => {
     }
   };
 
-  return { signup, isLoading, error };
+  const advertiserSignup = async (
+    brand,
+    email,
+    password,
+    confirmPassword,
+    sentCode,
+    verifyCode
+  ) => {
+    setIsLoading(true);
+    setError(null);
+
+    const response = await fetch("api/user/advertisersignup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        brand,
+        email,
+        password,
+        confirmPassword,
+        sentCode,
+        verifyCode,
+      }),
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      setIsLoading(false);
+      setError(json.error);
+    }
+
+    if (response.ok) {
+      localStorage.setItem("user", JSON.stringify(json));
+      dispatch({ type: "LOGIN", payload: json });
+      setIsLoading(false);
+    }
+  };
+
+  return { signup, isLoading, error, advertiserSignup };
 };

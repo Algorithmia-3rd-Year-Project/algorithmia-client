@@ -71,6 +71,7 @@ const Login = () => {
                   >
                     Log In
                   </button>
+                  {error && <div>{error}</div>}
                 </div>
                 <br />
                 <div class="row mb-4">

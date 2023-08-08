@@ -7,15 +7,34 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [dob, setDob] = useState("");
   const [isAcceptedTerms, setIsAcceptedTerms] = useState(false);
-  const { signup, error, isLoading } = useSignup();
+  const { signup, error, isLoading, advertiserSignup } = useSignup();
   const [verifyCode, setVerifyCode] = useState("");
   const [sentCode, setSentCode] = useState("");
+
+  //For advertisers
+  const [brand, setBrand] = useState("");
+  const [advertiserEmail, setAdvertiserEmail] = useState("");
+  const [advertiserPassword, setAdvertiserPassword] = useState("");
+  const [advertiserConfirmPassword, setAdvertiserConfirmPassword] =
+    useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     await signup(email, password, confirmPassword, dob, sentCode, verifyCode);
-    console.log(sentCode);
+  };
+
+  const handleAdvertiserSubmit = async (e) => {
+    e.preventDefault();
+
+    await advertiserSignup(
+      brand,
+      advertiserEmail,
+      advertiserPassword,
+      advertiserConfirmPassword,
+      sentCode,
+      verifyCode
+    );
   };
 
   const sendEmail = async () => {
@@ -24,6 +43,22 @@ const Signup = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email,
+        verifyCode,
+      }),
+    });
+
+    const json = await response.json();
+    if (response.ok) {
+      setSentCode(json.pinCode);
+    }
+  };
+
+  const sendAdvertiserEmail = async () => {
+    const response = await fetch("api/user/verifyadvertiseremail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        advertiserEmail,
         verifyCode,
       }),
     });
@@ -143,6 +178,113 @@ const Signup = () => {
                     class="btn btn-primary"
                     type="button"
                     onClick={handleSubmit}
+                  >
+                    Register
+                  </button>
+                  {error && <div>{error}</div>}
+                </div>
+                <br />
+                <div class="row mb-4 ">
+                  <div class="col-md-6 d-flex justify-content-center">
+                    <a href="#!">Already have an Account?</a>
+                  </div>
+                  <div class="col-md-6 d-flex justify-content-center">
+                    <a href="#!">Login</a>
+                  </div>
+                </div>
+              </form>
+
+              {/*Advertiser Form */}
+
+              <h3>For Advertisers</h3>
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">
+                    Company Email
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="recipient-name"
+                    onChange={(e) => setAdvertiserEmail(e.target.value)}
+                    value={advertiserEmail}
+                  />
+                </div>
+                <label for="recipient-name" class="col-form-label">
+                  Verification Code
+                </label>
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    onChange={(e) => setVerifyCode(e.target.value)}
+                    value={verifyCode}
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      onClick={sendAdvertiserEmail}
+                    >
+                      Send
+                    </button>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">
+                    Company Name
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    onChange={(e) => setBrand(e.target.value)}
+                    value={brand}
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control mt-1"
+                    onChange={(e) => setAdvertiserPassword(e.target.value)}
+                    value={advertiserPassword}
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control mt-1"
+                    onChange={(e) =>
+                      setAdvertiserConfirmPassword(e.target.value)
+                    }
+                    value={advertiserConfirmPassword}
+                  />
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    onChange={(e) => setIsAcceptedTerms(e.target.value)}
+                    value={isAcceptedTerms}
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    I accept Terms and Conditions
+                  </label>
+                </div>
+
+                <br />
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    onClick={handleAdvertiserSubmit}
                   >
                     Register
                   </button>
