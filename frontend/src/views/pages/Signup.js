@@ -10,6 +10,7 @@ const Signup = () => {
   const { signup, error, isLoading, advertiserSignup } = useSignup();
   const [verifyCode, setVerifyCode] = useState("");
   const [sentCode, setSentCode] = useState("");
+  const [ userName,setUserName ] = useState("");
 
   //For advertisers
   const [brand, setBrand] = useState("");
@@ -95,7 +96,7 @@ const Signup = () => {
               <form>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">
-                    Username/Email
+                    Email
                   </label>
                   <input
                     type="email"
@@ -103,6 +104,18 @@ const Signup = () => {
                     id="recipient-name"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">
+                    Username
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="recipient-name"
+                    onChange={(e) => setUserName(e.target.value)}
+                    value={userName}
                   />
                 </div>
                 <label for="recipient-name" class="col-form-label">
@@ -129,6 +142,10 @@ const Signup = () => {
                   <label for="recipient-name" class="col-form-label">
                     Date of Birth
                   </label>
+                  <label className="star fw-bold" style={{ color: "red" }}>
+            {" "}
+            *
+          </label>
                   <input
                     type="text"
                     class="form-control"
@@ -140,6 +157,10 @@ const Signup = () => {
                   <label for="recipient-name" class="col-form-label">
                     Password
                   </label>
+                  <label className="star fw-bold" style={{ color: "red" }}>
+            {" "}
+            *
+          </label>
                   <input
                     type="password"
                     className="form-control mt-1"
@@ -151,6 +172,10 @@ const Signup = () => {
                   <label for="recipient-name" class="col-form-label">
                     Confirm Password
                   </label>
+                  <label className="star fw-bold" style={{ color: "red" }}>
+            {" "}
+            *
+          </label>
                   <input
                     type="password"
                     className="form-control mt-1"
@@ -181,8 +206,13 @@ const Signup = () => {
                   >
                     Register
                   </button>
-                  {error && <div>{error}</div>}
                 </div>
+                <br/>
+                {error && (
+                  <div class="alert alert-warning" role="alert">
+                    {error}
+                  </div>
+                )}
                 <br />
                 <div class="row mb-4 ">
                   <div class="col-md-6 d-flex justify-content-center">
