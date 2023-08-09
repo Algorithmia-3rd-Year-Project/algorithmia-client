@@ -25,10 +25,10 @@ const GameDashboard = () => {
     ],
   });
   return (
-    <div className="home">
-      <h1 style={{ textAlign: "center", marginTop: "10px" }}>Game Dashboard</h1>
+    <div className="home" style={{ background: "#002B5B" }}>
+      <h1 style={{ textAlign: "center", paddingTop: "20px", color: "white" }}>Game Dashboard</h1>
       <div className="container">
-        <div className="row" style={{ marginTop: "60px" }}>
+        <div className="row" style={{ marginTop: "50px" }}>
           <div class="col-xl-4 col-lg-6">
             <div class="card l-bg-green">
               <div class="card-statistic-3 p-4">
@@ -146,8 +146,8 @@ const GameDashboard = () => {
 
         <div className="row">
           <div
-            class="d-inline p-2 bg-info text-white"
-            style={{ width: "600px", borderRadius: "20px", marginLeft: "40px" }}
+            class="d-inline p-2 "
+            style={{ width: "600px", borderRadius: "20px", marginLeft: "40px", background: "#ACDBDF" }}
           >
             <div class="rounded">
               <div class="w-100 p-3">
@@ -158,8 +158,8 @@ const GameDashboard = () => {
           </div>
 
           <div
-            class="d-inline p-2 bg-info text-white"
-            style={{ width: "600px", borderRadius: "20px", marginLeft: "40px" }}
+            class="d-inline p-2"
+            style={{ width: "600px", borderRadius: "20px", marginLeft: "40px", background: "#ACDBDF" }}
           >
             <div class="rounded">
               <div class="w-100 p-3">
@@ -172,8 +172,8 @@ const GameDashboard = () => {
 
         <div className="row" style={{ marginTop: "30px" }}>
           <div
-            class="d-inline p-2 bg-info text-white"
-            style={{ width: "600px", borderRadius: "20px", marginLeft: "40px" }}
+            class="d-inline p-2"
+            style={{ width: "600px", borderRadius: "20px", marginLeft: "40px", background: "#ACDBDF" }}
           >
             <div class="rounded">
               <div class="w-100 p-3">
@@ -184,8 +184,8 @@ const GameDashboard = () => {
           </div>
 
           <div
-            class="d-inline p-2 bg-info text-white"
-            style={{ width: "600px", borderRadius: "20px", marginLeft: "40px" }}
+            class="d-inline p-2 "
+            style={{ width: "600px", borderRadius: "20px", marginLeft: "40px", background: "#ACDBDF" }}
           >
             <div class="rounded">
               <div class="w-100 p-3">
@@ -201,7 +201,7 @@ const GameDashboard = () => {
             class="col-xl-4 col-lg-6"
             style={{ maxWidth: "100rem", marginLeft: "125px" }}
           >
-            <div class="card l-bg-blue-dark">
+            <div class="card l-bg-green">
               <div class="card-statistic-3 p-4">
                 <div class="card-icon card-icon-large">
                   <i class="fas fa-tape"></i>
@@ -240,7 +240,7 @@ const GameDashboard = () => {
             class="col-xl-4 col-lg-6"
             style={{ maxWidth: "40rem", marginLeft: "185px" }}
           >
-            <div class="card l-bg-blue-dark">
+            <div class="card l-bg-green">
               <div class="card-statistic-3 p-4">
                 <div class="card-icon card-icon-large">
                   <i class="fas fa-chart-line"></i>

@@ -225,9 +225,18 @@ function GameUpdate() {
                         accept=".jpeg, .jpg, .png"
                         name="imgUpld"
                         onChange={handleImgChange}
-                      />
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-primary upload-btn"
+                      id="cvrPhtBtn"
+                      name="cvrPhtBtn"
+                      onClick={Click_imgUpldBtn}
+                    >
+                      Change Cover Photo
+                    </button>
                       
-                      <img className="cvr-img ms-4" alt="" src={file} />
+                    <img className="cvr-img ms-4" alt="" src={file} />
                     
                   </div>
 
@@ -246,7 +255,16 @@ function GameUpdate() {
                         name="GameFile"
                         accept=".exe, .zip"
                         onChange={handle_FChange}
-                      />
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-primary upload-btn"
+                      id="GmeFileUpldBtn"
+                      name="GmeFileUpldBtn"
+                      onClick={Click_FUpldBtn}
+                    >
+                      Upload Game File
+                    </button>
                     </div>
                   
 
