@@ -7,7 +7,21 @@ const {
   createDevlog,
   deleteDevlog,
   updateDevlog,
+  getDevlogNews,
+  getDevlogFeatures,
 } = require("../controllers/Devlog_Controller");
+
+
+const {
+  getReviews,
+  createReview
+} = require("../controllers/Reviews_Controller");
+
+
+const {
+  getComments,
+  addComment,
+} = require("../controllers/Comment_Controller");
 
 
 const {
@@ -18,6 +32,7 @@ const {
 const { getComplaints } = require("../controllers/Complaints_Controller");
 
 const { addPpl, upload } = require("../controllers/Ppl_Controller");
+
 
 
 //const requireAuth = require("../middleware/requireAuth");
@@ -37,6 +52,10 @@ router.get("/", (req, res) => {
 //routes related to devlogs
 router.get("/devlogs", getDevlogs);
 
+router.get("/devlogNews", getDevlogNews);
+
+router.get("/devlogFeatures", getDevlogFeatures);
+
 router.get("/devlog/:id", getDevlog);
 
 router.post("/devlog/adddevlog", createDevlog);
@@ -46,6 +65,17 @@ router.delete("/devlog/deletedevlog/:id", deleteDevlog);
 router.patch("/devlog/updatedevlog/:id", updateDevlog);
 
 
+//routes related to reviews
+router.get("/reviews", getReviews);
+
+router.post("/reviews", createReview);
+
+router.post("/devlog/addcomment", addComment);
+
+//routes related to comments
+router.get("/comments/:id", getComments);
+
+
 //routes related to game upload/update
 router.post("/gameupdate", uploadCoverImageAndGameFile, GameUpdate);
 
@@ -53,6 +83,7 @@ router.post("/gameupdate", uploadCoverImageAndGameFile, GameUpdate);
 router.get("/complainlist", getComplaints);
 
 router.post("/pplform/addppl", upload.single("ppl-images"), addPpl);
+
 
 
 module.exports = router;

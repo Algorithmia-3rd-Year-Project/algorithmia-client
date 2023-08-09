@@ -3,8 +3,18 @@ const mongoose = require("mongoose");
 
 //Get all devlogs
 const getDevlogs = async (req, res) => {
-  const devlogs = await Devlog.find({}).sort({ createdAt: -1 });
 
+  const devlogs = await Devlog.find().sort({ title: 1 });
+  res.status(200).json(devlogs);
+};
+
+const getDevlogNews = async (req, res) => {
+  const devlogs = await Devlog.find({ type: "News"}).sort({ title: 1 });
+  res.status(200).json(devlogs);
+};
+
+const getDevlogFeatures = async (req, res) => {
+  const devlogs = await Devlog.find({ type: "Features"}).sort({ title: 1 });
   res.status(200).json(devlogs);
 };
 
@@ -76,10 +86,13 @@ const updateDevlog = async (req, res) => {
   res.status(200).json(devlog);
 };
 
+
 module.exports = {
   getDevlogs,
   getDevlog,
   createDevlog,
   deleteDevlog,
   updateDevlog,
+  getDevlogNews,
+  getDevlogFeatures,
 };

@@ -1,25 +1,21 @@
-import icon from "../../images/user.png";
-
+import image from "../../images/devlog.jpg";
 import { Link } from "react-router-dom";
+
+// import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const DevlogTile = ({ devlog }) => {
   return (
-    <div className="devlog-details">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 mb-4">
-            <div class="card text-center">
-              <img class="card-img-top" src={icon} alt=".." height="300"/>
-              <div class="card-body">
-                <h5 class="card-title">{devlog.title}</h5>
-                <p class="card-text">
-                  {devlog.type}
-                </p>
-                <Link to="/devlogsingle"><a href="" class="btn btn-primary btn-sm">View More</a></Link>
-                <div class="card-footer text-muted">35 comments</div>
-              </div>
-            </div>
-          </div>
+    <div className="col-12 col-md-4 col-lg-3">
+      <div className="card" style={{backgroundColor: "#002b5b"}}>
+        <img className="card-img-top" src={image} alt=".." />
+        <div className="card-body">
+          <h5 className="card-title" style={{color: "white"}}>{devlog.title}</h5>
+          <p className="card-text" style={{color: "white"}}>
+            {devlog.type}
+          </p>
+          <Link to={`/devlogsingle/${devlog._id}`} className="btn btn-primary btn-sm mb-2 border-0" style={{backgroundColor: "#1a5f7a"}}>View More</Link>
+          <div className="card-footer" style={{color: "white"}}>35 comments</div>
         </div>
       </div>
     </div>

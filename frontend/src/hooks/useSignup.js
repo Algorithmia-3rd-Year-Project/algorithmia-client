@@ -6,14 +6,67 @@ export const useSignup = () => {
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useSessionContext();
 
-  const signup = async (email, password) => {
+  const signup = async (
+    email,
+    password,
+    confirmPassword,
+    dob,
+    codeSent,
+    verifyCode
+  ) => {
     setIsLoading(true);
     setError(null);
 
     const response = await fetch("api/user/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({
+        email,
+        password,
+        confirmPassword,
+        dob,
+        codeSent,
+        verifyCode,
+      }),
+    });
+
+    const json = await response.json();
+    console.log(codeSent);
+
+    if (!response.ok) {
+      setIsLoading(false);
+      setError(json.error);
+    }
+
+    if (response.ok) {
+      localStorage.setItem("user", JSON.stringify(json));
+      dispatch({ type: "LOGIN", payload: json });
+      setIsLoading(false);
+    }
+  };
+
+  const advertiserSignup = async (
+    brand,
+    email,
+    password,
+    confirmPassword,
+    sentCode,
+    verifyCode
+  ) => {
+    setIsLoading(true);
+    setError(null);
+
+    const response = await fetch("api/user/advertisersignup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        brand,
+        email,
+        password,
+        confirmPassword,
+        sentCode,
+        verifyCode,
+      }),
     });
 
     const json = await response.json();
@@ -30,5 +83,5 @@ export const useSignup = () => {
     }
   };
 
-  return { signup, isLoading, error };
+  return { signup, isLoading, error, advertiserSignup };
 };
