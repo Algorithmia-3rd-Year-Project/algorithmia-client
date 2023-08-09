@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../Assets/css/GameUpdate.css";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 

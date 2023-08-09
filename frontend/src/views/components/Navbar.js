@@ -30,8 +30,8 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/" className="nav-link">
-                  News
+                <Link to="/devlogs" className="nav-link">
+                  Devlogs
                 </Link>
               </li>
               <li className="nav-item">
@@ -39,12 +39,28 @@ const Navbar = () => {
                   Reviews
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to="/" className="nav-link">
-                  Top-Ups
-                </Link>
-              </li>
+              {user ? (
+                <li className="nav-item dropdown">
+                  {user.userRole === "advertiser" &&
+                    <a className="nav-link" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                      Advertising
+                    </a>}
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        My Advertisements
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="/pplform/add">
+                        New Advertisement
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              ) : null}
             </ul>
+
             <ul className="navbar-nav">
               <li className="nav-item dropdown">
                 <a
