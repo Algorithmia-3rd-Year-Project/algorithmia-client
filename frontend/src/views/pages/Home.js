@@ -52,10 +52,6 @@ const Home = () => {
 
   return (
     <div className="home">
-      <h2>Home</h2>
-      <p>Other Pages</p>
-
-      <Link to="/devlogs">See all devlogs</Link>
       <section style={{ backgroundColor: "#002b5b" }}>
         <div className="container-fluid vh-100">
           <div
@@ -299,14 +295,12 @@ const Home = () => {
                                 src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
                                 className="rounded-circle img-fluid shadow-1"
                                 alt="woman avatar"
-                                width="200"
-                                height="200"
+                                width="150"
+                                height="150"
                               />
                             </div>
                             <div className="col-lg-8">
-                              <p className="text-muted fw-light mb-4">
-                                {review.content}
-                              </p>
+                              
                               <p className="fw-bold lead mb-2">
                                 <strong>Anna Smith</strong>
                                 <br></br>
@@ -314,16 +308,19 @@ const Home = () => {
                                   <FontAwesomeIcon
                                     key={index}
                                     icon={solidStar}
-                                    style={{ color: "gold" }}
+                                    style={{ color: "#b78700" }}
                                   />
                                 ))}
                                 {[...Array(5 - review.rate)].map((_, index) => (
                                   <FontAwesomeIcon
                                     key={index}
                                     icon={regularStar}
-                                    style={{ color: "gold" }}
+                                    style={{ color: "#b78700" }}
                                   />
                                 ))}
+                              </p><br/>
+                              <p className="text-muted fw-light mb-4">
+                                {review.content}
                               </p>
                             </div>
                           </div>

@@ -62,13 +62,13 @@ const Devlog = () => {
   }
 
   return (
-    <section style={{ backgroundColor: "#acdbdf" }}>
+    <section style={{ backgroundColor: "#002b5b" }}>
       <div className="container pt-3" >
-        <h3 className="text-center">DevLog Page</h3><hr />
+        <h3 className="text-center" style={{color: "#acdbdf"}}>DevLog Page</h3><hr />
         <div className="d-flex justify-content-between">
           <div className="p-2 bd-highlight">
             <div className="dropdown">
-              <button className="btn btn-primary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <button className="btn btn-primary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style={{backgroundColor:"#1a5f7a", border: "#1a5f7a"}}>
                 Filters
               </button>
               <ul className="dropdown-menu">
@@ -79,7 +79,7 @@ const Devlog = () => {
           </div>
           <div className="p-2 bd-highlight">
             <div className="dropdown">
-              <button className="btn btn-primary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <button className="btn btn-primary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style={{backgroundColor:"#1a5f7a", border: "#1a5f7a"}}>
                 Sort
               </button>
               <ul className="dropdown-menu">

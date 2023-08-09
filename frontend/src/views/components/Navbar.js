@@ -59,6 +59,15 @@ const Navbar = () => {
                   </ul>
                 </li>
               ) : null}
+
+              <li className="nav-item">
+                {(!user || user.userRole !== "advertiser") && (
+                  <Link to="/topups" className="nav-link">
+                    Top-ups
+                  </Link>
+                )}
+              </li>
+
             </ul>
 
             <ul className="navbar-nav">

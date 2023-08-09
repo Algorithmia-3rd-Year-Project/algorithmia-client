@@ -27,7 +27,7 @@ const Rate = ({ count, rating, color, onRating }) => {
           className="cursor-pointer"
           icon={idx <= rating ? solidStar : regularStar} // Use solidStar for filled and regularStar for unfilled stars
           onClick={() => onRating(idx)}
-          style={{ color: getColor(idx) }}
+          style={{ color: "#b78700" }}
           onMouseEnter={() => setHoverRating(idx)}
           onMouseLeave={() => setHoverRating(0)}
         />

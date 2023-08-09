@@ -48,11 +48,11 @@ const PplForm = () => {
   };
 
   return (
-    <body style={{ backgroundColor: "#002B5B" }}>
+    <div className="form pt-5">
       <div
         className="container border w-50 p-5 rounded-4"
-        style={{ backgroundColor: "#ACDBDF" }}
-      >
+        style={{ backgroundColor: "#ACDBDF" }}>
+          
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <h2 className="text-center mb-5" style={{ color: "#002B5B" }}>
             Product Placement Request Form
@@ -200,7 +200,7 @@ const PplForm = () => {
           {error && <div className="error"> {error} </div>}
         </form>
       </div>
-    </body>
+      </div>
   );
 };
 
