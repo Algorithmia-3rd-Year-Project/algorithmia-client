@@ -65,9 +65,10 @@ const DevlogSingle = () => {
   }
 
   return (
-
+<body style={{backgroundColor:"#002b5b"}}>
+  .
     <div
-      className="container mt-3 pt-3 border rounded-4"
+      className="container pt-3 mt-5 border rounded-4"
       style={{ backgroundColor: "#ACDBDF" }}
     >
       <h2 className="fw-bold" style={{ color: "#002B5B" }}>
@@ -140,6 +141,7 @@ const DevlogSingle = () => {
         </div>
       </section>
     </div>
+    </body>
 
   );
 };

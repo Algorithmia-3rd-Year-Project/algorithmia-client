@@ -52,9 +52,9 @@ const Review = () => {
   return (
     <section
       class="p-4 p-md-5 text-center text-lg-start shadow-1-strong rounded"
-      style={{ backgroundColor: "#acdbdf" }}
+      style={{ backgroundColor: "#002b5b" }}
     >
-      <div className="text-center">
+      <div className="text-center" style={{color:"#acdbdf"}}>
         <h1>Reviews</h1>
       </div>
       <div class="row d-flex justify-content-center">
@@ -64,9 +64,9 @@ const Review = () => {
               type="button"
               className="btn btn-primary btn-lg px-4 me-md-2 fw-bold"
               style={{
-                backgroundColor: "#002b5b",
+                backgroundColor: "#1a5f7a",
                 color: "white",
-                borderColor: "#002b5b",
+                borderColor: "#1a5f7a",
               }}
               onClick={handleShowModal}
             >
@@ -80,7 +80,7 @@ const Review = () => {
           {reviews &&
             reviews.map((review) => (
               <React.Fragment>
-                <div className="card">
+                <div className="card" style={{backgroundColor:"#acdbdf"}}>
                   <div className="card-body m-3">
                     <div className="row">
                       <div className="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
@@ -88,29 +88,30 @@ const Review = () => {
                           src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
                           className="rounded-circle img-fluid shadow-1"
                           alt="woman avatar"
-                          width="200"
-                          height="200"
+                          width="150"
+                          height="150"
                         />
                       </div>
                       <div className="col-lg-8">
-                        <p className="text-muted fw-light mb-4">
-                          {review.content}
-                        </p>
+  
                         <p className="fw-bold lead mb-2">
                           <strong>Anna Smith</strong>
                           <br></br>
                           {[...Array(review.rate)].map((_, index) => (
                             <FontAwesomeIcon
                               icon={solidStar}
-                              style={{ color: "gold" }}
+                              style={{ color: "#b78700" }}
                             />
                           ))}
                           {[...Array(5 - review.rate)].map((_, index) => (
                             <FontAwesomeIcon
                               icon={regularStar}
-                              style={{ color: "gold" }}
+                              style={{ color: "#b78700" }}
                             />
                           ))}
+                        </p><br/>
+                        <p className="mb-4">
+                          {review.content}
                         </p>
                       </div>
                     </div>

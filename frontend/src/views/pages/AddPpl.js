@@ -3,9 +3,9 @@ import PplForm from "../components/PplForm";
 
 const AddPpl = () => {
   return (
-    <div className="form">
+    <body style={{ backgroundColor: "#002B5B" }}>
       <PplForm />
-    </div>
+    </body>
   );
 };
 
