@@ -72,7 +72,7 @@ const Login = () => {
                     Log In
                   </button>
                 </div>
-                <br/>
+                <br />
                 {error && (
                   <div class="alert alert-warning" role="alert">
                     {error}

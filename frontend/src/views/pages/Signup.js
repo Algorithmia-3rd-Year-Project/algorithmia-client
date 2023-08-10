@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSignup } from "../../hooks/useSignup";
 
 const Signup = () => {
@@ -10,7 +10,7 @@ const Signup = () => {
   const { signup, error, isLoading, advertiserSignup } = useSignup();
   const [verifyCode, setVerifyCode] = useState("");
   const [sentCode, setSentCode] = useState("");
-  const [ userName,setUserName ] = useState("");
+  const [userName, setUserName] = useState("");
 
   //For advertisers
   const [brand, setBrand] = useState("");
@@ -18,6 +18,16 @@ const Signup = () => {
   const [advertiserPassword, setAdvertiserPassword] = useState("");
   const [advertiserConfirmPassword, setAdvertiserConfirmPassword] =
     useState("");
+  const [disabledButton, setDisabledButton] = useState(true);
+
+  useEffect(() => {
+    console.log(isAcceptedTerms,"--------------------------------------------------");
+    if (isAcceptedTerms) {
+      setDisabledButton(false);
+    }else{
+      setDisabledButton(true);
+    }
+  },[isAcceptedTerms]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -143,11 +153,13 @@ const Signup = () => {
                     Date of Birth
                   </label>
                   <label className="star fw-bold" style={{ color: "red" }}>
-            {" "}
-            *
-          </label>
+                    {" "}
+                    *
+                  </label>
                   <input
-                    type="text"
+                    type="date"
+                    name="begin"
+                    placeholder="dd-mm-yyyy"
                     class="form-control"
                     onChange={(e) => setDob(e.target.value)}
                     value={dob}
@@ -158,9 +170,9 @@ const Signup = () => {
                     Password
                   </label>
                   <label className="star fw-bold" style={{ color: "red" }}>
-            {" "}
-            *
-          </label>
+                    {" "}
+                    *
+                  </label>
                   <input
                     type="password"
                     className="form-control mt-1"
@@ -173,9 +185,9 @@ const Signup = () => {
                     Confirm Password
                   </label>
                   <label className="star fw-bold" style={{ color: "red" }}>
-            {" "}
-            *
-          </label>
+                    {" "}
+                    *
+                  </label>
                   <input
                     type="password"
                     className="form-control mt-1"
@@ -188,9 +200,10 @@ const Signup = () => {
                   <input
                     class="form-check-input"
                     type="checkbox"
-                    onChange={(e) => setIsAcceptedTerms(e.target.value)}
-                    value={isAcceptedTerms}
+                    onClick={(e) => setIsAcceptedTerms(e.target.value)}
                     id="flexCheckDefault"
+                    value={isAcceptedTerms}
+                    checked={isAcceptedTerms}
                   />
                   <label class="form-check-label" for="flexCheckDefault">
                     I accept Terms and Conditions
@@ -203,11 +216,12 @@ const Signup = () => {
                     class="btn btn-primary"
                     type="button"
                     onClick={handleSubmit}
+                    disabled={disabledButton}
                   >
                     Register
                   </button>
                 </div>
-                <br/>
+                <br />
                 {error && (
                   <div class="alert alert-warning" role="alert">
                     {error}
