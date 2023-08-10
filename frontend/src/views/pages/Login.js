@@ -71,8 +71,13 @@ const Login = () => {
                   >
                     Log In
                   </button>
-                  {error && <div>{error}</div>}
                 </div>
+                <br/>
+                {error && (
+                  <div class="alert alert-warning" role="alert">
+                    {error}
+                  </div>
+                )}
                 <br />
                 <div class="row mb-4">
                   <div class="col-md-6 d-flex justify-content-center">
