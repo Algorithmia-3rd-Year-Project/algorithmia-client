@@ -24,9 +24,9 @@ const Signup = () => {
 
   const handleRoleChange = () => {
     if (role === "player") {
-      setRole("player");
-    } else {
       setRole("advertiser");
+    } else {
+      setRole("player");
     }
   };
 
