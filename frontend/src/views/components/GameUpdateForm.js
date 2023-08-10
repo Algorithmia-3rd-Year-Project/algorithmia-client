@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../Assets/css/GameUpdate.css";
+
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 
@@ -99,181 +99,185 @@ function GameUpdate() {
 
   return (
     <>
-      <div className="container mt-4 root1">
-        <h4 className="card-title text-center mt-3 text-white">
-          Update Release
-        </h4>
-        <div className="wrapper1">
-          <form
-            encType="multipart/form-data"
-            onSubmit={handleSubmit}
-            className="form1"
+      <div className="body" style={{ background: "#002b5b" }}>
+        <div className="form pt-5">
+          <div
+            className="container border w-50 p-5 rounded-4"
+            style={{ background: " #acdbdf" }}
           >
-            <div className="container mt-4">
-              <div className="form-group row">
-                <label
-                  className="col-sm-3 col-form-label lbl-name"
-                  htmlFor="verNum"
-                >
-                  Version Number
-                </label>
-                <div className="col-sm-9">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="verNum"
-                    name="verNum"
-                    value={formData.verNum}
-                    onChange={handleChange}
-                  />
+            <h2 className="text-center mb-5" style={{ color: "#002b5b" }}>
+              Update Release
+            </h2>
+            <div className="wrapper1">
+              <form
+                encType="multipart/form-data"
+                onSubmit={handleSubmit}
+                className="form1"
+              >
+                <div className="container mt-4">
+                  <div className="fields mb-3">
+                    <label className="form-label fw-bold" htmlFor="verNum">
+                      Version Number
+                    </label>
+                    <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="verNum"
+                      name="verNum"
+                      value={formData.verNum}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="fields mb-3">
+                    <label className="form-label fw-bold" htmlFor="pthTlt">
+                      Patch Title
+                    </label>
+                    <label className="star fw-bold" style={{ color: "red" }}>
+                      {""}*
+                    </label>
+
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="pthTlt"
+                      name="pthTlt"
+                      value={formData.pthTlt}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="fields mb-3">
+                    <label className="form-label fw-bold" htmlFor="Dcsrp">
+                      Description
+                    </label>
+                    <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
+
+                    <textarea
+                      className="form-control"
+                      id="Dcsrp"
+                      name="Dcsrp"
+                      placeholder="Update Description"
+                      rows="4"
+                      value={formData.Dcsrp}
+                      onChange={handleChange}
+                    ></textarea>
+                  </div>
+
+                  <div className="fields mb-3">
+                    <label className="form-label fw-bold" htmlFor="TgList">
+                      Tag List
+                    </label>
+                    <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
+                    <textarea
+                      className="form-control"
+                      id="TgList"
+                      name="TgList"
+                      placeholder="Tag List"
+                      maxLength="80"
+                      value={formData.TgList}
+                      onChange={handleChange}
+                    ></textarea>
+                  </div>
+
+                  <br />
+
+                  <div className="fields mb-3">
+                    <label className="form-label fw-bold" htmlFor="imgUpld">
+                      Cover Image
+                    </label>
+                    <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
+                    <input
+                      type="file"
+                      className="form-control-file"
+                      id="imgUpldBtn"
+                      accept=".jpeg, .jpg, .png"
+                      name="imgUpld"
+                      onChange={handleImgChange}
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-primary upload-btn"
+                      id="cvrPhtBtn"
+                      name="cvrPhtBtn"
+                      onClick={Click_imgUpldBtn}
+                    >
+                      Change Cover Photo
+                    </button>
+
+                    <img className="cvr-img ms-4" alt="" src={file} />
+                  </div>
+
+                  <div className="fields mb-3">
+                    <label className="form-label fw-bold" htmlFor="GameFile">
+                      Upload Game File
+                    </label>
+                    <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
+                    <input
+                      type="file"
+                      className="form-control-file"
+                      id="GmeFileUpld"
+                      name="GameFile"
+                      accept=".exe, .zip"
+                      onChange={handle_FChange}
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-primary upload-btn"
+                      id="GmeFileUpldBtn"
+                      name="GmeFileUpldBtn"
+                      onClick={Click_FUpldBtn}
+                    >
+                      Upload Game File
+                    </button>
+                  </div>
+
+                  <div className="progress" id="progress">
+                    <div
+                      className="progress-bar progress-bar-striped active"
+                      role="progressbar"
+                      aria-valuenow={presentage}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      style={{ width: `${presentage}%` }}
+                    >
+                      {presentage}%
+                    </div>
+                  </div>
+
+                  <p id="fileName">{GameFileName}</p>
+
+                  <div className="form-group row">
+                    <div className="col-sm-12 text-center">
+                      <button
+                        type="submit"
+                        className="btn btn-primary w-20 mt-2"
+                        id="submit"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              <br />
-
-              <div className="form-group row">
-                <label
-                  className="col-sm-3 col-form-label lbl-name"
-                  htmlFor="pthTlt"
-                >
-                  Patch Title
-                </label>
-                <div className="col-sm-9">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="pthTlt"
-                    name="pthTlt"
-                    value={formData.pthTlt}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <br />
-
-              <div className="form-group row">
-                <label
-                  className="col-sm-3 col-form-label lbl-name"
-                  htmlFor="Dcsrp"
-                >
-                  Description
-                </label>
-                <div className="col-sm-9">
-                  <textarea
-                    className="form-control custom-textarea"
-                    id="Dcsrp"
-                    name="Dcsrp"
-                    placeholder="Update Description"
-                    rows="4"
-                    value={formData.Dcsrp}
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
-              </div>
-
-              <br />
-
-              <div className="form-group row">
-                <label
-                  className="col-sm-3 col-form-label lbl-name"
-                  htmlFor="TgList"
-                >
-                  Tag List
-                </label>
-                <div className="col-sm-9">
-                  <textarea
-                    className="form-control"
-                    id="TgList"
-                    name="TgList"
-                    placeholder="Tag List"
-                    maxLength="80"
-                    value={formData.TgList}
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
-              </div>
-
-              <br />
-
-              <div className="form-group row">
-                <div className="col-sm-9">
-                  <input
-                    type="file"
-                    className="form-control-file"
-                    id="imgUpldBtn"
-                    accept=".jpeg, .jpg, .png"
-                    name="imgUpld"
-                    onChange={handleImgChange}
-                  />
-                  <button
-                    type="button"
-                    className="btn btn-primary upload-btn"
-                    id="cvrPhtBtn"
-                    name="cvrPhtBtn"
-                    onClick={Click_imgUpldBtn}
-                  >
-                    Change Cover Photo
-                  </button>
-                  <img className="cvr-img ms-4" alt="" src={file} />
-                </div>
-              </div>
-
-              <br />
-
-              <div className="form-group row">
-                <div
-                  className="col-sm-9"
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  <input
-                    type="file"
-                    className="form-control-file"
-                    id="GmeFileUpld"
-                    name="GameFile"
-                    accept=".exe, .zip"
-                    onChange={handle_FChange}
-                  />
-                  <button
-                    type="button"
-                    className="btn btn-primary upload-btn"
-                    id="GmeFileUpldBtn"
-                    name="GmeFileUpldBtn"
-                    onClick={Click_FUpldBtn}
-                  >
-                    Upload Game File
-                  </button>
-                </div>
-              </div>
-
-              <div className="progress" id="progress">
-                <div
-                  className="progress-bar progress-bar-striped active"
-                  role="progressbar"
-                  aria-valuenow={presentage}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  style={{ width: `${presentage}%` }}
-                >
-                  {presentage}%
-                </div>
-              </div>
-
-              <p id="fileName">{GameFileName}</p>
-
-              <div className="form-group row">
-                <div className="col-sm-12 text-center">
-                  <button
-                    type="submit"
-                    className="btn btn-primary w-20 mt-2"
-                    id="submit"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </>
