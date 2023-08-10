@@ -95,6 +95,7 @@ function GameUpdate() {
       .catch((error) => {
         console.error("Error sending data:", error);
       });
+
   }
 
   return (
@@ -207,6 +208,7 @@ function GameUpdate() {
                       accept=".jpeg, .jpg, .png"
                       name="imgUpld"
                       onChange={handleImgChange}
+                      style={{ display: "none" }}
                     />
                     <button
                       type="button"
@@ -218,7 +220,13 @@ function GameUpdate() {
                       Change Cover Photo
                     </button>
 
-                    <img className="cvr-img ms-4" alt="" src={file} />
+                    <img className="cvr-img ms-4" alt="" src={file} style={{
+                      width: "250px",
+                      height: "200px",
+                      display: "inline-block",
+                      borderRadius: "5px",
+                      backgroundColor: "white"
+                    }} />
                   </div>
 
                   <div className="fields mb-3">
@@ -236,6 +244,7 @@ function GameUpdate() {
                       name="GameFile"
                       accept=".exe, .zip"
                       onChange={handle_FChange}
+                      style={{ display: "none" }}
                     />
                     <button
                       type="button"
@@ -248,7 +257,14 @@ function GameUpdate() {
                     </button>
                   </div>
 
-                  <div className="progress" id="progress">
+                  <div className="progress" id="progress" style={{
+                    width: "600px",
+                    marginLeft: "2%",
+                    marginTop: "10px",
+                    position: "absolute",
+                    display: "none",
+                    alignItems: "center"
+                  }}>
                     <div
                       className="progress-bar progress-bar-striped active"
                       role="progressbar"
@@ -264,7 +280,7 @@ function GameUpdate() {
                   <p id="fileName">{GameFileName}</p>
 
                   <div className="form-group row">
-                    <div className="col-sm-12 text-center">
+                    <div className="col-sm-12 text-center" style={{paddingTop:"30px"}}>
                       <button
                         type="submit"
                         className="btn btn-primary w-20 mt-2"
