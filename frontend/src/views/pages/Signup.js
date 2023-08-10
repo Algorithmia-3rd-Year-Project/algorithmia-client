@@ -112,20 +112,8 @@ const Signup = () => {
                 <h3>Player</h3>
 
               <div class="col-md-6 d-flex justify-content-center">
-                    <a href="#!" onClick={handleRoleChange}>Sign-up as an advertiser</a>
+                    <a href="#" onClick={handleRoleChange}>Sign-up as an advertiser</a>
               </div>
-              <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">
-                    Username
-                  </label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="recipient-name"
-                    // onChange={(e) => setEmail(e.target.value)}
-                    // value={email}
-                  />
-                </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">
                     Email
@@ -230,15 +218,17 @@ const Signup = () => {
                 </div>
 
                 <br />
-                <div class="d-grid gap-2 col-6 mx-auto">
+                  <div class="d-grid gap-2 col-6 mx-auto">
                   <button
                     class="btn btn-primary"
                     type="button"
                     onClick={handleSubmit}
+                    {...(error ? { 'data-bs-dismiss': 'modal' } : {})}
                   >
                     Register
                   </button>
                 </div>
+                
                 <br/>
                 {error && (
                   <div class="alert alert-warning" role="alert">
@@ -262,7 +252,7 @@ const Signup = () => {
                 <>
                 <h3>Advertiser</h3>
                 <div class="col-md-6 d-flex justify-content-center">
-                    <a href="#!" onClick={handleRoleChange}>Sign-up as a player</a>
+                    <a href="#" onClick={handleRoleChange}>Sign-up as a player</a>
               </div>
                 <form>
                   <div class="mb-3">
@@ -352,6 +342,7 @@ const Signup = () => {
                       class="btn btn-primary"
                       type="button"
                       onClick={handleAdvertiserSubmit}
+                      {...(error ? { 'data-bs-dismiss': 'modal' } : {})}
                     >
                       Register
                     </button>
