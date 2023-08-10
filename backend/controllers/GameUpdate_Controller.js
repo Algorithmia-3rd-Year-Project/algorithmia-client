@@ -8,9 +8,9 @@ const combinedUpload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
       if (file.fieldname === "imgUpld") {
-        cb(null, "../utilities/images");
+        cb(null, "../utilities/uploads/game_images");
       } else if (file.fieldname === "GameFile") {
-        cb(null, "../utilities/gameFile");
+        cb(null, "../utilities/uploads/game_files");
       } else {
         cb(new Error("Invalid field name"));
       }
