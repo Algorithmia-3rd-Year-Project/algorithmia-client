@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import icon from "../../images/star-fill.png";
+import profile from "../../images/user.png";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons/faStar";
@@ -8,6 +9,8 @@ import ReviewModal from "../components/ReviewModal";
 import { useEffect, useState } from "react";
 
 const Review = () => {
+  const hardcodedNames = ['Anna Smith', 'John Doe', 'Emily Johnson', 'Anne Johnson'];
+
   const elements = [];
   for (let i = 0; i < 5; i++) {
     elements.push(
@@ -78,14 +81,14 @@ const Review = () => {
           <br></br>
 
           {reviews &&
-            reviews.map((review) => (
+            reviews.map((review, index) => (
               <React.Fragment>
                 <div className="card" style={{backgroundColor:"#acdbdf"}}>
                   <div className="card-body m-3">
                     <div className="row">
                       <div className="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
                         <img
-                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
+                          src={profile}
                           className="rounded-circle img-fluid shadow-1"
                           alt="woman avatar"
                           width="150"
@@ -95,7 +98,7 @@ const Review = () => {
                       <div className="col-lg-8">
   
                         <p className="fw-bold lead mb-2">
-                          <strong>Anna Smith</strong>
+                          <strong>{hardcodedNames[index]}</strong>
                           <br></br>
                           {[...Array(review.rate)].map((_, index) => (
                             <FontAwesomeIcon
