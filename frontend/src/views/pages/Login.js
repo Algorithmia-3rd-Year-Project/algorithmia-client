@@ -40,7 +40,7 @@ const Login = () => {
               <form>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">
-                    Username/Email
+                    Email
                   </label>
                   <input
                     type="email"

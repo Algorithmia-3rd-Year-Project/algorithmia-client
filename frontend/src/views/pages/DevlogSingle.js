@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 import { CommentContext } from '../components/CommentContext';
 
 import icon from "../../images/user.png";
-import image from "../../images/beach.webp";
+import image1 from "../../images/patch1.jpg";
+import image2 from "../../images/patch2.png";
+import image3 from "../../images/patch3.jpg";
 
 import CommentBlock from "../components/CommentBlock";
 import AddComment from "../components/AddComment";
@@ -74,12 +76,12 @@ const DevlogSingle = () => {
       <h2 className="fw-bold" style={{ color: "#002B5B" }}>
         {devlog.title}
       </h2>
-      <h5 className="text-muted">Published 23/09/2022</h5>
+      <h5 className="text-muted">Published 25/07/2023</h5>
       <hr />
       <div className="row pt-3">
         <div className="col-12 col-md-6 col-lg-4">
           <img
-            src={image}
+            src={image1}
             className="w-100 shadow-1-strong rounded mb-4"
             alt="Waves at Sea"
           />
@@ -87,7 +89,7 @@ const DevlogSingle = () => {
 
         <div className="col-12 col-md-6 col-lg-4">
           <img
-            src={image}
+            src={image2}
             className="w-100 shadow-1-strong rounded mb-4"
             alt="Waves at Sea"
           />
@@ -95,7 +97,7 @@ const DevlogSingle = () => {
 
         <div className="col-12 col-md-6 col-lg-4">
           <img
-            src={image}
+            src={image3}
             className="w-100 shadow-1-strong rounded mb-4"
             alt="Waves at Sea"
           />
@@ -104,11 +106,7 @@ const DevlogSingle = () => {
 
       <section>
         <p>
-          {devlog.content} Hey there, fellow adventurers! Welcome to the first
-          edition of our game development devlog, where we'll be sharing
-          behind-the-scenes details, progress updates, and exciting insights
-          into the making of our upcoming game. Join us on this thrilling
-          journey as we craft an unforgettable gaming experience.
+          {devlog.content} 
         </p>
       </section>
       <hr />
