@@ -1,6 +1,7 @@
 const Ppl = require("../models/Ppl_Model");
 const multer = require("multer");
 const path = require("path");
+const mongoose = require("mongoose");
 
 //Add a ppl request
 const addPpl = async (req, res) => {
@@ -37,7 +38,19 @@ const images = multer.diskStorage({
 
 const upload = multer({ storage: images });
 
+const getUserPpl = async (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No Ppls" });
+  }
+  const devlog = await Ppl.find({ userID: id });
+  if (!devlog) {
+    return res.status(400).json({ error: "No Ppls" });
+  }
+  res.status(200).json(devlog);
+};
+
 module.exports = {
-  addPpl,
-  upload,
+  getUserPpl,
+  addPpl, upload,
 };

@@ -51,10 +51,10 @@ const Review = () => {
 
   return (
     <section
-      class="p-4 p-md-5 text-center text-lg-start shadow-1-strong rounded"
+      class="p-4 p-md-5 text-center text-lg-start shadow-1-strong"
       style={{ backgroundColor: "#002b5b" }}
     >
-      <div className="text-center" style={{color:"#acdbdf"}}>
+      <div className="text-center" style={{color:"white"}}>
         <h1>Reviews</h1>
       </div>
       <div class="row d-flex justify-content-center">

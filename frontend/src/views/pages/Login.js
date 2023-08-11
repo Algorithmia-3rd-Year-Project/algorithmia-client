@@ -40,7 +40,7 @@ const Login = () => {
               <form>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">
-                    Username/Email
+                    Email
                   </label>
                   <input
                     type="email"
@@ -68,6 +68,7 @@ const Login = () => {
                     class="btn btn-primary"
                     type="button"
                     onClick={handleSubmit}
+                    {...(error ? { 'data-bs-dismiss': 'modal' } : {})}
                   >
                     Log In
                   </button>
@@ -86,11 +87,6 @@ const Login = () => {
                   <div class="col-md-6 d-flex justify-content-center">
                     <a href="#!">Register</a>
                   </div>
-                </div>
-                <div class="d-grid gap-2 col-6 mx-auto">
-                  <button class="btn btn-primary" type="button">
-                    Login as an Advertiser
-                  </button>
                 </div>
                 <br />
               </form>

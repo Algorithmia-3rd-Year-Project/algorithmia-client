@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 import { CommentContext } from '../components/CommentContext';
 
 import icon from "../../images/user.png";
-import image from "../../images/beach.webp";
+import image1 from "../../images/patch1.jpg";
+import image2 from "../../images/patch2.png";
+import image3 from "../../images/patch3.jpg";
 
 import CommentBlock from "../components/CommentBlock";
 import AddComment from "../components/AddComment";
@@ -74,12 +76,12 @@ const DevlogSingle = () => {
       <h2 className="fw-bold" style={{ color: "#002B5B" }}>
         {devlog.title}
       </h2>
-      <h5 className="text-muted">Published 23/09/2022</h5>
+      <h5 className="text-muted">Published 25/07/2023</h5>
       <hr />
       <div className="row pt-3">
         <div className="col-12 col-md-6 col-lg-4">
           <img
-            src={image}
+            src={image1}
             className="w-100 shadow-1-strong rounded mb-4"
             alt="Waves at Sea"
           />
@@ -87,7 +89,7 @@ const DevlogSingle = () => {
 
         <div className="col-12 col-md-6 col-lg-4">
           <img
-            src={image}
+            src={image2}
             className="w-100 shadow-1-strong rounded mb-4"
             alt="Waves at Sea"
           />
@@ -95,7 +97,7 @@ const DevlogSingle = () => {
 
         <div className="col-12 col-md-6 col-lg-4">
           <img
-            src={image}
+            src={image3}
             className="w-100 shadow-1-strong rounded mb-4"
             alt="Waves at Sea"
           />
@@ -103,14 +105,15 @@ const DevlogSingle = () => {
       </div>
 
       <section>
-        <p>
+        
+
             {devlog.content}
             <h4>1. Conceptualization and Design</h4>
             <p>Our journey began with a brainstorming session where our team of developers, designers,
               and educators collaborated to outline the core concepts and gameplay mechanics for Algorithmia.
               We aimed to strike a balance between engaging gameplay and educational content,
               ensuring that players not only have fun but also gain a deep understanding of data structures and algorithms.</p>
-            </p>
+            
             <h4>2. Creating the Virtual Learning Environment</h4>
             <p>To bring Algorithmia to life, we started by creating the virtual learning environment.
               Our artists and designers meticulously crafted a visually appealing world where players will navigate through challenges,
@@ -126,6 +129,7 @@ const DevlogSingle = () => {
               They'll code solutions, test theories, and witness the real-time effects of their decisions.
               As they conquer challenges, players will earn experience points, level up, and unlock advanced concepts.</p>
           
+
       </section>
       <hr />
       <section>

@@ -110,7 +110,7 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
     <form onSubmit={handleSubmit}>
       <div className="modal" style={modalStyle}>
         <div className="modal-dialog" style={modalContentStyle} role="document">
-          <div className="modal-content" style={{ backgroundColor: "#acdbdf" }}>
+          <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">Add Review</h5>
               <button
@@ -127,7 +127,6 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
                 placeholder="Add your review..."
                 style={{
                   border: "None",
-                  backgroundColor: "#acdbdf",
                   width: "100%",
                 }}
                 onChange={(e) => setContent(e.target.value)}
@@ -144,19 +143,6 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
               </div>
             </div>
             <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={handleCloseModal}
-                style={{
-                  color: "#002b5b",
-                  backgroundColor: "white",
-                  borderColor: "white",
-                  fontWeight: "bold",
-                }}
-              >
-                Close
-              </button>
               <button
                 className="btn btn-primary"
                 style={{
