@@ -6,41 +6,44 @@ const AdvertiserProfile = () => {
   const [ppls, setPpl] = useState(null);
   const [loading, setPplLoading] = useState(true);
   const { user } = useSessionContext();
-  const { id } = "64d47a6ace09fc3609b315e5";
+  const id = "64d47a6ace09fc3609b315e5";
 
-  useEffect(() => {
-    const fetchPpl = async () => {
-      try {
-        const response = await fetch("/algorithmia/userPpl/" + id, {
-          method: "GET",
-        });
-        const json = await response.json();
-        if (response.ok) {
-          setPpl(json);
-        }
-      } catch (error) {
-        //do something
-      } finally {
-        setPplLoading(false);
-      }
-    };
-    fetchPpl();
-  }, [id]);
+  // useEffect(() => {
+  //   const fetchPpl = async () => {
+  //     try {
+  //       const response = await fetch("/algorithmia/userPpl/" + id, {
+  //         method: "GET",
+  //       });
+  //       const json = await response.json();
+  //       if (response.ok) {
+  //         setPpl(json);
+  //       }
+  //     } catch (error) {
+  //       //do something
+  //     } finally {
+  //       setPplLoading(false);
+  //     }
+  //   };
+  //   fetchPpl();
+  // }, [id]);
 
-  if (loading) {
-    return <p>loading...</p>;
-  }
+  // if (loading) {
+  //   return <p>loading...</p>;
+  // }
 
   return (
-    <div className="container pt-3">
+    <div className="container pt-5">
       <div className="row">
-        <div className="col-3 border">
-          <div className="row"><a href="c">Overview</a></div>
-          <div className="row"><a href="c">Product Placement Request</a></div>
-          <div className="row"><a href="c">Account Settings</a></div>
+        <div className="col-3 border-start border-top">
+          <div className="row p-3 pb-1"><a className="text-decoration-none link-dark" href="c">Overview</a></div>
+          <hr />
+          <div className="row p-3 pb-1 pt-1"><a className="text-decoration-none link-dark" href="c">Product Placement Request</a></div>
+          <hr />
+          <div className="row p-3 pb1 pt-1"><a className="text-decoration-none link-dark" href="c">Account Settings</a></div>
+          <hr />
         </div>
         <div className="col border">
-          <div className="row border">
+          <div className="row">
             <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: "#1a5f7a", height: "200px" }}>
               <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
@@ -53,14 +56,80 @@ const AdvertiserProfile = () => {
               </div>
             </div>
           </div>
-          <div className="row border">
+          <div className="row">
             <div className="container mt-5">
               <h5>My Product Placement Requests</h5>
-              <div className="card shadow-none border rounded-0 mt-4">
-              {ppls &&
+              <div className="card shadow-none border rounded-0 mt-4 p-4">
+                <div className="row">
+                  {/* {ppls &&
               ppls.map((ppl) => (
                 <p>{ppl.description}</p>
-              ))}
+              ))} */}
+                  <div className="col-4">
+                    Product Type: Game Hardware Part <br /><br />
+                    Placement Duration <br />
+                    Start Date: 11/08/2023<br />
+                    Attachments:
+                  </div>
+
+                  <div className="col-4">
+                    Placement Type: In-game Shop <br />
+
+                  </div>
+
+                  <div className="col-4 text-end">
+                    Status: Pending<br />
+
+                  </div>
+                </div>
+              </div>
+              <div className="card shadow-none border rounded-0 mt-4 p-4">
+                <div className="row">
+                  {/* {ppls &&
+              ppls.map((ppl) => (
+                <p>{ppl.description}</p>
+              ))} */}
+                  <div className="col-4">
+                    Product Type: Game Hardware Part <br /><br />
+                    Placement Duration <br />
+                    Start Date: 11/08/2023<br />
+                    Attachments:
+                  </div>
+
+                  <div className="col-4">
+                    Placement Type: In-game Shop <br />
+
+                  </div>
+
+                  <div className="col-4 text-end">
+                    Status: Pending<br />
+
+                  </div>
+                </div>
+              </div>
+              <div className="card shadow-none border rounded-0 mt-4 p-4">
+                <div className="row">
+                  {/* {ppls &&
+              ppls.map((ppl) => (
+                <p>{ppl.description}</p>
+              ))} */}
+                  <div className="col-4">
+                    Product Type: Game Hardware Part <br /><br />
+                    Placement Duration <br />
+                    Start Date: 11/08/2023<br />
+                    Attachments:
+                  </div>
+
+                  <div className="col-4">
+                    Placement Type: In-game Shop <br />
+
+                  </div>
+
+                  <div className="col-4 text-end">
+                    Status: Pending<br />
+
+                  </div>
+                </div>
               </div>
             </div>
           </div>
