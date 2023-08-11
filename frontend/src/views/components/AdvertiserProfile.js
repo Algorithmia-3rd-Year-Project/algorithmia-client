@@ -32,15 +32,16 @@ const AdvertiserProfile = () => {
   // }
 
   return (
+    <body style={{backgroundColor: "#002b5b"}}>
     <div className="container pt-5">
       <div className="row">
         <div className="col-3 border-start border-top">
-          <div className="row p-3 pb-1"><a className="text-decoration-none link-dark" href="c">Overview</a></div>
-          <hr />
-          <div className="row p-3 pb-1 pt-1"><a className="text-decoration-none link-dark" href="c">Product Placement Request</a></div>
-          <hr />
-          <div className="row p-3 pb1 pt-1"><a className="text-decoration-none link-dark" href="c">Account Settings</a></div>
-          <hr />
+          <div className="row p-3 pb-1"><a className="text-decoration-none" style={{color: "white", fontSize: "20px"}} href="c">Overview</a></div>
+          <hr style={{color: "white"}}/>
+          <div className="row p-3 pb-1 pt-1"><a className="text-decoration-none" style={{color: "white", fontSize: "20px"}} href="c">Product Placement Request</a></div>
+          <hr style={{color: "white"}}/>
+          <div className="row p-3 pb1 pt-1"><a className="text-decoration-none" style={{color: "white", fontSize: "20px"}} href="c">Account Settings</a></div>
+          <hr style={{color: "white"}}/>
         </div>
         <div className="col border">
           <div className="row">
@@ -58,8 +59,8 @@ const AdvertiserProfile = () => {
           </div>
           <div className="row">
             <div className="container mt-5">
-              <h5>My Product Placement Requests</h5>
-              <div className="card shadow-none border rounded-0 mt-4 p-4">
+              <h5 style={{color: "white"}}>My Product Placement Requests</h5>
+              <div className="card shadow-none border-none mt-4 p-4" style={{backgroundColor: "#acdbdf"}}>
                 <div className="row">
                   {/* {ppls &&
               ppls.map((ppl) => (
@@ -69,12 +70,11 @@ const AdvertiserProfile = () => {
                     Product Type: Game Hardware Part <br /><br />
                     Placement Duration <br />
                     Start Date: 11/08/2023<br />
-                    Attachments:
                   </div>
 
                   <div className="col-4">
-                    Placement Type: In-game Shop <br />
-
+                    Placement Type: In-game Shop <br /><br /><br/>
+                    End Date: 15/09/2023<br />
                   </div>
 
                   <div className="col-4 text-end">
@@ -83,31 +83,31 @@ const AdvertiserProfile = () => {
                   </div>
                 </div>
               </div>
-              <div className="card shadow-none border rounded-0 mt-4 p-4">
+              <div className="card shadow-none border rounded-0 mt-4 p-4" style={{backgroundColor: "#acdbdf"}}>
                 <div className="row">
                   {/* {ppls &&
               ppls.map((ppl) => (
                 <p>{ppl.description}</p>
               ))} */}
                   <div className="col-4">
-                    Product Type: Game Hardware Part <br /><br />
+                    Product Type: GBrand Name <br /><br />
                     Placement Duration <br />
-                    Start Date: 11/08/2023<br />
-                    Attachments:
+                    Start Date: 08/07/2023<br />
                   </div>
 
                   <div className="col-4">
-                    Placement Type: In-game Shop <br />
+                    Placement Type: Side Quest <br /><br /><br/>
+                    End Date: 11/08/2023<br />
 
                   </div>
 
                   <div className="col-4 text-end">
-                    Status: Pending<br />
+                    Status: Accepted<br />
 
                   </div>
                 </div>
               </div>
-              <div className="card shadow-none border rounded-0 mt-4 p-4">
+              <div className="card shadow-none border rounded-0 mt-4 p-4"style={{backgroundColor: "#acdbdf"}}>
                 <div className="row">
                   {/* {ppls &&
               ppls.map((ppl) => (
@@ -116,17 +116,17 @@ const AdvertiserProfile = () => {
                   <div className="col-4">
                     Product Type: Game Hardware Part <br /><br />
                     Placement Duration <br />
-                    Start Date: 11/08/2023<br />
-                    Attachments:
+                    Start Date: 03/06/2023<br />
                   </div>
 
                   <div className="col-4">
-                    Placement Type: In-game Shop <br />
+                    Placement Type: In-game Shop <br /><br /><br/>
+                    End Date: 20/06/2023<br />
 
                   </div>
 
                   <div className="col-4 text-end">
-                    Status: Pending<br />
+                    Status: Accepted<br />
 
                   </div>
                 </div>
@@ -136,6 +136,7 @@ const AdvertiserProfile = () => {
         </div>
       </div>
     </div>
+    </body>
   );
 };
 export default AdvertiserProfile;
