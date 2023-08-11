@@ -28,7 +28,10 @@ const {
 
 const { getComplaints } = require("../controllers/Complaints_Controller");
 
-const { addPpl, upload } = require("../controllers/Ppl_Controller");
+const { 
+  getUserPpl,
+  addPpl, upload,
+ } = require("../controllers/Ppl_Controller");
 
 //const requireAuth = require("../middleware/requireAuth");
 
@@ -76,5 +79,7 @@ router.post("/gameupdate", uploadCoverImageAndGameFile, GameUpdate);
 router.get("/complainlist", getComplaints);
 
 router.post("/pplform/addppl", upload.single("ppl-images"), addPpl);
+
+router.get("/userPpl", getUserPpl);
 
 module.exports = router;

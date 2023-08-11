@@ -93,9 +93,14 @@ const Navbar = () => {
                   {user && (
                     <>
                       <li>
-                        <a className="dropdown-item" href="#">
-                          My Profile
-                        </a>
+                        {user.userRole === "advertiser" &&
+                          <a className="dropdown-item" href="/adprofile">
+                            My Profile
+                          </a>}
+                        {user.userRole !== "advertiser" &&
+                          <a className="dropdown-item" href="/profile">
+                            My Profile
+                          </a>}
                       </li>
                       <li>
                         <a className="dropdown-item" href="#">
