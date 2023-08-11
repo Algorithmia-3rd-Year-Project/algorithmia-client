@@ -23,7 +23,9 @@ import Profile from "./views/pages/Profile";
 
 import AddPpl from "./views/pages/AddPpl";
 
-import Review from "./views/pages/Reviews"
+import Review from "./views/pages/Reviews";
+
+import AdvertiserSettings from "./views/components/AdvertiserAccountSettings";
 
 
 //components
@@ -65,7 +67,9 @@ function App() {
               path="/game/dashboard"
               element={<GameDashboard />}
             />
-            <Route path="/advertiser/profile" element={<ProfileOverview />} />
+              <Route path="/advertiser/profile" element={<ProfileOverview />} />
+              
+              <Route path="/advertiserSettings" element={<AdvertiserSettings />} />
             
             <Route path="/Gameupdate" element={<GameUpdate/>} />
             <Route path="/Complaints" element={<GameComplain/>} />
