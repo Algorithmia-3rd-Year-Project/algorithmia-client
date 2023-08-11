@@ -106,169 +106,15 @@ const Signup = () => {
               ></button>
             </div>
             <div class="modal-body">
-
-            {role === "player" && (
-              <form>
-                <h3>Player</h3>
-
-              <div class="col-md-6 d-flex justify-content-center">
-                    <a href="#" onClick={handleRoleChange}>Sign-up as an advertiser</a>
-              </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="recipient-name"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">
-                    Username
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="recipient-name"
-                    onChange={(e) => setUserName(e.target.value)}
-                    value={userName}
-                  />
-                </div>
-                <label for="recipient-name" class="col-form-label">
-                  Verification Code
-                </label>
-                <div class="input-group mb-3">
-                  <input
-                    type="text"
-                    class="form-control"
-                    onChange={(e) => setVerifyCode(e.target.value)}
-                    value={verifyCode}
-                  />
-                  <div class="input-group-append">
-                    <button
-                      class="btn btn-outline-secondary"
-                      type="button"
-                      onClick={sendEmail}
-                    >
-                      Send
-                    </button>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">
-                    Date of Birth
-                  </label>
-                  <label className="star fw-bold" style={{ color: "red" }}>
-            {" "}
-            *
-          </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    onChange={(e) => setDob(e.target.value)}
-                    value={dob}
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">
-                    Password
-                  </label>
-                  <label className="star fw-bold" style={{ color: "red" }}>
-            {" "}
-            *
-          </label>
-                  <input
-                    type="password"
-                    className="form-control mt-1"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">
-                    Confirm Password
-                  </label>
-                  <label className="star fw-bold" style={{ color: "red" }}>
-            {" "}
-            *
-          </label>
-                  <input
-                    type="password"
-                    className="form-control mt-1"
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    value={confirmPassword}
-                  />
-                </div>
-
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    onChange={(e) => setIsAcceptedTerms(e.target.value)}
-                    value={isAcceptedTerms}
-                    id="flexCheckDefault"
-                  />
-                  <label class="form-check-label" for="flexCheckDefault">
-                    I accept Terms and Conditions
-                  </label>
-                </div>
-
-                <br />
-                  <div class="d-grid gap-2 col-6 mx-auto">
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    onClick={handleSubmit}
-                    {...(error ? { 'data-bs-dismiss': 'modal' } : {})}
-                  >
-                    Register
-                  </button>
-                </div>
-                
-                <br/>
-                {error && (
-                  <div class="alert alert-warning" role="alert">
-                    {error}
-                  </div>
-                )}
-                <br />
-                <div class="row mb-4 ">
+              {role === "player" && (
+                <form>
+                  <h3>Player</h3>
 
                   <div class="col-md-6 d-flex justify-content-center">
-                    <a href="#!" onClick={handleRoleChange}>
+                    <a href="#" onClick={handleRoleChange}>
                       Sign-up as an advertiser
                     </a>
                   </div>
-                  <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">
-                      Username
-                    </label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="recipient-name"
-                      // onChange={(e) => setEmail(e.target.value)}
-                      // value={email}
-                    />
-                  </div>
-
-                </div>
-              </form>
-            )}
-
-              {/*Advertiser Form */}
-              {role === "advertiser" && (
-                <>
-                <h3>Advertiser</h3>
-                <div class="col-md-6 d-flex justify-content-center">
-                    <a href="#" onClick={handleRoleChange}>Sign-up as a player</a>
-              </div>
-                <form>
-
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">
                       Email
@@ -377,14 +223,13 @@ const Signup = () => {
                     <button
                       class="btn btn-primary"
                       type="button"
-
-                      onClick={handleAdvertiserSubmit}
-                      {...(error ? { 'data-bs-dismiss': 'modal' } : {})}
-
+                      onClick={handleSubmit}
+                      {...(error ? { "data-bs-dismiss": "modal" } : {})}
                     >
                       Register
                     </button>
                   </div>
+
                   <br />
                   {error && (
                     <div class="alert alert-warning" role="alert">
@@ -408,7 +253,7 @@ const Signup = () => {
                 <>
                   <h3>Advertiser</h3>
                   <div class="col-md-6 d-flex justify-content-center">
-                    <a href="#!" onClick={handleRoleChange}>
+                    <a href="#" onClick={handleRoleChange}>
                       Sign-up as a player
                     </a>
                   </div>
@@ -500,6 +345,7 @@ const Signup = () => {
                         class="btn btn-primary"
                         type="button"
                         onClick={handleAdvertiserSubmit}
+                        {...(error ? { "data-bs-dismiss": "modal" } : {})}
                       >
                         Register
                       </button>
