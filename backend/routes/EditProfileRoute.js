@@ -7,4 +7,5 @@ const { EditProfile } = require("../controllers/EditProfile_Controller");
 
 router.post("/editprofile", EditProfile);
 
+
 module.exports = router;
