@@ -11,6 +11,8 @@ const {
 
 const { addPpl, upload } = require("../controllers/Ppl_Controller");
 
+const{ProfileData} = require("../controllers/Profile_Controller");
+
 //const requireAuth = require("../middleware/requireAuth");
 
 const router = express.Router();
@@ -37,5 +39,7 @@ router.delete("/devlog/deletedevlog/:id", deleteDevlog);
 router.patch("/devlog/updatedevlog/:id", updateDevlog);
 
 router.post("/pplform/addppl", upload.single("ppl-images"), addPpl);
+
+router.post("/profile",ProfileData);
 
 module.exports = router;

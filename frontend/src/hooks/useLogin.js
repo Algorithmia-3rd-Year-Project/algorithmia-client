@@ -18,6 +18,12 @@ export const useLogin = () => {
 
     const json = await response.json();
 
+    sessionStorage.setItem('playerID', json.id);
+
+
+
+    console.log("profile",json);
+
     if (!response.ok) {
       setIsLoading(false);
       setError(json.error);

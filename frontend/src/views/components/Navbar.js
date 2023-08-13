@@ -68,7 +68,7 @@ const Navbar = () => {
                   {user && (
                     <>
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="profile">
                           My Profile
                         </a>
                       </li>
