@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.css";
-import img1 from "../../images/patch1.jpg";
-import img2 from "../../images/patch2.png";
-import img3 from "../../images/patch3.jpg";
+import img1 from "../../images/game_s1.png";
+import img2 from "../../images/game_s2.png";
+import img3 from "../../images/game_s3.png";
 import icon from "../../images/star-fill.png";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -162,7 +162,7 @@ const Home = () => {
             <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden mx-5">
               <img
                 class="img-fluid border rounded-3 mb-4"
-                src={img1}
+                src={img2}
                 alt=""
                 width="720"
               />
@@ -203,7 +203,7 @@ const Home = () => {
 
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src={img1} class="d-block w-100" />
+                <img src={img3} class="d-block w-100" />
               </div>
               <div class="carousel-item">
                 <img src={img2} class="d-block w-100" />

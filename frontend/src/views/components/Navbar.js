@@ -18,31 +18,31 @@ const Navbar = () => {
   return (
     <header>
       <div className="content">
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand" style={{backgroundColor: "#002b5b", fontSize: "18px"}}>
           <div className="container">
-            <Link to="/" className="navbar-brand">
-              Algorithmia
+            <Link to="/" className="navbar-brand" style={{color: "white", fontSize:"22px"}}>
+              <b>Algorithmia</b>
             </Link>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to="/" className="nav-link">
+                <Link to="/" className="nav-link" style={{color: "white"}}>
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/devlogs" className="nav-link">
+                <Link to="/devlogs" className="nav-link" style={{color: "white"}}>
                   Devlogs
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/reviews" className="nav-link">
+                <Link to="/reviews" className="nav-link" style={{color: "white"}}>
                   Reviews
                 </Link>
               </li>
               {user ? (
                 <li className="nav-item dropdown">
                   {user.userRole === "advertiser" &&
-                    <a className="nav-link" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                    <a className="nav-link" style={{color: "white"}} data-bs-toggle="dropdown" aria-expanded="false" href="#">
                       Advertising
                     </a>}
                   <ul className="dropdown-menu">
@@ -62,7 +62,7 @@ const Navbar = () => {
 
               <li className="nav-item">
                 {(!user || user.userRole !== "advertiser") && (
-                  <Link to="/topups" className="nav-link">
+                  <Link to="/topups" className="nav-link" style={{color: "white"}}>
                     Top-ups
                   </Link>
                 )}
@@ -80,8 +80,8 @@ const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {!user && <span className="navbar-text">Log In</span>}
-                  {user && <span>{user.email}</span>}
+                  {!user && <span className="navbar-text" style={{color: "white"}}>Log In</span>}
+                  {user && <span style={{color: "white"}}>{user.email}</span>}
                   <img
                     src={icon}
                     alt=""
