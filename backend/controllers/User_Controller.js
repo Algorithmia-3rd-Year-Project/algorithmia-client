@@ -148,10 +148,51 @@ const sendAdvertiserVerifyEmail = async (req, res) => {
   });
 };
 
+//get advertiser
+const getAdvertiser = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No Such an Advertiser" });
+  }
+
+  const advertiser = await Advertiser.findById(id);
+
+  if (!advertiser) {
+    return res.status(400).json({ error: "No Such an Advertiser" });
+  }
+
+  res.status(200).json(advertiser);
+};
+
+//Update advertiser profile
+const updateAdvertiser = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No Such an Advertiser" });
+  }
+
+  const advertiser = await Advertiser.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    }
+  );
+
+  if (!advertiser) {
+    return res.status(400).json({ error: "No Such an Advertiser" });
+  }
+
+  res.status(200).json(advertiser);
+};
+
 module.exports = {
   signupUser,
   loginUser,
   sendVerifyEmail,
   advertiserSignUp,
   sendAdvertiserVerifyEmail,
+  getAdvertiser,
+  updateAdvertiser,
 };

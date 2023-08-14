@@ -12,7 +12,7 @@ import AddDevlog from "./views/pages/AddDevlog";
 import DevlogSingle from "./views/pages/DevlogSingle";
 import AdvertiserDashboard from "./views/pages/Admin/AdvertiserDashboard";
 import ProfileOverview from "./views/pages/Advertiser/ProfileOverview";
-import AdProfile from "./views/components/AdvertiserProfile";
+import AdProfile from "./views/pages/Advertiser/ProfileOverview";
 
 import GameUpdate from "./views/pages/GameUpdate";
 import GameComplain from "./views/pages/Complaints";
