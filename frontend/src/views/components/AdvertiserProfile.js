@@ -33,17 +33,8 @@ const AdvertiserProfile = () => {
 
   return (
     <body style={{backgroundColor: "#002b5b"}}>
-    <div className="container pt-5">
+    <div className="container pt-4">
       <div className="row">
-        <div className="col-3 border-start border-top">
-          <div className="row p-3 pb-1"><a className="text-decoration-none" style={{color: "white", fontSize: "20px"}} href="c">Overview</a></div>
-          <hr style={{color: "white"}}/>
-          <div className="row p-3 pb-1 pt-1"><a className="text-decoration-none" style={{color: "white", fontSize: "20px"}} href="c">Product Placement Request</a></div>
-          <hr style={{color: "white"}}/>
-          <div className="row p-3 pb1 pt-1"><a className="text-decoration-none" style={{color: "white", fontSize: "20px"}} href="c">Account Settings</a></div>
-          <hr style={{color: "white"}}/>
-        </div>
-        <div className="col border">
           <div className="row">
             <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: "#1a5f7a", height: "200px" }}>
               <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
@@ -133,7 +124,7 @@ const AdvertiserProfile = () => {
               </div>
             </div>
           </div>
-        </div>
+       
       </div>
     </div>
     </body>

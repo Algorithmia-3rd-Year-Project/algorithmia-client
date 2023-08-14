@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSessionContext } from "../../../hooks/useSessionContext";
 import AccountSettings from '../../components/AdvertiserAccountSettings'; 
+import AdvertiserAccountSettings from "../../components/AdvertiserAccountSettings";
+import AdvertiserProfile from "../../components/AdvertiserProfile";
+import AddPpl from "../../components/PplForm";
 
 const ProfileOverview = () => {
 
@@ -32,110 +35,78 @@ const ProfileOverview = () => {
   //   return <p>loading...</p>;
   // }
 
+  const [component, setComponent] = useState("overview");
+
+  const getComponent = () => {
+    switch (component) {
+      case "overview":
+        return <AdvertiserProfile />;
+      case "accountSettings":
+        return <AccountSettings />;
+      case "ppl":
+        return <AddPpl />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <body style={{backgroundColor: "#002b5b"}}>
     <div className="container pt-5">
       <div className="row">
         <div className="col-3 border-start border-top">
-          <div className="row p-3 pb-1"><a className="text-decoration-none" style={{color: "white", fontSize: "20px"}} href="c">Overview</a></div>
-          <hr style={{color: "white"}}/>
-          <div className="row p-3 pb-1 pt-1"><a className="text-decoration-none" style={{color: "white", fontSize: "20px"}} href="c">Product Placement Request</a></div>
-          <hr style={{color: "white"}}/>
-          <div className="row p-3 pb1 pt-1"><a className="text-decoration-none" style={{color: "white", fontSize: "20px"}} href="c">Account Settings</a></div>
-          <hr style={{color: "white"}}/>
-        </div>
-        <div className="col border">
-          <div className="row">
-            <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: "#1a5f7a", height: "200px" }}>
-              <div className="ms-4 mt-5 d-flex flex-column" style={{ width: "150px" }}>
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                  alt="Generic placeholder image" className="img-fluid img-thumbnail mt-4 mb-2"
-                  style={{ width: "150px", zIndex: "1" }} />
-              </div>
-              <div className="ms-3" style={{ marginTop: "130px" }}>
-                <h5>Andy Horwitz</h5>
-                <p>andy@gmail.com</p>
-              </div>
+            <div
+              className="row p-3 pb-1 hsla(0, 0%, 98%, 0.35)"
+              onClick={() => setComponent("overview")}
+              style={{ cursor: "pointer" }}
+            >
+              <span
+                className="text-decoration-none"
+                style={{
+                  color: component === "overview" ? "blue" : "white",
+                  fontSize: "20px",
+                }}
+              >
+                Overview
+              </span>
             </div>
-          </div>
-          <div className="row">
-            <div className="container mt-5">
-              <h5 style={{color: "white"}}>My Product Placement Requests</h5>
-              <div className="card shadow-none border-none mt-4 p-4" style={{backgroundColor: "#acdbdf"}}>
-                <div className="row">
-                  {/* {ppls &&
-              ppls.map((ppl) => (
-                <p>{ppl.description}</p>
-              ))} */}
-                  <div className="col-4">
-                    Product Type: Game Hardware Part <br /><br />
-                    Placement Duration <br />
-                    Start Date: 11/08/2023<br />
-                  </div>
-
-                  <div className="col-4">
-                    Placement Type: In-game Shop <br /><br /><br/>
-                    End Date: 15/09/2023<br />
-                  </div>
-
-                  <div className="col-4 text-end">
-                    Status: Pending<br />
-
-                  </div>
-                </div>
-              </div>
-              <div className="card shadow-none border rounded-0 mt-4 p-4" style={{backgroundColor: "#acdbdf"}}>
-                <div className="row">
-                  {/* {ppls &&
-              ppls.map((ppl) => (
-                <p>{ppl.description}</p>
-              ))} */}
-                  <div className="col-4">
-                    Product Type: GBrand Name <br /><br />
-                    Placement Duration <br />
-                    Start Date: 08/07/2023<br />
-                  </div>
-
-                  <div className="col-4">
-                    Placement Type: Side Quest <br /><br /><br/>
-                    End Date: 11/08/2023<br />
-
-                  </div>
-
-                  <div className="col-4 text-end">
-                    Status: Accepted<br />
-
-                  </div>
-                </div>
-              </div>
-              <div className="card shadow-none border rounded-0 mt-4 p-4"style={{backgroundColor: "#acdbdf"}}>
-                <div className="row">
-                  {/* {ppls &&
-              ppls.map((ppl) => (
-                <p>{ppl.description}</p>
-              ))} */}
-                  <div className="col-4">
-                    Product Type: Game Hardware Part <br /><br />
-                    Placement Duration <br />
-                    Start Date: 03/06/2023<br />
-                  </div>
-
-                  <div className="col-4">
-                    Placement Type: In-game Shop <br /><br /><br/>
-                    End Date: 20/06/2023<br />
-
-                  </div>
-
-                  <div className="col-4 text-end">
-                    Status: Accepted<br />
-
-                  </div>
-                </div>
-              </div>
+          <hr style={{color: "white"}}/>
+            <div
+              className="row p-3 pb1 pt-1"
+              onClick={() => setComponent("ppl")}
+              style={{ cursor: "pointer" }}
+            >
+              <span
+                className="text-decoration-none"
+                style={{
+                  color:
+                    component === "ppl" ? "blue" : "white",
+                  fontSize: "20px",
+                }}
+              >
+                Product Placement Requests
+              </span>
             </div>
+          <hr style={{color: "white"}}/>
+            <div
+              className="row p-3 pb1 pt-1"
+              onClick={() => setComponent("accountSettings")}
+              style={{ cursor: "pointer" }}
+            >
+              <span
+                className="text-decoration-none"
+                style={{
+                  color:
+                    component === "accountSettings" ? "blue" : "white",
+                  fontSize: "20px",
+                }}
+              >
+                Account Settings
+              </span>
+            </div>
+          <hr style={{color: "white"}}/>
           </div>
-          <AccountSettings></AccountSettings>
-        </div>
+          <div className="col border">{getComponent()}</div>
       </div>
     </div>
     </body>

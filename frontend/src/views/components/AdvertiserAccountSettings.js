@@ -23,10 +23,10 @@ const AdvertiserAccountSettings = () => {
     };
 
     const modalContentStyle = {
-        backgroundColor: '#fefefe',
-        margin: '15% auto',
-        padding: '20px',
-        border: '1px solid #888',
+        backgroundColor: '#ACDBDF',
+        margin: '10% auto',
+        padding: '25px',
+        borderRadius: '5px',
         width: '80%',
     };
 
@@ -84,7 +84,7 @@ const AdvertiserAccountSettings = () => {
                         <div className="col-2 text-left">User Name</div>
                         
                         {user ? (
-                            <input type="text" class="form-control form-control-sm validate ml-0 col" value={user.userRole}/>
+                            <input type="text" class="form-control form-control-sm validate ml-0 me-3 col" value={user.userRole}/>
                         ) : (
                             <div className="col">Loading user data...</div>
                         )}
@@ -93,7 +93,7 @@ const AdvertiserAccountSettings = () => {
                     <div class="md-form ml-0 mr-0 row">
                         <div className="col-2 text-left">E-mail</div>
                         {user ? (
-                            <div className="form-control form-control-sm validate text-start col">{user.email}</div>
+                            <div className="form-control form-control-sm validate text-start col me-3">{user.email}</div>
                         ) : (
                             <div className="col">Loading user data...</div>
                         )}

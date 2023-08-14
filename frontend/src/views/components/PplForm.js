@@ -50,16 +50,16 @@ const PplForm = () => {
   return (
     <div className="form pt-5">
       <div
-        className="container border w-50 p-5 rounded-4"
+        className="container border w-75 p-5 rounded-4"
         style={{ backgroundColor: "#ACDBDF" }}>
           
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <h2 className="text-center mb-5" style={{ color: "#002B5B" }}>
             Product Placement Request Form
           </h2>
-          <h5 className="mb-5">
+          <h6 className="mb-5">
             Fill the below form and advertise your product, brand in Algorithmia
-          </h5>
+          </h6>
 
           <div className="fields mb-3">
             <label className="form-label fw-bold" htmlFor="type">
