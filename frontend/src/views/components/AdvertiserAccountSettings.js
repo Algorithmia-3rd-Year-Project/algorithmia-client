@@ -1,4 +1,4 @@
-import badge from "../../images/badge_example.png";
+import pic from "../../images/avatar-1.webp";
 
 import EditProfileModal from '../components/EditPasswordAdv'; 
 
@@ -77,7 +77,7 @@ const AdvertiserAccountSettings = () => {
                     <div class="modal-body text-center mb-1">
                         <h5 class="mt-1 mb-2">Edit Profile</h5>
                         <div class="modal-header justify-content-center">
-                            <img src={badge} alt="avatar" class="rounded-circle img-responsive" style={{ height: "100px", width: "100px" }} />
+                            <img src={pic} alt="avatar" class="rounded-circle img-responsive" style={{ height: "200px", width: "200px" }} />
                     </div>
                     <br />
                     <div class="md-form ml-0 mr-0 row">

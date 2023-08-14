@@ -1,15 +1,15 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { useParams } from "react-router-dom";
 import { CommentContext } from './CommentContext';
-
+import { useSessionContext } from "../../hooks/useSessionContext";
 
 import { useState, useContext } from "react";
 
 const AddComment = () => {
 
     const [content, setComment] = useState("");
-    //const user_id = {user.id};
-    const user_id = "testID";
+    const { user } = useSessionContext();
+    const user_id = user.userID;
     const [error, setError] = useState("");
     const { id } = useParams();
     const devlog_id = id;

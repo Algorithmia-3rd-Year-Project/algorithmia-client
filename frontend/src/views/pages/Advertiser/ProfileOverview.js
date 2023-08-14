@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSessionContext } from "../../../hooks/useSessionContext";
 import AccountSettings from '../../components/AdvertiserAccountSettings'; 
-import AdvertiserAccountSettings from "../../components/AdvertiserAccountSettings";
 import AdvertiserProfile from "../../components/AdvertiserProfile";
 import AddPpl from "../../components/PplForm";
 
@@ -63,7 +62,7 @@ const ProfileOverview = () => {
               <span
                 className="text-decoration-none"
                 style={{
-                  color: component === "overview" ? "blue" : "white",
+                  color: component === "overview" ? "grey" : "white",
                   fontSize: "20px",
                 }}
               >
@@ -80,7 +79,7 @@ const ProfileOverview = () => {
                 className="text-decoration-none"
                 style={{
                   color:
-                    component === "ppl" ? "blue" : "white",
+                    component === "ppl" ? "grey" : "white",
                   fontSize: "20px",
                 }}
               >
@@ -97,7 +96,7 @@ const ProfileOverview = () => {
                 className="text-decoration-none"
                 style={{
                   color:
-                    component === "accountSettings" ? "blue" : "white",
+                    component === "accountSettings" ? "grey" : "white",
                   fontSize: "20px",
                 }}
               >

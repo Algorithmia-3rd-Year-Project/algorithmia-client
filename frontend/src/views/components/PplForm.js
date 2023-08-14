@@ -76,15 +76,11 @@ const PplForm = () => {
               value={type}
               onChange={(e) => setType(e.target.value)}
             >
-              <option selected></option>
-              <option value="1" id="type" required>
-                One
+              <option value="in-game" id="type" required>
+                In-game
               </option>
-              <option value="2" id="type" required>
-                Two
-              </option>
-              <option value="3" id="type" required>
-                Three
+              <option value="quest" id="type" required>
+                Side quest
               </option>
             </select>
           </div>
@@ -104,15 +100,23 @@ const PplForm = () => {
               value={product}
               onChange={(e) => setProduct(e.target.value)}
             >
-              <option selected></option>
-              <option value="1" id="product" required>
-                One
+              <option value="keyboard" id="product" required>
+                Keyboard
               </option>
-              <option value="2" id="product" required>
-                Two
+              <option value="mouse" id="product" required>
+                Mouse
               </option>
-              <option value="3" id="product" required>
-                Three
+              <option value="monitor" id="product" required>
+                Monitor
+              </option>
+              <option value="processor" id="product" required>
+                Processor
+              </option>
+              <option value="memory" id="product" required>
+                Memory
+              </option>
+              <option value="storage" id="product" required>
+                Storage
               </option>
             </select>
           </div>
