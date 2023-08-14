@@ -1,7 +1,12 @@
 import badge from "../../images/badge_example.png";
-import { useState } from "react";
+
 import EditProfileModal from '../components/EditPasswordAdv'; 
 
+import { useParams } from "react-router-dom";
+
+import { useEffect, useState } from "react";
+
+import { useSessionContext } from "../../hooks/useSessionContext";
 
 
 const AdvertiserAccountSettings = () => {
@@ -35,6 +40,35 @@ const AdvertiserAccountSettings = () => {
         setShowModal(false);
     };
 
+    const [advertiser, setAdvertiser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const { id } = useParams();
+
+    const { user, updateSessionContext } = useSessionContext();
+
+
+    useEffect(() => {
+        const fetchAdvertiser = async () => {
+            try {
+                const response = await fetch("/algorithmia/adprofile/" + id, {
+
+                    method: "POST",
+                });
+                const json = await response.json();
+
+                if (response.ok) {
+                    setAdvertiser(json);
+                }
+            } catch (error) {
+                //do something if error is found
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchAdvertiser();
+    }, [id]);
 
     return (
        
@@ -48,12 +82,21 @@ const AdvertiserAccountSettings = () => {
                     <br />
                     <div class="md-form ml-0 mr-0 row">
                         <div className="col-2 text-left">User Name</div>
-                        <input type="text" class="form-control form-control-sm validate ml-0 col" value="Himass"/>
+                        
+                        {user ? (
+                            <input type="text" class="form-control form-control-sm validate ml-0 col" value={user.userRole}/>
+                        ) : (
+                            <div className="col">Loading user data...</div>
+                        )}
                     </div>
                     <br />
                     <div class="md-form ml-0 mr-0 row">
                         <div className="col-2 text-left">E-mail</div>
-                        <div type="text" class="form-control form-control-sm validate text-start col">andy@gmail.com</div>
+                        {user ? (
+                            <div className="form-control form-control-sm validate text-start col">{user.email}</div>
+                        ) : (
+                            <div className="col">Loading user data...</div>
+                        )}
                     </div>
                     <br />
                     <div class="col-md d-flex justify-content-center">
