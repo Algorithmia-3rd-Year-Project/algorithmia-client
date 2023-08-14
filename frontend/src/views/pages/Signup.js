@@ -168,7 +168,7 @@ const Signup = () => {
                       *
                     </label>
                     <input
-                      type="text"
+                      type="date"
                       class="form-control"
                       onChange={(e) => setDob(e.target.value)}
                       value={dob}

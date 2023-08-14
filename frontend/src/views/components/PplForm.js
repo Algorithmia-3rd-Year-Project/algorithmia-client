@@ -76,11 +76,11 @@ const PplForm = () => {
               value={type}
               onChange={(e) => setType(e.target.value)}
             >
-              <option value="in-game" id="type" required>
-                In-game
+              <option value="shop" id="type" required>
+                Shop
               </option>
               <option value="quest" id="type" required>
-                Side quest
+                Quest
               </option>
             </select>
           </div>

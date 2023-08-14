@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <header>
       <div className="content">
-        <nav className="navbar navbar-expand" style={{backgroundColor: "#002b5b", fontSize: "18px"}}>
+        <nav className="navbar navbar-expand fixed" style={{backgroundColor: "#0C475D", fontFamily: "Bricolage Grotesque", fontSize: "18px"}}>
           <div className="container">
             <Link to="/" className="navbar-brand" style={{color: "white", fontSize:"22px"}}>
               <b>Algorithmia</b>
@@ -29,16 +29,19 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
+              <div className="vr mx-3 mt-2" style={{color: "white", height: "30px", width: "2px"}}></div>
               <li className="nav-item">
                 <Link to="/devlogs" className="nav-link" style={{color: "white"}}>
                   Devlogs
                 </Link>
               </li>
+              <div className="vr mx-3 mt-2" style={{color: "white", height: "30px", width: "2px"}}></div>
               <li className="nav-item">
                 <Link to="/reviews" className="nav-link" style={{color: "white"}}>
                   Reviews
                 </Link>
               </li>
+              <div className="vr mx-3 mt-2" style={{color: "white", height: "30px", width: "2px"}}></div>
               {user ? (
                 <li className="nav-item dropdown">
                   {user.userRole === "advertiser" &&
