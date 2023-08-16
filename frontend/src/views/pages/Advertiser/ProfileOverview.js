@@ -11,28 +11,28 @@ const ProfileOverview = () => {
   const { user } = useSessionContext();
   const id = "64d47a6ace09fc3609b315e5";
 
-  // useEffect(() => {
-  //   const fetchPpl = async () => {
-  //     try {
-  //       const response = await fetch("/algorithmia/userPpl/" + id, {
-  //         method: "GET",
-  //       });
-  //       const json = await response.json();
-  //       if (response.ok) {
-  //         setPpl(json);
-  //       }
-  //     } catch (error) {
-  //       //do something
-  //     } finally {
-  //       setPplLoading(false);
-  //     }
-  //   };
-  //   fetchPpl();
-  // }, [id]);
+  useEffect(() => {
+    const fetchPpl = async () => {
+      try {
+        const response = await fetch("/algorithmia/userPpl/" + id, {
+          method: "GET",
+        });
+        const json = await response.json();
+        if (response.ok) {
+          setPpl(json);
+        }
+      } catch (error) {
+        //do something
+      } finally {
+        setPplLoading(false);
+      }
+    };
+    fetchPpl();
+  }, [id]);
 
-  // if (loading) {
-  //   return <p>loading...</p>;
-  // }
+  if (loading) {
+    return <p>loading...</p>;
+  }
 
   const [component, setComponent] = useState("overview");
 
