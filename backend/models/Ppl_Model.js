@@ -24,9 +24,7 @@ const pplSchema = new Schema(
       type: Date,
       required: true,
     },
-    file: {
-      type: String,
-    },
+    files: [String],
   },
   { timestamps: true }
 );

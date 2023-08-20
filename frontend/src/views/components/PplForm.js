@@ -7,11 +7,31 @@ const PplForm = () => {
   const [description, setDescription] = useState("");
   const [sdate, setSdate] = useState("");
   const [edate, setEdate] = useState("");
-  const [file, setFile] = useState("");
+  const [files, setFiles] = useState([]);
+  const [filePreviews, setFilePreviews] = useState([]);
   const [error, setError] = useState("");
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const selectedFiles = e.target.files;
+
+    if (selectedFiles.length > 0) {
+      const fileArray = Array.from(selectedFiles);
+
+      setFiles(fileArray);
+
+      const previews = [];
+
+      fileArray.forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previews.push(e.target.result);
+          if (previews.length === fileArray.length) {
+            setFilePreviews(previews);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -19,7 +39,7 @@ const PplForm = () => {
 
     const formData = new FormData();
 
-    var filename = file.name;
+    var filename = files.name;
 
     formData.append("type", type);
     formData.append("product", product);
@@ -27,9 +47,9 @@ const PplForm = () => {
     formData.append("sdate", sdate);
     formData.append("edate", edate);
     formData.append("file", filename);
-    formData.append("ppl-images", file);
+    formData.append("ppl-images", files);
 
-    console.log(file);
+    console.log(files);
     const response = await fetch("/algorithmia/pplform/addppl", {
       method: "POST",
       body: formData,
@@ -41,7 +61,7 @@ const PplForm = () => {
       setDescription("");
       setSdate("");
       setEdate("");
-      setFile("");
+      setFiles("");
       setError(null);
       console.log("Placement request sent!");
     }
@@ -189,7 +209,20 @@ const PplForm = () => {
               type="file"
               onChange={handleFileChange}
               className="form-control"
+              multiple
             />
+            
+            <div className="image-holder" style={{ marginLeft: '150px', width: '300px', height: 'flex', background: 'white' }}>
+              {filePreviews.map((preview, index) => (
+                <div key={index} style={{ maxWidth: "100px", maxHeight: "100px", margin: '5px' }}>
+                  <img
+                    src={preview}
+                    alt={`Selected Preview ${index}`}
+                    style={{ maxWidth: "100px", maxHeight: "100px", objectFit: 'cover' }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="d-flex justify-content-center">
