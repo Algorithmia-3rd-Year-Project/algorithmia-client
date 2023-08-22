@@ -5,7 +5,7 @@ import { Button } from "bootstrap";
 // import "bootstrap/dist/css/bootstrap.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-const CommentBlock = ({ comment, onDelete }) => {
+const CommentBlock = ({ comment }) => {
 
   const [isDeleted, setIsDeleted] = useState(false);
   
