@@ -11,35 +11,33 @@ const PplForm = () => {
   const [filePreviews, setFilePreviews] = useState([]);
   const [error, setError] = useState("");
 
+  
+
   const handleFileChange = (e) => {
     const selectedFiles = e.target.files;
+    setFiles(selectedFiles);
 
-    if (selectedFiles.length > 0) {
-      const fileArray = Array.from(selectedFiles);
-
-      setFiles(fileArray);
-
-      const previews = [];
-
-      fileArray.forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          previews.push(e.target.result);
-          if (previews.length === fileArray.length) {
-            setFilePreviews(previews);
-          }
-        };
-        reader.readAsDataURL(file);
-      });
-    }
+    const previews = Array.from(selectedFiles).map((file) =>
+      URL.createObjectURL(file)
+    );
+    setFilePreviews(previews);
+    
   };
+
+
+    
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
 
-    var filename = files.name;
+    let filename = [];
+
+    for (var i = 0; i < files.length; i++){
+       filename[i] = files[i].name
+    }
+    
 
     formData.append("type", type);
     formData.append("product", product);
@@ -50,6 +48,7 @@ const PplForm = () => {
     formData.append("ppl-images", files);
 
     console.log(files);
+    console.log(filename);
     const response = await fetch("/algorithmia/pplform/addppl", {
       method: "POST",
       body: formData,

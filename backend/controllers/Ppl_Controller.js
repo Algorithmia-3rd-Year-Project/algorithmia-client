@@ -5,18 +5,16 @@ const mongoose = require("mongoose");
 
 //Add a ppl request
 const addPpl = async (req, res) => {
-  const { type, product, description, sdate, edate} = req.body;
+  const { type, product, description, sdate, edate, file } = req.body;
 
   try {
-    const files = req.files;
-    const filePaths = files.map((file) => file.path);
     const ppl = await Ppl.create({
       type,
       product,
       description,
       sdate,
       edate,
-      files: filePaths,
+      file,
     });
     res.status(200).json(ppl);
   } catch (error) {
@@ -38,7 +36,7 @@ const images = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: images, limits: { files: 5 } });
+const upload = multer({ storage: images });
 
 const getUserPpl = async (req, res) => {
   const { id } = req.params;
