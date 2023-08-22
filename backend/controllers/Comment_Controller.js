@@ -34,6 +34,24 @@ const addComment = async (req, res) => {
   }
 }
 
+const deleteComment = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No Such Comment" });
+  }
+
+  const comment = await Comment.findOneAndDelete({ _id: id });
+
+  if (!comment) {
+    return res.status(400).json({ error: "No Such Comment" });
+  }
+
+  res.status(200).json(comment);
+};
+
   module.exports = {
     getComments,
-  addComment};
+    addComment,
+    deleteComment,
+};
