@@ -10,7 +10,7 @@ import { useSessionContext } from "../../hooks/useSessionContext";
 const CommentBlock = ({ comment }) => {
   
   const { user } = useSessionContext();
-  const user_id = user.userID;
+  //const user_id = user.userID;
 
   const [isDeleted, setIsDeleted] = useState(false);
   
@@ -59,7 +59,7 @@ const CommentBlock = ({ comment }) => {
               {comment.content}
             </p>
           </div>
-          {user_id === comment.user_id ? (
+          {user && user._id === comment.user_id ? (
           <button onClick={handleClick} className="btn btn-outline-danger btn-xs mt-3">Delete</button>
           ) : null}
         </div>
