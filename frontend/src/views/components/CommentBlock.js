@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import image from "../../images/devlog.jpg";
 import { Button } from "bootstrap";
+import { useSessionContext } from "../../hooks/useSessionContext";
+
 
 // import "bootstrap/dist/css/bootstrap.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const CommentBlock = ({ comment }) => {
+  
+  const { user } = useSessionContext();
+  const user_id = user.userID;
 
   const [isDeleted, setIsDeleted] = useState(false);
   
@@ -35,27 +40,29 @@ const CommentBlock = ({ comment }) => {
 
   return (
     <div>
-    <div className="d-flex flex-start w-75 mt-3">
-      <img
-        className="rounded-circle shadow-1-strong me-3"
-        src={image}
-        alt="avatar"
-        width="65"
-        height="65"
-        />
-      <div className="flex-grow-1 flex-shrink-1">
-        <div>
-          <div className="d-flex justify-content-between align-items-center">
-            <p className="mb-1">
-                {comment._id} <span className="small">- 2 hours ago</span>
+      <div className="d-flex flex-start w-75 mt-3">
+        <img
+          className="rounded-circle shadow-1-strong me-3"
+          src={image}
+          alt="avatar"
+          width="65"
+          height="65"
+          />
+        <div className="flex-grow-1 flex-shrink-1">
+          <div>
+            <div className="d-flex justify-content-between align-items-center">
+              <p className="mb-1">
+                  {comment._id} <span className="small">- 2 hours ago</span>
+              </p>
+            </div>
+            <p className="small mb-0">
+              {comment.content}
             </p>
           </div>
-          <p className="small mb-0">
-            {comment.content}
-          </p>
+          {user_id === comment.user_id ? (
+          <button onClick={handleClick} className="btn btn-outline-danger btn-xs mt-3">Delete</button>
+          ) : null}
         </div>
-        <button onClick={handleClick}>Delete</button>
-      </div>
       </div>
       <hr class="hr" />
     </div>
