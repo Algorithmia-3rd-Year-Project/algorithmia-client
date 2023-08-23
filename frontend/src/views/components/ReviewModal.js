@@ -79,7 +79,7 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
 
   //backend
   const { user } = useSessionContext();
-  const name = user.email;
+  const name = user ? user.email : "";
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
 
