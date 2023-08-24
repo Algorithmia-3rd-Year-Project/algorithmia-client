@@ -5,6 +5,7 @@ const {
   getDevlogs,
   getDevlog,
   createDevlog,
+  uploadDevlogImage,
   deleteDevlog,
   updateDevlog,
   getDevlogNews,
@@ -28,10 +29,7 @@ const {
 
 const { getComplaints } = require("../controllers/Complaints_Controller");
 
-const { 
-  getUserPpl,
-  addPpl, upload,
- } = require("../controllers/Ppl_Controller");
+const { getUserPpl, addPpl, upload } = require("../controllers/Ppl_Controller");
 
 //const requireAuth = require("../middleware/requireAuth");
 
@@ -56,7 +54,11 @@ router.get("/devlogFeatures", getDevlogFeatures);
 
 router.get("/devlog/:id", getDevlog);
 
-router.post("/devlog/adddevlog", createDevlog);
+router.post(
+  "/devlog/adddevlog",
+  uploadDevlogImage.single("devlog-image"),
+  createDevlog
+);
 
 router.delete("/devlog/deletedevlog/:id", deleteDevlog);
 
