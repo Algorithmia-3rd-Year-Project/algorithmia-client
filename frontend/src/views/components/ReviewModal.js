@@ -80,11 +80,12 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
   //backend
   const { user } = useSessionContext();
   const name = user ? user.email : "";
+  const user_id = user ? user.userID : "";
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
-    const review = { name, content, rate: rating }; // Use rating as the selected rate
+    const review = { user_id, name, content, rate: rating }; // Use rating as the selected rate
 
     const response = await fetch("/algorithmia/reviews", {
       method: "POST",
