@@ -299,7 +299,7 @@ const Home = () => {
                             <div className="col-lg-8">
                               
                               <p className="fw-bold lead mb-2">
-                                <strong>Anna Smith</strong>
+                                <strong>{review.name}</strong>
                                 <br></br>
                                 {[...Array(review.rate)].map((_, index) => (
                                   <FontAwesomeIcon
