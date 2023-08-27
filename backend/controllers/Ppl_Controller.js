@@ -3,24 +3,6 @@ const multer = require("multer");
 const path = require("path");
 const mongoose = require("mongoose");
 
-//Add a ppl request
-const addPpl = async (req, res) => {
-  const { type, product, description, sdate, edate, file } = req.body;
-
-  try {
-    const ppl = await Ppl.create({
-      type,
-      product,
-      description,
-      sdate,
-      edate,
-      file,
-    });
-    res.status(200).json(ppl);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
 
 const images = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -37,6 +19,28 @@ const images = multer.diskStorage({
 });
 
 const upload = multer({ storage: images });
+
+//Add a ppl request
+const addPpl = async (req, res) => {
+  const { type, product, description, sdate, edate, file } = req.body;
+
+  const files = req.files;
+  try {
+    const ppl = await Ppl.create({
+      type,
+      product,
+      description,
+      sdate,
+      edate,
+      file,
+    });
+    res.status(200).json(ppl);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
 
 const getUserPpl = async (req, res) => {
   const { id } = req.params;

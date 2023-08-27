@@ -33,9 +33,11 @@ const PplForm = () => {
     const formData = new FormData();
 
     let filename = [];
+    let dateNow = Date.now();
 
     for (var i = 0; i < files.length; i++){
-       filename[i] = files[i].name
+       filename[i] = dateNow+files[i].name;
+       formData.append("ppl-images", files[i]);
     }
     
 
@@ -45,7 +47,7 @@ const PplForm = () => {
     formData.append("sdate", sdate);
     formData.append("edate", edate);
     formData.append("file", filename);
-    formData.append("ppl-images", files);
+    
 
     console.log(files);
     console.log(filename);
