@@ -10,7 +10,8 @@ const images = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     console.log(file);
-    cb(null, Date.now() + path.extname(file.originalname));
+    Timestamp = Math.floor(Date.now() / 1000);
+    cb(null, Timestamp + file.originalname);
   },
   onError: (err, next) => {
     console.log(err);

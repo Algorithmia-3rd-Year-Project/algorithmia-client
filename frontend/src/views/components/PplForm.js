@@ -33,10 +33,10 @@ const PplForm = () => {
     const formData = new FormData();
 
     let filename = [];
-    let dateNow = Date.now();
+    let Timestamp = Math.floor(Date.now() / 1000);
 
     for (var i = 0; i < files.length; i++){
-       filename[i] = dateNow+files[i].name;
+       filename[i] = Timestamp+files[i].name;
        formData.append("ppl-images", files[i]);
     }
     
