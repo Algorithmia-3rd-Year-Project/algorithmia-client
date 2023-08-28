@@ -54,7 +54,7 @@ const CommentBlock = ({ comment }) => {
           <div>
             <div className="d-flex justify-content-between align-items-center">
               <p className="mb-1">
-                  {comment._id} <span className="small">- 2 hours ago</span>
+                  Nethmie Imanya <span className="small">- 2 hours ago</span>
               </p>
             </div>
             <p className="small mb-0">
