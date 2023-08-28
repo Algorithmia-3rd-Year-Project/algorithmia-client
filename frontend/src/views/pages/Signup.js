@@ -87,7 +87,7 @@ const Signup = () => {
       <div
         class="modal fade"
         id="signUp"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -116,7 +116,7 @@ const Signup = () => {
                     </a>
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">
+                    <label htmlFor="recipient-name" class="col-form-label">
                       Email
                     </label>
                     <input
@@ -128,7 +128,7 @@ const Signup = () => {
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">
+                    <label htmlFor="recipient-name" class="col-form-label">
                       Username
                     </label>
                     <input
@@ -139,7 +139,7 @@ const Signup = () => {
                       value={userName}
                     />
                   </div>
-                  <label for="recipient-name" class="col-form-label">
+                  <label htmlFor="recipient-name" class="col-form-label">
                     Verification Code
                   </label>
                   <div class="input-group mb-3">
@@ -160,7 +160,7 @@ const Signup = () => {
                     </div>
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">
+                    <label htmlFor="recipient-name" class="col-form-label">
                       Date of Birth
                     </label>
                     <label className="star fw-bold" style={{ color: "red" }}>
@@ -175,7 +175,7 @@ const Signup = () => {
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">
+                    <label htmlFor="recipient-name" class="col-form-label">
                       Password
                     </label>
                     <label className="star fw-bold" style={{ color: "red" }}>
@@ -190,7 +190,7 @@ const Signup = () => {
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">
+                    <label htmlFor="recipient-name" class="col-form-label">
                       Confirm Password
                     </label>
                     <label className="star fw-bold" style={{ color: "red" }}>
@@ -213,7 +213,7 @@ const Signup = () => {
                       value={isAcceptedTerms}
                       id="flexCheckDefault"
                     />
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label class="form-check-label" htmlFor="flexCheckDefault">
                       I accept Terms and Conditions
                     </label>
                   </div>
@@ -259,7 +259,7 @@ const Signup = () => {
                   </div>
                   <form>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">
+                      <label htmlFor="recipient-name" class="col-form-label">
                         Company Email
                       </label>
                       <input
@@ -270,7 +270,7 @@ const Signup = () => {
                         value={advertiserEmail}
                       />
                     </div>
-                    <label for="recipient-name" class="col-form-label">
+                    <label htmlFor="recipient-name" class="col-form-label">
                       Verification Code
                     </label>
                     <div class="input-group mb-3">
@@ -291,7 +291,7 @@ const Signup = () => {
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">
+                      <label htmlFor="recipient-name" class="col-form-label">
                         Company Name
                       </label>
                       <input
@@ -302,7 +302,7 @@ const Signup = () => {
                       />
                     </div>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">
+                      <label htmlFor="recipient-name" class="col-form-label">
                         Password
                       </label>
                       <input
@@ -313,7 +313,7 @@ const Signup = () => {
                       />
                     </div>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">
+                      <label htmlFor="recipient-name" class="col-form-label">
                         Confirm Password
                       </label>
                       <input
@@ -334,7 +334,7 @@ const Signup = () => {
                         value={isAcceptedTerms}
                         id="flexCheckDefault"
                       />
-                      <label class="form-check-label" for="flexCheckDefault">
+                      <label class="form-check-label" htmlFor="flexCheckDefault">
                         I accept Terms and Conditions
                       </label>
                     </div>
