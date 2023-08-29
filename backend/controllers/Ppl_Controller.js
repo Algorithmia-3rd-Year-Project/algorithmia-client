@@ -3,10 +3,29 @@ const multer = require("multer");
 const path = require("path");
 const mongoose = require("mongoose");
 
+
+const images = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, "../../utilities/uploads/ppl_images"));
+  },
+  filename: (req, file, cb) => {
+    console.log(file);
+    Timestamp = Math.floor(Date.now() / 1000);
+    cb(null, Timestamp + file.originalname);
+  },
+  onError: (err, next) => {
+    console.log(err);
+    next(err);
+  },
+});
+
+const upload = multer({ storage: images });
+
 //Add a ppl request
 const addPpl = async (req, res) => {
   const { type, product, description, sdate, edate, file } = req.body;
 
+  const files = req.files;
   try {
     const ppl = await Ppl.create({
       type,
@@ -22,21 +41,7 @@ const addPpl = async (req, res) => {
   }
 };
 
-const images = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../../utilities/uploads/ppl_images"));
-  },
-  filename: (req, file, cb) => {
-    console.log(file);
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-  onError: (err, next) => {
-    console.log(err);
-    next(err);
-  },
-});
 
-const upload = multer({ storage: images });
 
 const getUserPpl = async (req, res) => {
   const { id } = req.params;

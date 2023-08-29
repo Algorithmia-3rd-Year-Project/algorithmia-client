@@ -87,7 +87,7 @@ router.post("/gameupdate", uploadCoverImageAndGameFile, GameUpdate);
 //rotes related to game bug reprts
 router.get("/complainlist", getComplaints);
 
-router.post("/pplform/addppl", upload.single("ppl-images"), addPpl);
+router.post("/pplform/addppl", upload.array("ppl-images"), addPpl);
 
 router.get("/userPpl", getUserPpl);
 
