@@ -18,10 +18,10 @@ const devlogSchema = new Schema(
     },
     coverImage: {
       type: String,
-      // required: true,
+      required: true,
     },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Devlog", devlogSchema);
+module.exports = mongoose.model("devlogs", devlogSchema);

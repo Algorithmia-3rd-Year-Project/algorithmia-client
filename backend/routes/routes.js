@@ -59,15 +59,11 @@ router.get("/devlogFeatures", getDevlogFeatures);
 
 router.get("/devlog/:id", getDevlog);
 
-router.post(
-  "/devlog/adddevlog",
-  uploadDevlogImage.single("devlog-image"),
-  createDevlog
-);
+router.post("/devlog/adddevlog",uploadDevlogImage.single("coverImage"),createDevlog);
 
 router.delete("/devlog/deletedevlog/:id", deleteDevlog);
 
-router.patch("/devlog/updatedevlog/:id", updateDevlog);
+router.patch("/devlog/updatedevlog/:id",uploadDevlogImage.single("coverImage"), updateDevlog);
 
 //routes related to reviews
 router.get("/reviews", getReviews);

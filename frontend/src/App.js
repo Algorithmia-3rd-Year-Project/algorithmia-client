@@ -26,6 +26,7 @@ import AddPpl from "./views/pages/AddPpl";
 
 import Review from "./views/pages/Reviews"
 
+import DevlogUpdate from "./views/pages/DevlogUpdate";
 
 //components
 import Navbar from "./views/components/Navbar";
@@ -72,6 +73,8 @@ function App() {
             
             <Route path="/Gameupdate" element={<GameUpdate/>} />
             <Route path="/Complaints" element={<GameComplain/>} />
+
+            <Route path = "/devlogs/update/:id" element={<DevlogUpdate/>} />
           </Routes>
         </div>
       </BrowserRouter>

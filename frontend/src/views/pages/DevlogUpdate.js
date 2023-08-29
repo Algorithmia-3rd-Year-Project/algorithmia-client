@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useRef } from "react";
+import { useParams } from 'react-router-dom';
+
+
 
 const DevlogForm = () => {
+
+  const [isLoading, setIsLoading] = useState(true);
+
   const [title, setTitle] = useState("");
   console.log("tittle :" + title)
 
@@ -17,10 +23,51 @@ const DevlogForm = () => {
   console.log("coverImage :" + coverImage)
 
   const [coverImageUrl, setCoverImageUrl] = useState("");
+  console.log("coverImageUrl :" + coverImageUrl)
+
+  const [isSaveClicked, setIsSaveClicked] = useState(false);
+  console.log("isSaveClicked :" + isSaveClicked)
 
   const [error, setError] = useState("");
   
   const editorRef = useRef(null);
+
+
+  const { id } = useParams();
+  
+  
+
+  useEffect(() => {
+     
+    const fetchSelectedDevlogData = async () => {
+        try {
+            const response = await fetch(`/algorithmia/devlog/${id}`, {
+              method: 'GET',
+            });
+      
+            if (response.ok) {
+              console.log('Devlog info received successfully');
+              const devlogData = await response.json();
+              console.log(devlogData);
+              setTitle(devlogData.title);
+              setType(devlogData.type);
+              setContent(devlogData.content);
+              setCoverImageUrl(devlogData.coverImage);
+              
+              
+              
+            } else {
+              console.error('Failed to update devlog');
+            }
+          } catch (error) {
+            console.error('Error while updating devlog:', error);
+          }
+          setIsLoading(false);
+      };
+  
+      fetchSelectedDevlogData();
+
+  }, [isSaveClicked]);
 
 
   const handleImageChange = (e) => {
@@ -30,15 +77,17 @@ const DevlogForm = () => {
     setCoverImage(e.target.files[0]);
   };
 
-  
 
+  if (isLoading) {
+    return <div>Loading...</div>; 
+  }
   
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
+    setIsLoading(true);
 
-    //var imagename = coverImage.name;
+    const formData = new FormData();
 
     formData.append("title", title);
     formData.append("type", type);
@@ -47,11 +96,11 @@ const DevlogForm = () => {
     formData.append("content", editorData);
 
     formData.append("coverImage", coverImage);
-    //formData.append("devlog-image", coverImage);
+    formData.append("DefaultCoverImage", coverImageUrl);
 
     // console.log(coverImage);
-    const response = await fetch("/algorithmia/devlog/adddevlog", {
-      method: "POST",
+    const response = await fetch(`/algorithmia//devlog/updatedevlog/${id}`, {
+      method: "PATCH",
       body: formData,
     });
 
@@ -63,6 +112,7 @@ const DevlogForm = () => {
       setCoverImage("");
       setError(null);
       setCoverImageUrl("");
+      setIsSaveClicked(!isSaveClicked);
       
       const data = await response.json();
       console.log('Devlog created successfully:', data);
@@ -126,9 +176,21 @@ const DevlogForm = () => {
     setContent(data);
     console.log(data);
   };
+  
+  
 
   return (
-    <div className="devlog-form">
+    
+    <div
+    className="container border w-50 mt-5 p-5 rounded-4"
+    style={{ backgroundColor: "#ACDBDF" }}
+  >
+    <div className="form-card">
+      <h2 className="text-center mb-5" style={{ color: "#002B5B" }}>
+        update Devlog
+      </h2>
+
+      <div className="devlog-form">
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="row g-5">
           <div className="col">
@@ -204,10 +266,14 @@ const DevlogForm = () => {
             </div>
           </div>
         </div>
-        <button className="btn btn-primary btn-sm" style={{ marginTop: '20px' }}>Add Devlog</button>
+        <button className="btn btn-primary btn-sm" style={{ marginTop: '20px' }} >Save</button>
         {error && <div className="error"> {error} </div>}
       </form>
     </div>
+      
+    </div>
+  </div>  
+
   );
 };
 
