@@ -94,7 +94,7 @@ const Devlog = () => {
           <div className="row g-4">
             {devlogs &&
               devlogs.map((devlog) => (
-                <DevlogTile key={devlog._id} devlog={devlog} />
+                <DevlogTile key={devlog._id} devlog={devlog} />              
               ))}
           </div>
         </div>

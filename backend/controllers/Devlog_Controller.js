@@ -15,11 +15,15 @@ const getDevlogs = async (req, res) => {
 const getDevlog = async (req, res) => {
   const { id } = req.params;
 
+  console.log("id :" + id);
+
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No Such Devlog" });
   }
 
   const devlog = await Devlog.findById(id);
+
+  //console.log(devlog);
 
   if (!devlog) {
     return res.status(400).json({ error: "No Such Devlog" });
@@ -28,25 +32,22 @@ const getDevlog = async (req, res) => {
   res.status(200).json(devlog);
 };
 
-//Create a new devlog
-const createDevlog = async (req, res) => {
-  const { title, type, content, coverImage } = req.body;
+var UniqueId;
 
-  try {
-    const devlog = await Devlog.create({ title, type, content, coverImage });
-    res.status(200).json(devlog);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
+function generateUniqueValue() {
+  const timestamp = Date.now(); // Current timestamp
+  const random = Math.floor(Math.random() * 10000); // Random number between 0 and 9999
+  UniqueId = `${timestamp}_${random}`;
+}
 
 const images = multer.diskStorage({
   destination: (req, coverImage, cb) => {
     cb(null, path.join(__dirname, "../../utilities/uploads/devlog_coverImgs"));
   },
   filename: (req, coverImage, cb) => {
-    console.log(coverImage);
-    cb(null, Date.now() + path.extname(coverImage.originalname));
+    //console.log(coverImage);
+    generateUniqueValue()
+    cb(null, UniqueId + (coverImage.originalname));
   },
   onError: (err, next) => {
     console.log(err);
@@ -55,6 +56,26 @@ const images = multer.diskStorage({
 });
 
 const uploadDevlogImage = multer({ storage: images });
+
+//Create a new devlog
+const createDevlog = async (req, res) => {
+   const { title, type, content } = req.body;
+   console.log(title, type, content);
+
+   const coverImage =  UniqueId + req.file.originalname;
+   console.log(coverImage);
+
+  try {
+    const devlog = await Devlog.create({ title, type, content, coverImage});
+    res.status(200).json(devlog);
+  } catch (error) {
+    console.log(error.message)
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+
 
 const getDevlogNews = async (req, res) => {
   const devlogs = await Devlog.find({ type: "News" }).sort({ title: 1 });
@@ -86,15 +107,35 @@ const deleteDevlog = async (req, res) => {
 //Update a devlog
 const updateDevlog = async (req, res) => {
   const { id } = req.params;
+  //console.log("here")
 
+  // console.log("id :"+id);
+  // console.log(req.body);
+  // console.log(req.file)
+
+  //return res.status(200).json({ message: "Devlog updated successfully" });
+  
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No Such Devlog" });
   }
 
-  const devlog = await Devlog.findOneAndUpdate(
-    { _id: id },
+  var CoverImageName;
+
+  if(req.file == null) {
+    CoverImageName = req.body.DefaultCoverImage;
+  }else{
+    CoverImageName = UniqueId + req.file.originalname;
+  }
+
+  const devlog = await Devlog.findOneAndUpdate({ _id: id },
+
     {
-      ...req.body,
+      $set: {
+        title: req.body.title,
+        type: req.body.type,
+        content: req.body.content,
+        coverImage: CoverImageName,
+      },
     }
   );
 
