@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import { useSessionContext } from "../../hooks/useSessionContext";
 
 const Rate = ({ count, rating, color, onRating }) => {
   const [hoverRating, setHoverRating] = useState(0);
@@ -25,7 +26,7 @@ const Rate = ({ count, rating, color, onRating }) => {
         <FontAwesomeIcon
           key={idx}
           className="cursor-pointer"
-          icon={idx <= rating ? solidStar : regularStar} // Use solidStar for filled and regularStar for unfilled stars
+          icon={idx <= rating ? solidStar : regularStar} 
           onClick={() => onRating(idx)}
           style={{ color: "#b78700" }}
           onMouseEnter={() => setHoverRating(idx)}
@@ -77,11 +78,14 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
   };
 
   //backend
+  const { user } = useSessionContext();
+  const name = user ? user.email : "";
+  const user_id = user ? user.userID : "";
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
-    const review = { content, rate: rating }; // Use rating as the selected rate
+    const review = { user_id, name, content, rate: rating }; // Use rating as the selected rate
 
     const response = await fetch("/algorithmia/reviews", {
       method: "POST",
@@ -97,7 +101,7 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
     }
     if (response.ok) {
       setContent("");
-      setRating(0); // Reset the rating state after submission
+      setRating(0);
       setError(null);
       console.log("New Review added", json);
       handleCloseModal();

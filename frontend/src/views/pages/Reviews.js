@@ -9,7 +9,7 @@ import ReviewModal from "../components/ReviewModal";
 import { useEffect, useState } from "react";
 
 const Review = () => {
-  const hardcodedNames = ['Anna Smith', 'John Doe', 'Emily Johnson', 'Anne Johnson'];
+  const [loading, setLoading] = useState(true);
 
   const elements = [];
   for (let i = 0; i < 5; i++) {
@@ -41,16 +41,27 @@ const Review = () => {
 
   useEffect(() => {
     const fetchReviews = async () => {
-      const response = await fetch("/algorithmia/reviews");
-      const json = await response.json();
+      try{
+        const response = await fetch("/algorithmia/reviews");
+        const json = await response.json();
 
       if (response.ok) {
         setReviews(json);
+      }
+      } catch (error) {
+
+      }
+      finally {
+        setLoading(false);
       }
     };
 
     fetchReviews();
   }, []);
+
+  if (loading) {
+    return <p>loading...</p>;
+  }
 
   return (
     <section
@@ -98,7 +109,8 @@ const Review = () => {
                       <div className="col-lg-8">
   
                         <p className="fw-bold lead mb-2">
-                          <strong>{hardcodedNames[index]}</strong>
+                        <strong>{review.name}</strong>
+                          
                           <br></br>
                           {[...Array(review.rate)].map((_, index) => (
                             <FontAwesomeIcon

@@ -16,6 +16,10 @@ const devlogSchema = new Schema(
       type: String,
       required: true,
     },
+    coverImage: {
+      type: String,
+      // required: true,
+    },
   },
   { timestamps: true }
 );
