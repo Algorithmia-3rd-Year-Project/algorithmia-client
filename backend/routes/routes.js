@@ -20,6 +20,7 @@ const {
 const {
   getComments,
   addComment,
+  deleteComment,
 } = require("../controllers/Comment_Controller");
 
 const {
@@ -29,7 +30,11 @@ const {
 
 const { getComplaints } = require("../controllers/Complaints_Controller");
 
-const { getUserPpl, addPpl, upload } = require("../controllers/Ppl_Controller");
+const {
+  getUserPpl,
+  addPpl, upload,
+} = require("../controllers/Ppl_Controller");
+
 
 //const requireAuth = require("../middleware/requireAuth");
 
@@ -73,6 +78,8 @@ router.post("/devlog/addcomment", addComment);
 
 //routes related to comments
 router.get("/comments/:id", getComments);
+
+router.delete("/comments/deletecomment/:id", deleteComment);
 
 //routes related to game upload/update
 router.post("/gameupdate", uploadCoverImageAndGameFile, GameUpdate);

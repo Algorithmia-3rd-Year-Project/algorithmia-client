@@ -9,7 +9,11 @@ const AddComment = () => {
 
     const [content, setComment] = useState("");
     const { user } = useSessionContext();
-    const user_id = user.userID;
+    var user_id = "";
+    if (user) {
+        user_id = user.userID;
+    }
+    
     const [error, setError] = useState("");
     const { id } = useParams();
     const devlog_id = id;
