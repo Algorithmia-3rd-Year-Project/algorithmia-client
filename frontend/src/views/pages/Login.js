@@ -11,7 +11,22 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(email, password);
+    await login(email, password).then(() => {
+      if (error === "" || error === null) {
+        var locModal = document.getElementById("login");
+        locModal.setAttribute("aria-hidden", "true");
+        locModal.className = "modal fade";
+        const backdrop = document.querySelector(".modal-backdrop.fade.show");
+        backdrop.classList.remove("show");
+        setTimeout(() => {
+          locModal.classList.remove("show");
+        });
+        setTimeout(() => {
+          locModal.style.display = "none";
+          backdrop.remove();
+        }, 500);
+      }
+    });
   };
 
   return (
@@ -68,12 +83,12 @@ const Login = () => {
                     class="btn btn-primary"
                     type="button"
                     onClick={handleSubmit}
-                    {...(error ? { 'data-bs-dismiss': 'modal' } : {})}
+                    {...(error ? { "data-bs-dismiss": "modal" } : {})}
                   >
                     Log In
                   </button>
                 </div>
-                <br/>
+                <br />
                 {error && (
                   <div class="alert alert-warning" role="alert">
                     {error}
