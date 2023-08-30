@@ -32,7 +32,7 @@ const Login = () => {
   return (
     <>
       <div
-        class="modal"
+        class="modal fade"
         id="login"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
