@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 const images = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../../utilities/uploads/ppl_images"));
+    cb(null, path.join(__dirname, "../../frontend/public/ppl_images"));
   },
   filename: (req, file, cb) => {
     console.log(file);
