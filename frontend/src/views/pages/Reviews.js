@@ -7,9 +7,13 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons/faStar";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons/faStar";
 import ReviewModal from "../components/ReviewModal";
 import { useEffect, useState } from "react";
+import { useSessionContext } from "../../hooks/useSessionContext";
 
 const Review = () => {
   const [loading, setLoading] = useState(true);
+  const [userHasNotReviews, setUserHasNotReviews] = useState(true);
+
+  const { user } = useSessionContext();
 
   const elements = [];
   for (let i = 0; i < 5; i++) {
@@ -41,23 +45,32 @@ const Review = () => {
 
   useEffect(() => {
     const fetchReviews = async () => {
-      try{
+      try {
         const response = await fetch("/algorithmia/reviews");
         const json = await response.json();
 
-      if (response.ok) {
-        setReviews(json);
-      }
+        if (response.ok) {
+          setReviews(json);
+          checkUserReviews(json);
+        }
       } catch (error) {
-
-      }
-      finally {
+      } finally {
         setLoading(false);
       }
     };
 
     fetchReviews();
   }, []);
+
+  const checkUserReviews = (reviewList) => {
+    reviewList.forEach((obj) => {
+      Object.entries(obj).forEach(([key, value]) => {
+        if (key === "name" && value === user.email) {
+          setUserHasNotReviews(false);
+        }
+      });
+    });
+  };
 
   if (loading) {
     return <p>loading...</p>;
@@ -68,24 +81,26 @@ const Review = () => {
       class="p-4 p-md-5 text-center text-lg-start shadow-1-strong"
       style={{ backgroundColor: "#002b5b" }}
     >
-      <div className="text-center" style={{color:"white"}}>
+      <div className="text-center" style={{ color: "white" }}>
         <h1>Reviews</h1>
       </div>
       <div class="row d-flex justify-content-center">
         <div class="col-md-10">
           <div className="d-flex justify-content-end">
-            <button
-              type="button"
-              className="btn btn-primary btn-lg px-4 me-md-2 fw-bold"
-              style={{
-                backgroundColor: "#1a5f7a",
-                color: "white",
-                borderColor: "#1a5f7a",
-              }}
-              onClick={handleShowModal}
-            >
-              Add Review
-            </button>
+            {userHasReviews && (
+              <button
+                type="button"
+                className="btn btn-primary btn-lg px-4 me-md-2 fw-bold"
+                style={{
+                  backgroundColor: "#1a5f7a",
+                  color: "white",
+                  borderColor: "#1a5f7a",
+                }}
+                onClick={handleShowModal}
+              >
+                Add Review
+              </button>
+            )}
           </div>
 
           <br></br>
@@ -94,7 +109,7 @@ const Review = () => {
           {reviews &&
             reviews.map((review, index) => (
               <React.Fragment>
-                <div className="card" style={{backgroundColor:"#acdbdf"}}>
+                <div className="card" style={{ backgroundColor: "#acdbdf" }}>
                   <div className="card-body m-3">
                     <div className="row">
                       <div className="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
@@ -107,10 +122,9 @@ const Review = () => {
                         />
                       </div>
                       <div className="col-lg-8">
-  
                         <p className="fw-bold lead mb-2">
-                        <strong>{review.name}</strong>
-                          
+                          <strong>{review.name}</strong>
+
                           <br></br>
                           {[...Array(review.rate)].map((_, index) => (
                             <FontAwesomeIcon
@@ -124,10 +138,9 @@ const Review = () => {
                               style={{ color: "#b78700" }}
                             />
                           ))}
-                        </p><br/>
-                        <p className="mb-4">
-                          {review.content}
                         </p>
+                        <br />
+                        <p className="mb-4">{review.content}</p>
                       </div>
                     </div>
                   </div>
