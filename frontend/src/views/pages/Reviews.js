@@ -12,6 +12,7 @@ import { useSessionContext } from "../../hooks/useSessionContext";
 const Review = () => {
   const [loading, setLoading] = useState(true);
   const [userHasNotReviews, setUserHasNotReviews] = useState(true);
+  const [userReview, setUserReview] = useState(null);
 
   const { user } = useSessionContext();
 
@@ -58,17 +59,48 @@ const Review = () => {
     }
   };
 
+  const deleteReview = async (review) => {
+    try {
+      const response = await fetch("/algorithmia/reviews/" + review._id, {
+        method: "DELETE",
+      });
+
+      const json = await response.json();
+
+      if (response.ok) {
+        console.log("review deleted successfully");
+      } else {
+        console.error("Error deleting review:", json.error);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
   useEffect(() => {
     fetchReviews();
+    // .then(() => {
+    //   if (reviews !== null) {
+    //     reviews.forEach((element) => {
+    //       if (element.name === user.email) {
+    //         setUserHasNotReviews(false);
+    //         setUserReview(element);
+    //       }
+    //     });
+    //   }
+    // });
+  }, []);
 
-    if (reviews !== null) {
+  useEffect(()=>{
+    if(reviews!==null){
       reviews.forEach((element) => {
         if (element.name === user.email) {
           setUserHasNotReviews(false);
+          setUserReview(element);
         }
       });
     }
-  }, []);
+  },[loading]);
 
   // const checkUserReviews = (reviewList) => {
   //   reviewList.forEach((obj) => {
@@ -96,16 +128,16 @@ const Review = () => {
         <div class="row d-flex justify-content-center">
           <div class="col-md-10">
             <div className="d-flex justify-content-end">
-            <li class="list-inline-item">
-              <button
-                class="btn btn-success btn-sm rounded-0"
-                type="button"
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Edit"
-              >
-                <i class="fa fa-edit"></i>
-              </button>
+              <li class="list-inline-item">
+                <button
+                  class="btn btn-success btn-sm rounded-0"
+                  type="button"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Edit"
+                >
+                  <i class="fa fa-edit"></i>
+                </button>
               </li>
               <button
                 class="btn btn-danger btn-sm rounded-0"
@@ -113,6 +145,7 @@ const Review = () => {
                 data-toggle="tooltip"
                 data-placement="top"
                 title="Delete"
+                onClick={()=>deleteReview(userReview)}
               >
                 <i class="fa fa-trash"></i>
               </button>
