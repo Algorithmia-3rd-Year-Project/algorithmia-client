@@ -12,7 +12,7 @@ import { useSessionContext } from "../../hooks/useSessionContext";
 const Review = () => {
   const [loading, setLoading] = useState(true);
   const [userHasNotReviews, setUserHasNotReviews] = useState(true);
-  const [userReview, setUserReview] = useState(null);
+  const [userReview, setUserReview] = useState({});
 
   const { user } = useSessionContext();
 
@@ -42,7 +42,7 @@ const Review = () => {
   };
 
   //backend
-  const [reviews, setReviews] = useState(null);
+  const [reviews, setReviews] = useState([]);
 
   const fetchReviews = async () => {
     try {
@@ -51,7 +51,6 @@ const Review = () => {
 
       if (response.ok) {
         setReviews(json);
-        //checkUserReviews(json);
       }
     } catch (error) {
     } finally {
@@ -61,6 +60,7 @@ const Review = () => {
 
   const deleteReview = async (review) => {
     try {
+      setLoading(true);
       const response = await fetch("/algorithmia/reviews/" + review._id, {
         method: "DELETE",
       });
@@ -74,21 +74,13 @@ const Review = () => {
       }
     } catch (error) {
       console.error("An error occurred:", error);
+    } finally {
+      fetchReviews();
     }
   };
 
   useEffect(() => {
     fetchReviews();
-    // .then(() => {
-    //   if (reviews !== null) {
-    //     reviews.forEach((element) => {
-    //       if (element.name === user.email) {
-    //         setUserHasNotReviews(false);
-    //         setUserReview(element);
-    //       }
-    //     });
-    //   }
-    // });
   }, []);
 
   useEffect(()=>{
@@ -99,8 +91,13 @@ const Review = () => {
           setUserReview(element);
         }
       });
+
+      if(reviews.includes(userReview)){
+        setUserHasNotReviews(true);
+      }
     }
-  },[loading]);
+    console.log('loading changes...........................');
+  },[loading,reviews]);
 
   // const checkUserReviews = (reviewList) => {
   //   reviewList.forEach((obj) => {
@@ -129,7 +126,7 @@ const Review = () => {
           <div class="col-md-10">
             <div className="d-flex justify-content-end">
               <li class="list-inline-item">
-                <button
+                {(!userHasNotReviews) && (<button
                   class="btn btn-success btn-sm rounded-0"
                   type="button"
                   data-toggle="tooltip"
@@ -137,9 +134,9 @@ const Review = () => {
                   title="Edit"
                 >
                   <i class="fa fa-edit"></i>
-                </button>
+                </button>)}
               </li>
-              <button
+              {(!userHasNotReviews) && (<button
                 class="btn btn-danger btn-sm rounded-0"
                 type="button"
                 data-toggle="tooltip"
@@ -148,7 +145,7 @@ const Review = () => {
                 onClick={()=>deleteReview(userReview)}
               >
                 <i class="fa fa-trash"></i>
-              </button>
+              </button>)}
               {userHasNotReviews && (
                 <button
                   type="button"
