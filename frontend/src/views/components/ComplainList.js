@@ -28,7 +28,7 @@ function Complains() {
   const [complaints, setComplaints] = useState([]);
 
   useEffect(() => {
-    fetch('/complaints/complainlist')
+    fetch('/algorithmia/complainlist')
       .then(response => response.json())
       .then(data => {
         setComplaints(data);

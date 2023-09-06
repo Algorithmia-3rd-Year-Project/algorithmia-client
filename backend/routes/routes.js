@@ -48,7 +48,7 @@ router.get("/", (req, res) => {
 //routes related to devlogs
 router.get("/devlogs", getDevlogs);
 
-router.get("/devlogNews", getDevlogNews);
+router.get("/devlogNews", getDevlogNews);    
 
 router.get("/devlogFeatures", getDevlogFeatures);
 

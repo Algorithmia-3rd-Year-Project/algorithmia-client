@@ -42,7 +42,7 @@ function generateUniqueValue() {
 
 const images = multer.diskStorage({
   destination: (req, coverImage, cb) => {
-    cb(null, path.join(__dirname, "../../utilities/uploads/devlog_coverImgs"));
+    cb(null, path.join(__dirname, "../../frontend/public/Devlog_CoverImages"));
   },
   filename: (req, coverImage, cb) => {
     //console.log(coverImage);
@@ -107,7 +107,6 @@ const deleteDevlog = async (req, res) => {
 //Update a devlog
 const updateDevlog = async (req, res) => {
   const { id } = req.params;
-  //console.log("here")
 
   // console.log("id :"+id);
   // console.log(req.body);

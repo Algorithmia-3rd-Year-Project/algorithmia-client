@@ -11,22 +11,22 @@ const DevlogForm = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [title, setTitle] = useState("");
-  console.log("tittle :" + title)
+  //console.log("tittle :" + title)
 
   const [type, setType] = useState("News");
-  console.log("type :" + type)
+  //console.log("type :" + type)
 
   const [content, setContent] = useState("");
-  console.log("content :" + content)
+  //console.log("content :" + content)
 
   const [coverImage, setCoverImage] = useState("");
-  console.log("coverImage :" + coverImage)
+  //console.log("coverImage :" + coverImage)
 
-  const [coverImageUrl, setCoverImageUrl] = useState("");
-  console.log("coverImageUrl :" + coverImageUrl)
+  //const [coverImageUrl, setCoverImageUrl] = useState("");
+  //console.log("coverImageUrl :" + coverImageUrl)
 
   const [isSaveClicked, setIsSaveClicked] = useState(false);
-  console.log("isSaveClicked :" + isSaveClicked)
+  //console.log("isSaveClicked :" + isSaveClicked)
 
   const [error, setError] = useState("");
   
@@ -35,7 +35,7 @@ const DevlogForm = () => {
 
   const { id } = useParams();
   
-  
+  const [image, setimage] = useState("");
 
   useEffect(() => {
      
@@ -46,14 +46,14 @@ const DevlogForm = () => {
             });
       
             if (response.ok) {
-              console.log('Devlog info received successfully');
+              //console.log('Devlog info received successfully');
               const devlogData = await response.json();
               console.log(devlogData);
               setTitle(devlogData.title);
               setType(devlogData.type);
               setContent(devlogData.content);
-              setCoverImageUrl(devlogData.coverImage);
-              
+              //setCoverImageUrl(devlogData.coverImage);
+              setimage(process.env.PUBLIC_URL+'/Devlog_CoverImages/'+devlogData.coverImage)
               
               
             } else {
@@ -70,11 +70,15 @@ const DevlogForm = () => {
   }, [isSaveClicked]);
 
 
+
   const handleImageChange = (e) => {
     
     console.log(e.target.files);
-    setCoverImageUrl(URL.createObjectURL(e.target.files[0]))
+    //setCoverImageUrl(URL.createObjectURL(e.target.files[0]))
     setCoverImage(e.target.files[0]);
+     
+    setimage(URL.createObjectURL(e.target.files[0]))
+
   };
 
 
@@ -96,9 +100,8 @@ const DevlogForm = () => {
     formData.append("content", editorData);
 
     formData.append("coverImage", coverImage);
-    formData.append("DefaultCoverImage", coverImageUrl);
+    //formData.append("DefaultCoverImage", coverImageUrl);
 
-    // console.log(coverImage);
     const response = await fetch(`/algorithmia//devlog/updatedevlog/${id}`, {
       method: "PATCH",
       body: formData,
@@ -111,7 +114,7 @@ const DevlogForm = () => {
       setContent("");
       setCoverImage("");
       setError(null);
-      setCoverImageUrl("");
+      //setCoverImageUrl("");
       setIsSaveClicked(!isSaveClicked);
       
       const data = await response.json();
@@ -135,8 +138,8 @@ const DevlogForm = () => {
   
               img.onload = () => {
                 const canvas = document.createElement('canvas');
-                const maxWidth = 600; // Adjust this value as needed
-                const maxHeight = 400; // Adjust this value as needed
+                const maxWidth = 600; 
+                const maxHeight = 400;
                 let newWidth = img.width;
                 let newHeight = img.height;
   
@@ -258,8 +261,8 @@ const DevlogForm = () => {
 
               <input className="form-control" type="file" name="coverImage" onChange={handleImageChange}/>
               <div className="image-holder" style={{ marginLeft: '20px', width: '600px', height: '210px',  background:'white'}}>
-              {coverImageUrl && (
-                <img src={coverImageUrl} style={{ width: '270px', height: '205px', objectFit: 'cover', margin: 'auto', display: 'block' }} alt="Cover Preview"/>
+              {image && (
+                <img src={image} style={{ width: '270px', height: '205px', objectFit: 'contain', margin: 'auto', display: 'block' }} alt="Cover Preview"/>
                 )}
               </div>
 
