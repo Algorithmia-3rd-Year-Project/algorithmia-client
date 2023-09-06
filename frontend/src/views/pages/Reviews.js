@@ -13,6 +13,7 @@ const Review = () => {
   const [loading, setLoading] = useState(true);
   const [userHasNotReviews, setUserHasNotReviews] = useState(true);
   const [userReview, setUserReview] = useState({});
+  const [modalTitle,setModalTitle] = useState("");
 
   const { user } = useSessionContext();
 
@@ -69,6 +70,7 @@ const Review = () => {
 
       if (response.ok) {
         console.log("review deleted successfully");
+        setUserReview({});
       } else {
         console.error("Error deleting review:", json.error);
       }
@@ -99,16 +101,6 @@ const Review = () => {
     console.log('loading changes...........................');
   },[loading,reviews]);
 
-  // const checkUserReviews = (reviewList) => {
-  //   reviewList.forEach((obj) => {
-  //     Object.entries(obj).forEach(([key, value]) => {
-  //       if (key === "name" && value === user.email) {
-  //         setUserHasNotReviews(false);
-  //       }
-  //     });
-  //   });
-  // };
-
   if (loading) {
     return <p>loading...</p>;
   }
@@ -132,6 +124,10 @@ const Review = () => {
                   data-toggle="tooltip"
                   data-placement="top"
                   title="Edit"
+                  onClick={()=>{
+                    setModalTitle("Edit Review");
+                    handleShowModal();
+                  }}
                 >
                   <i class="fa fa-edit"></i>
                 </button>)}
@@ -155,7 +151,10 @@ const Review = () => {
                     color: "white",
                     borderColor: "#1a5f7a",
                   }}
-                  onClick={handleShowModal}
+                  onClick={()=>{
+                    setModalTitle("Add Review");
+                    handleShowModal();
+                  }}
                 >
                   Add Review
                 </button>
@@ -215,6 +214,9 @@ const Review = () => {
         <ReviewModal
           showModal={showModal}
           handleCloseModal={handleCloseModal}
+          modalTitle={modalTitle}
+          userReview={userReview}
+          userHasReview={!userHasNotReviews}
         />
       </section>
     </>

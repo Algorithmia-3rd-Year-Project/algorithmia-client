@@ -26,7 +26,7 @@ const Rate = ({ count, rating, color, onRating }) => {
         <FontAwesomeIcon
           key={idx}
           className="cursor-pointer"
-          icon={idx <= rating ? solidStar : regularStar} 
+          icon={idx <= rating ? solidStar : regularStar}
           onClick={() => onRating(idx)}
           style={{ color: "#b78700" }}
           onMouseEnter={() => setHoverRating(idx)}
@@ -56,7 +56,7 @@ Rate.defaultProps = {
   },
 };
 
-const ReviewModal = ({ showModal, handleCloseModal }) => {
+const ReviewModal = ({ showModal, handleCloseModal, modalTitle, userReview , userHasReview}) => {
   const modalStyle = {
     display: showModal ? "block" : "none",
     position: "fixed",
@@ -81,34 +81,57 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
   const { user } = useSessionContext();
   const name = user ? user.email : "";
   const user_id = user ? user.userID : "";
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(userReview.content ?? "");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
-    const review = { user_id, name, content, rate: rating }; // Use rating as the selected rate
+    if (userHasReview) {
+      ///Edit review
+      const editedReview = { user_id, name, content, rate: rating }
+      const response = await fetch("/algorithmia/reviews/update/"+ userReview._id, {
+        method: "PATCH",
+        body: JSON.stringify(editedReview),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
+      if (!response.ok) {
+        setError(json.error);
+      }
+      if (response.ok) {
+        setContent("");
+        setRating(0);
+        setError(null);
+        console.log("Review edited", json);
+        handleCloseModal();
+      }
+    } else {
+      const review = { user_id, name, content, rate: rating }; // Use rating as the selected rate
 
-    const response = await fetch("/algorithmia/reviews", {
-      method: "POST",
-      body: JSON.stringify(review),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const json = await response.json();
+      const response = await fetch("/algorithmia/reviews", {
+        method: "POST",
+        body: JSON.stringify(review),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
 
-    if (!response.ok) {
-      setError(json.error);
-    }
-    if (response.ok) {
-      setContent("");
-      setRating(0);
-      setError(null);
-      console.log("New Review added", json);
-      handleCloseModal();
+      if (!response.ok) {
+        setError(json.error);
+      }
+      if (response.ok) {
+        setContent("");
+        setRating(0);
+        setError(null);
+        console.log("New Review added", json);
+        handleCloseModal();
+      }
     }
   };
 
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(userReview.rating ?? 0);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -116,7 +139,7 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
         <div className="modal-dialog" style={modalContentStyle} role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Add Review</h5>
+              <h5 className="modal-title">{modalTitle ?? "Add Review"}</h5>
               <button
                 type="button"
                 className="close"
