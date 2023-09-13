@@ -51,7 +51,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home" style={{fontFamily: "Bricolage Grotesque"}}>
+    <div className="home">
+      {/* style={{fontFamily: "Bricolage Grotesque"}} */}
       <section style={{ backgroundColor: "#002b5b" }}>
         <div className="container-fluid vh-100">
           <div
