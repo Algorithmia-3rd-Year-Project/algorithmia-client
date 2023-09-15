@@ -33,7 +33,29 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signup(email, password, confirmPassword, dob, sentCode, verifyCode);
+    await signup(
+      email,
+      password,
+      confirmPassword,
+      dob,
+      sentCode,
+      verifyCode
+    ).then(() => {
+      if (error === "" || error === null) {
+        var locModal = document.getElementById("login");
+        locModal.setAttribute("aria-hidden", "true");
+        locModal.className = "modal fade";
+        const backdrop = document.querySelector(".modal-backdrop.fade.show");
+        backdrop.classList.remove("show");
+        setTimeout(() => {
+          locModal.classList.remove("show");
+        });
+        setTimeout(() => {
+          locModal.style.display = "none";
+          backdrop.remove();
+        }, 500);
+      }
+    });
   };
 
   const handleAdvertiserSubmit = async (e) => {
@@ -334,7 +356,10 @@ const Signup = () => {
                         value={isAcceptedTerms}
                         id="flexCheckDefault"
                       />
-                      <label class="form-check-label" htmlFor="flexCheckDefault">
+                      <label
+                        class="form-check-label"
+                        htmlFor="flexCheckDefault"
+                      >
                         I accept Terms and Conditions
                       </label>
                     </div>
