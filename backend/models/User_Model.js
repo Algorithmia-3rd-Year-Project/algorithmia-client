@@ -87,7 +87,11 @@ userSchema.statics.login = async function (email, password) {
       throw Error("Incorrect Password");
     } else {
       currentUser = user;
-      userRole = "player";
+      if (currentUser.email == "admin_algorithmia") {
+        userRole = "admin";
+      } else {
+        userRole = "player";
+      }
     }
   } else if (!user) {
     const advertiser = await Advertiser.findOne({ email });
