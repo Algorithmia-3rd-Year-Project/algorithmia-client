@@ -10,24 +10,25 @@ const Devlog = () => {
   const [loading, setLoading] = useState(true);
 
   const urlSearchParams = new URLSearchParams(window.location.search);
-  const type = urlSearchParams.get('type');
+  const type = urlSearchParams.get("type");
+
+  const backendURL = process.env.REACT_APP_BACKEND_URL;
 
   function reloadPageWithVariable(type) {
     const currentURL = new URL(window.location.href);
 
-  if (currentURL.searchParams) {
-    // Check if there are any existing query parameters
+    if (currentURL.searchParams) {
+      // Check if there are any existing query parameters
       for (const key of currentURL.searchParams.keys()) {
         currentURL.searchParams.delete(key);
       }
-    
-  } else {
-    // If searchParams is not available, create a new one
-    currentURL.searchParams = new URLSearchParams();
-  }
+    } else {
+      // If searchParams is not available, create a new one
+      currentURL.searchParams = new URLSearchParams();
+    }
 
-  currentURL.searchParams.set('type', type);
-  const newURL = currentURL.href;
+    currentURL.searchParams.set("type", type);
+    const newURL = currentURL.href;
     window.location.href = newURL;
   }
 
@@ -35,11 +36,11 @@ const Devlog = () => {
     try {
       let response;
       if (type === "News") {
-        response = await fetch("/algorithmia/devlogNews");
+        response = await fetch(`${backendURL}/algorithmia/devlogNews`);
       } else if (type === "Features") {
-        response = await fetch("/algorithmia/devlogFeatures");
+        response = await fetch(`${backendURL}/algorithmia/devlogFeatures`);
       } else {
-        response = await fetch("/algorithmia/devlogs");
+        response = await fetch(`${backendURL}/algorithmia/devlogs`);
       }
 
       const json = await response.json();
@@ -63,28 +64,65 @@ const Devlog = () => {
 
   return (
     <section style={{ backgroundColor: "#002b5b" }}>
-      <div className="container pt-3" >
-        <h3 className="text-center" style={{color: "white"}}>DevLog Page</h3><hr />
+      <div className="container pt-3">
+        <h3 className="text-center" style={{ color: "white" }}>
+          DevLog Page
+        </h3>
+        <hr />
         <div className="d-flex justify-content-between">
           <div className="p-2 bd-highlight">
             <div className="dropdown">
-              <button className="btn btn-primary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style={{backgroundColor:"#1a5f7a", border: "#1a5f7a"}}>
+              <button
+                className="btn btn-primary btn-lg dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style={{ backgroundColor: "#1a5f7a", border: "#1a5f7a" }}
+              >
                 Filters
               </button>
               <ul className="dropdown-menu">
-                <li><button className="dropdown-item" onClick={() => reloadPageWithVariable('News')}>News</button></li>
-                <li><button className="dropdown-item" onClick={() => reloadPageWithVariable('Features')}>Features</button></li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => reloadPageWithVariable("News")}
+                  >
+                    News
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => reloadPageWithVariable("Features")}
+                  >
+                    Features
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
           <div className="p-2 bd-highlight">
             <div className="dropdown">
-              <button className="btn btn-primary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style={{backgroundColor:"#1a5f7a", border: "#1a5f7a"}}>
+              <button
+                className="btn btn-primary btn-lg dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style={{ backgroundColor: "#1a5f7a", border: "#1a5f7a" }}
+              >
                 Sort
               </button>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="devlogSort/atoz">A-Z Order</a></li>
-                <li><a className="dropdown-item" href="devlogSort/date">Most recent</a></li>
+                <li>
+                  <a className="dropdown-item" href="devlogSort/atoz">
+                    A-Z Order
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="devlogSort/date">
+                    Most recent
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
