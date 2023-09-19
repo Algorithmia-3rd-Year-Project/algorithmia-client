@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import React from 'react';
-import { CommentProvider } from './views/components/CommentContext';
+import React from "react";
+import { CommentProvider } from "./views/components/CommentContext";
 
 //pages
 import Home from "./views/pages/Home";
@@ -21,11 +21,10 @@ import GameDashboard from "./views/pages/Admin/gameDashboard";
 
 import Profile from "./views/pages/Profile";
 
-
 import AddPpl from "./views/pages/AddPpl";
 
-import Review from "./views/pages/Reviews"
-
+import Review from "./views/pages/Reviews";
+import Topup from "./views/pages/Topup";
 
 //components
 import Navbar from "./views/components/Navbar";
@@ -34,48 +33,45 @@ function App() {
   return (
     <div className="App">
       <CommentProvider>
-      <BrowserRouter>
-        <Navbar />
-        <Login/>
-        <Signup/>
-        <div className="pages">
-          <Routes>
-            <Route path="/" element={<Home />} />
+        <BrowserRouter>
+          <Navbar />
+          <Login />
+          <Signup />
+          <div className="pages">
+            <Routes>
+              <Route path="/" element={<Home />} />
 
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
 
-            <Route path="/devlogs" element={<Devlog />} />
-            <Route path="/devlogs/add" element={<AddDevlog />} />
+              <Route path="/devlogs" element={<Devlog />} />
+              <Route path="/devlogs/add" element={<AddDevlog />} />
 
-            <Route path="/devlogsingle/:id" element={<DevlogSingle />} />
+              <Route path="/devlogsingle/:id" element={<DevlogSingle />} />
 
-            <Route path="/profile" element={<Profile />} />
+              <Route path="/profile" element={<Profile />} />
 
+              <Route path="/pplform/add" element={<AddPpl />} />
 
-            <Route path="/pplform/add" element={<AddPpl />} />
+              <Route path="/reviews" element={<Review />} />
 
-            <Route path="/reviews" element={<Review />} />
+              <Route path="/topups" element={<Topup />} />
 
-            <Route
-              path="/advertiser/dashboard"
-              element={<AdvertiserDashboard />}
-            />
+              <Route
+                path="/advertiser/dashboard"
+                element={<AdvertiserDashboard />}
+              />
 
-            <Route
-              path="/game/dashboard"
-              element={<GameDashboard />}
-            />
-            <Route path="/advertiser/profile" element={<ProfileOverview />} />
-            <Route path="/adprofile" element={<AdProfile />} />
+              <Route path="/game/dashboard" element={<GameDashboard />} />
+              <Route path="/advertiser/profile" element={<ProfileOverview />} />
+              <Route path="/adprofile" element={<AdProfile />} />
 
-            
-            <Route path="/Gameupdate" element={<GameUpdate/>} />
-            <Route path="/Complaints" element={<GameComplain/>} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </CommentProvider>
+              <Route path="/Gameupdate" element={<GameUpdate />} />
+              <Route path="/Complaints" element={<GameComplain />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </CommentProvider>
     </div>
   );
 }
