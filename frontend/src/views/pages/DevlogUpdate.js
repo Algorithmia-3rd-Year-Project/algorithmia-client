@@ -183,14 +183,22 @@ const DevlogForm = () => {
   
 
   return (
-    
+  
+  <section style={{
+    backgroundColor: "#002b5b",
+    position: "relative",
+    marginTop: "%",
+    display: "flex",
+    flexDirection: "column",
+    flexWrap: "wrap",
+  }}>
     <div
     className="container border w-50 mt-5 p-5 rounded-4"
     style={{ backgroundColor: "#ACDBDF" }}
   >
     <div className="form-card">
       <h2 className="text-center mb-5" style={{ color: "#002B5B" }}>
-        update Devlog
+        Update Devlog
       </h2>
 
       <div className="devlog-form">
@@ -276,7 +284,7 @@ const DevlogForm = () => {
       
     </div>
   </div>  
-
+</section>
   );
 };
 

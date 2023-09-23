@@ -128,7 +128,8 @@ const DevlogForm = () => {
   };
 
   return (
-    <div className="devlog-form">
+   
+    <div className="devlog-form" >
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="row g-5">
           <div className="col">
@@ -197,7 +198,7 @@ const DevlogForm = () => {
               <input className="form-control" type="file" name="coverImage" onChange={handleImageChange}/>
               <div className="image-holder" style={{ marginLeft: '20px', width: '600px', height: '210px',  background:'white'}}>
               {coverImageUrl && (
-                <img src={coverImageUrl} style={{ width: '270px', height: '205px', objectFit: 'cover', margin: 'auto', display: 'block' }} alt="Cover Preview"/>
+                <img src={coverImageUrl} style={{ width: '270px', height: '205px', objectFit: 'contain', margin: 'auto', display: 'block' }} alt="Cover Preview"/>
                 )}
               </div>
 

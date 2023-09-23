@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const DevlogTile = ({ devlog }) => {
   return (
+    
     <div className="col-12 col-md-4 col-lg-3">
       <div className="card" style={{backgroundColor: "#acdbdf"}}>
         <img className="card-img-top" src={image} alt=".." />

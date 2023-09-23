@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="content">
+      <div className="content" >
         <nav className="navbar navbar-expand fixed" style={{backgroundColor: "#0C475D", fontFamily: "Bricolage Grotesque", fontSize: "18px"}}>
           <div className="container">
             <Link to="/" className="navbar-brand" style={{color: "white", fontSize:"22px"}}>
