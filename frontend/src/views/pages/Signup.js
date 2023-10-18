@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSignup } from "../../hooks/useSignup";
 
 const Signup = () => {
@@ -11,6 +11,7 @@ const Signup = () => {
   const [verifyCode, setVerifyCode] = useState("");
   const [sentCode, setSentCode] = useState("");
   const [userName, setUserName] = useState("");
+  const modalRef = useRef(null);
   const [signUpAttempted, setSignUpAttempted] = useState(false);
 
   //For advertisers
