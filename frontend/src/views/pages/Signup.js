@@ -11,6 +11,7 @@ const Signup = () => {
   const [verifyCode, setVerifyCode] = useState("");
   const [sentCode, setSentCode] = useState("");
   const [userName, setUserName] = useState("");
+  const [signUpAttempted, setSignUpAttempted] = useState(false);
 
   //For advertisers
   const [brand, setBrand] = useState("");
@@ -33,6 +34,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setSignUpAttempted(false);
     await signup(
       email,
       password,
@@ -40,22 +42,8 @@ const Signup = () => {
       dob,
       sentCode,
       verifyCode
-    ).then(() => {
-      if (error === "" || error === null) {
-        var locModal = document.getElementById("login");
-        locModal.setAttribute("aria-hidden", "true");
-        locModal.className = "modal fade";
-        const backdrop = document.querySelector(".modal-backdrop.fade.show");
-        backdrop.classList.remove("show");
-        setTimeout(() => {
-          locModal.classList.remove("show");
-        });
-        setTimeout(() => {
-          locModal.style.display = "none";
-          backdrop.remove();
-        }, 500);
-      }
-    });
+    );
+    setSignUpAttempted(true);
   };
 
   const handleAdvertiserSubmit = async (e) => {
@@ -104,10 +92,31 @@ const Signup = () => {
     }
   };
 
+  function checkError() {
+    if (signUpAttempted && (error === null || error === "")) {
+      if (modalRef.current) {
+        modalRef.current.classList.remove("show");
+        modalRef.current.style.display = "none";
+        // Also remove the modal backdrop
+        const backdrop = document.querySelector(".modal-backdrop");
+        if (backdrop) {
+          backdrop.parentNode.removeChild(backdrop);
+        }
+        // Restore the ability to scroll on the body
+        document.body.classList.remove("modal-open");
+      }
+    }
+  }
+
+  useEffect(() => {
+    checkError();
+  }, [error, signUpAttempted]);
+
   return (
     <>
       <div
         class="modal fade"
+        ref={modalRef}
         id="signUp"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
