@@ -12,7 +12,7 @@ const Devlog = () => {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const type = urlSearchParams.get("type");
 
-  const backendURL = process.env.REACT_APP_BACKEND_URL;
+  const backendURL = "";
 
   function reloadPageWithVariable(type) {
     const currentURL = new URL(window.location.href);
@@ -36,11 +36,11 @@ const Devlog = () => {
     try {
       let response;
       if (type === "News") {
-        response = await fetch(`${backendURL}/algorithmia/devlogNews`);
+        response = await fetch("/algorithmia/devlogNews");
       } else if (type === "Features") {
-        response = await fetch(`${backendURL}/algorithmia/devlogFeatures`);
+        response = await fetch("/algorithmia/devlogFeatures");
       } else {
-        response = await fetch(`${backendURL}/algorithmia/devlogs`);
+        response = await fetch("/algorithmia/devlogs");
       }
 
       const json = await response.json();

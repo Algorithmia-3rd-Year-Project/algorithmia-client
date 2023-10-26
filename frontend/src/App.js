@@ -58,7 +58,7 @@ function App() {
               <Route path="/topups" element={<Topup />} />
 
               <Route
-                path="/advertiser/dashboard"
+                path="/admin/advertiser/dashboard"
                 element={<AdvertiserDashboard />}
               />
 
