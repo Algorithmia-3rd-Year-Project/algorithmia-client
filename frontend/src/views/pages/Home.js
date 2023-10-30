@@ -11,7 +11,7 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { useEffect, useState } from "react";
 
-const ZIP_FILE_URL = 'http://localhost:3000/Algorithmia.zip'
+const ZIP_FILE_URL = `http://${window.location.host}/Algorithmia.zip`;
 
 const Home = () => {
   const downloadFile = (url)=>{
