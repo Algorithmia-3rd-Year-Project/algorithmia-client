@@ -30,7 +30,7 @@ const loginUser = async (req, res) => {
 };
 
 const signupUser = async (req, res) => {
-  const { email, password, confirmPassword, dob, codeSent, verifyCode } =
+  const { email, password, confirmPassword, dob, codeSent, verifyCode, userName } =
     req.body;
 
   console.log(pinCode);
@@ -42,7 +42,8 @@ const signupUser = async (req, res) => {
       confirmPassword,
       dob,
       codeSent,
-      verifyCode
+      verifyCode,
+      userName,
     );
 
     //create a token

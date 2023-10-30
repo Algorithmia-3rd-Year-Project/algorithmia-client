@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
 
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -8,31 +8,41 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
+  const modalRef = useRef(null);
+  const [loginAttempted, setLoginAttempted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(email, password).then(() => {
-      if (error === "" || error === null) {
-        var locModal = document.getElementById("login");
-        locModal.setAttribute("aria-hidden", "true");
-        locModal.className = "modal fade";
-        const backdrop = document.querySelector(".modal-backdrop.fade.show");
-        backdrop.classList.remove("show");
-        setTimeout(() => {
-          locModal.classList.remove("show");
-        });
-        setTimeout(() => {
-          locModal.style.display = "none";
-          backdrop.remove();
-        }, 500);
-      }
-    });
+    setLoginAttempted(false);
+    await login(email, password);
+    setLoginAttempted(true);
   };
+
+  function checkError() {
+    if (loginAttempted && (error === null || error === "")) {
+      if (modalRef.current) {
+        modalRef.current.classList.remove("show");
+        modalRef.current.style.display = "none";
+        // Also remove the modal backdrop
+        const backdrop = document.querySelector(".modal-backdrop");
+        if (backdrop) {
+          backdrop.parentNode.removeChild(backdrop);
+        }
+        // Restore the ability to scroll on the body
+        document.body.classList.remove("modal-open");
+      }
+    }
+  }
+
+  useEffect(() => {
+    checkError();
+  }, [error, loginAttempted]);
 
   return (
     <>
       <div
-        class="modal fade"
+        class="modal"
+        ref={modalRef}
         id="login"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
@@ -83,7 +93,9 @@ const Login = () => {
                     class="btn btn-primary"
                     type="button"
                     onClick={handleSubmit}
-                    {...(error ? { "data-bs-dismiss": "modal" } : {})}
+                    // {...({loginAttempted} && (error === null || error === "")
+                    //   ? { "data-bs-dismiss": "modal" }
+                    //   : {})}
                   >
                     Log In
                   </button>
