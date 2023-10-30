@@ -124,13 +124,6 @@ const Home = () => {
                 >
                   Download
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-lg px-4"
-                  style={{ borderColor: "white", color: "white" }}
-                >
-                  Download
-                </button>
               </div>
             </div>
           </div>
