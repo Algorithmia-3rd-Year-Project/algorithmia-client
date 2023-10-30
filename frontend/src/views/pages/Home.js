@@ -11,7 +11,17 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { useEffect, useState } from "react";
 
+const ZIP_FILE_URL = 'http://localhost:3000/Algorithmia.zip'
+
 const Home = () => {
+  const downloadFile = (url)=>{
+    const aTag = document.createElement('a')
+    aTag.href=url
+    aTag.setAttribute('download', 'Algorithmia.zip')
+    document.body.appendChild(aTag)
+    aTag.click()
+    aTag.remove()
+  }
   const elements = [];
   for (let i = 0; i < 5; i++) {
     elements.push(
@@ -121,6 +131,7 @@ const Home = () => {
                     color: "#002b5b",
                     borderColor: "#002b5b",
                   }}
+                  onClick={()=>{downloadFile(ZIP_FILE_URL)}}
                 >
                   Download
                 </button>
