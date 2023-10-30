@@ -12,7 +12,8 @@ export const useSignup = () => {
     confirmPassword,
     dob,
     codeSent,
-    verifyCode
+    verifyCode,
+    userName
   ) => {
     setIsLoading(true);
     setError(null);
@@ -27,6 +28,7 @@ export const useSignup = () => {
         dob,
         codeSent,
         verifyCode,
+        userName
       }),
     });
 

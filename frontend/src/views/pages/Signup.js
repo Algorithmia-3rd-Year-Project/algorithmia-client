@@ -41,7 +41,8 @@ const Signup = () => {
       confirmPassword,
       dob,
       sentCode,
-      verifyCode
+      verifyCode,
+      userName,
     );
     setSignUpAttempted(true);
   };
@@ -151,6 +152,10 @@ const Signup = () => {
                     <label htmlFor="recipient-name" class="col-form-label">
                       Email
                     </label>
+                    <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
                     <input
                       type="email"
                       class="form-control"
@@ -163,6 +168,10 @@ const Signup = () => {
                     <label htmlFor="recipient-name" class="col-form-label">
                       Username
                     </label>
+                    <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
                     <input
                       type="text"
                       class="form-control"
@@ -174,6 +183,10 @@ const Signup = () => {
                   <label htmlFor="recipient-name" class="col-form-label">
                     Verification Code
                   </label>
+                  <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
                   <div class="input-group mb-3">
                     <input
                       type="text"
@@ -294,6 +307,10 @@ const Signup = () => {
                       <label htmlFor="recipient-name" class="col-form-label">
                         Company Email
                       </label>
+                      <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
                       <input
                         type="email"
                         class="form-control"
