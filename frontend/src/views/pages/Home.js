@@ -11,6 +11,8 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { useEffect, useState } from "react";
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const ZIP_FILE_URL = `http://${window.location.host}/Algorithmia.zip`;
 
 const Home = () => {
@@ -41,7 +43,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchReviews = async () => {
-      const response = await fetch("/algorithmia/reviews");
+      const response = await fetch(`${backendURL}/algorithmia/reviews`);
       const json = await response.json();
 
       if (response.ok) {

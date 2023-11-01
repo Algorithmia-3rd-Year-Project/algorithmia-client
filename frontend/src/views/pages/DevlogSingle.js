@@ -13,6 +13,8 @@ import AddComment from "../components/AddComment";
 
 import { useEffect, useState, useContext } from "react";
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const DevlogSingle = () => {
   const [devlog, setDevlog] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,7 +25,7 @@ const DevlogSingle = () => {
   useEffect(() => {
     const fetchDevlog = async () => {
       try {
-        const response = await fetch("/algorithmia/devlog/" + id, {
+        const response = await fetch(`${backendURL}/algorithmia/devlog/` + id, {
           method: "GET",
         });
         const json = await response.json();
@@ -45,7 +47,7 @@ const DevlogSingle = () => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await fetch("/algorithmia/comments/" + id, {
+        const response = await fetch(`${backendURL}/algorithmia/comments/` + id, {
           method: "GET",
         });
         const json = await response.json();

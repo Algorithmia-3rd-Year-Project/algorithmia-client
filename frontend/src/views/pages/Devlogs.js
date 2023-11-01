@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 //components
 import DevlogTile from "../components/DevlogTile";
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 const Devlog = () => {
   const [devlogs, setDevlogs] = useState(null);
@@ -36,11 +37,11 @@ const Devlog = () => {
     try {
       let response;
       if (type === "News") {
-        response = await fetch("/algorithmia/devlogNews");
+        response = await fetch(`${backendURL}/algorithmia/devlogNews`);
       } else if (type === "Features") {
-        response = await fetch("/algorithmia/devlogFeatures");
+        response = await fetch(`${backendURL}/algorithmia/devlogFeatures`);
       } else {
-        response = await fetch("/algorithmia/devlogs");
+        response = await fetch(`${backendURL}/algorithmia/devlogs`);
       }
 
       const json = await response.json();

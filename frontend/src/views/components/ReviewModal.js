@@ -5,6 +5,8 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { useSessionContext } from "../../hooks/useSessionContext";
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const Rate = ({ count, rating, color, onRating }) => {
   const [hoverRating, setHoverRating] = useState(0);
 
@@ -87,7 +89,7 @@ const ReviewModal = ({ showModal, handleCloseModal }) => {
   const handleSubmit = async (e) => {
     const review = { user_id, name, content, rate: rating }; // Use rating as the selected rate
 
-    const response = await fetch("/algorithmia/reviews", {
+    const response = await fetch(`${backendURL}/algorithmia/reviews`, {
       method: "POST",
       body: JSON.stringify(review),
       headers: {
