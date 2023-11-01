@@ -1,6 +1,8 @@
 import { useState } from "react";
 //import axios from 'axios';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const PplForm = () => {
   const [type, setType] = useState("");
   const [product, setProduct] = useState("");
@@ -51,7 +53,7 @@ const PplForm = () => {
 
     console.log(files);
     console.log(filename);
-    const response = await fetch("/algorithmia/pplform/addppl", {
+    const response = await fetch(`${backendURL}/algorithmia/pplform/addppl`, {
       method: "POST",
       body: formData,
     });

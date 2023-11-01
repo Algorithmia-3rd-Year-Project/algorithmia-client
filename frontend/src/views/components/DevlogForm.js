@@ -3,6 +3,8 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useRef } from "react";
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const DevlogForm = () => {
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
@@ -38,7 +40,7 @@ const DevlogForm = () => {
     formData.append("devlog-image", coverImage);
 
     // console.log(coverImage);
-    const response = await fetch("/algorithmia/devlog/adddevlog", {
+    const response = await fetch(`${backendURL}/algorithmia/devlog/adddevlog`, {
       method: "POST",
       body: formData,
     });

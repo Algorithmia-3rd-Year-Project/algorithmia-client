@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useSignup } from "../../hooks/useSignup";
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -63,7 +65,7 @@ const Signup = () => {
   };
 
   const sendEmail = async () => {
-    const response = await fetch("api/user/verifyemail", {
+    const response = await fetch(`${backendURL}/api/user/verifyemail`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -79,7 +81,7 @@ const Signup = () => {
   };
 
   const sendAdvertiserEmail = async () => {
-    const response = await fetch("api/user/verifyadvertiseremail", {
+    const response = await fetch(`${backendURL}/api/user/verifyadvertiseremail`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 
 import { useSessionContext } from "../../hooks/useSessionContext";
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 
 const AdvertiserAccountSettings = () => {
     const modalStyle = {
@@ -51,7 +53,7 @@ const AdvertiserAccountSettings = () => {
     useEffect(() => {
         const fetchAdvertiser = async () => {
             try {
-                const response = await fetch("/algorithmia/adprofile/" + id, {
+                const response = await fetch(`${backendURL}/algorithmia/adprofile/` + id, {
 
                     method: "POST",
                 });

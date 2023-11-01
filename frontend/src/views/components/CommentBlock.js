@@ -3,7 +3,7 @@ import image from "../../images/devlog.jpg";
 import { useSessionContext } from "../../hooks/useSessionContext";
 import { Link } from 'react-router-dom';
 
-
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 // import "bootstrap/dist/css/bootstrap.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -17,7 +17,7 @@ const CommentBlock = ({ comment }) => {
   
     const deleteComment = async () => {
     try {
-      const response = await fetch("/algorithmia/comments/deletecomment/" + comment._id, {
+      const response = await fetch(`${backendURL}/algorithmia/comments/deletecomment/` + comment._id, {
         method: "DELETE"
       });
 
