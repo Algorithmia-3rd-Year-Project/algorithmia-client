@@ -6,6 +6,8 @@ export const useSignup = () => {
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useSessionContext();
 
+  const backendURL = process.env.REACT_APP_BACKEND_URL;
+
   const signup = async (
     email,
     password,
@@ -18,7 +20,7 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("api/user/signup", {
+    const response = await fetch(`${backendURL}/api/user/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -28,7 +30,7 @@ export const useSignup = () => {
         dob,
         codeSent,
         verifyCode,
-        userName
+        userName,
       }),
     });
 
@@ -58,7 +60,7 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("api/user/advertisersignup", {
+    const response = await fetch(`${backendURL}/api/user/advertisersignup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
