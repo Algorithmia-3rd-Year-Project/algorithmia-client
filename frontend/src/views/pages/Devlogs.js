@@ -13,8 +13,6 @@ const Devlog = () => {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const type = urlSearchParams.get("type");
 
-  const backendURL = "";
-
   function reloadPageWithVariable(type) {
     const currentURL = new URL(window.location.href);
 
