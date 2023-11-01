@@ -8,6 +8,8 @@ import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons/faSta
 import ReviewModal from "../components/ReviewModal";
 import { useEffect, useState } from "react";
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const Review = () => {
   const [loading, setLoading] = useState(true);
 
@@ -42,7 +44,7 @@ const Review = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try{
-        const response = await fetch("/algorithmia/reviews");
+        const response = await fetch(`${backendURL}/algorithmia/reviews`);
         const json = await response.json();
 
       if (response.ok) {

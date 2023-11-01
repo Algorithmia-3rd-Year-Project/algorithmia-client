@@ -5,6 +5,8 @@ import { useSessionContext } from "../../hooks/useSessionContext";
 
 import { useState, useContext } from "react";
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const AddComment = () => {
 
     const [content, setComment] = useState("");
@@ -25,7 +27,7 @@ const AddComment = () => {
 
         const newComment = { content, user_id, devlog_id };
 
-        const response = await fetch("/algorithmia/devlog/addcomment", {
+        const response = await fetch(`${backendURL}/algorithmia/devlog/addcomment`, {
             method: "POST",
             body: JSON.stringify(newComment),
             headers: {
@@ -47,7 +49,7 @@ const AddComment = () => {
 
         const fetchComments = async () => {
             try {
-                const response = await fetch("/algorithmia/comments/" + id, {
+                const response = await fetch(`${backendURL}/algorithmia/comments/` + id, {
                     method: "GET",
                 });
                 const json = await response.json();

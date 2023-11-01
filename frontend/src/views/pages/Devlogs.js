@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 //components
 import DevlogTile from "../components/DevlogTile";
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 const Devlog = () => {
   const [devlogs, setDevlogs] = useState(null);
@@ -11,8 +12,6 @@ const Devlog = () => {
 
   const urlSearchParams = new URLSearchParams(window.location.search);
   const type = urlSearchParams.get("type");
-
-  const backendURL = process.env.REACT_APP_BACKEND_URL;
 
   function reloadPageWithVariable(type) {
     const currentURL = new URL(window.location.href);

@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSignup } from "../../hooks/useSignup";
+
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -11,13 +13,14 @@ const Signup = () => {
   const [verifyCode, setVerifyCode] = useState("");
   const [sentCode, setSentCode] = useState("");
   const [userName, setUserName] = useState("");
+  const modalRef = useRef(null);
+  const [signUpAttempted, setSignUpAttempted] = useState(false);
 
   //For advertisers
   const [brand, setBrand] = useState("");
   const [advertiserEmail, setAdvertiserEmail] = useState("");
   const [advertiserPassword, setAdvertiserPassword] = useState("");
-  const [advertiserConfirmPassword, setAdvertiserConfirmPassword] =
-    useState("");
+  const [advertiserConfirmPassword, setAdvertiserConfirmPassword] = useState("");
 
   //// State to hold user role
   const [role, setRole] = useState("player");
@@ -33,34 +36,22 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setSignUpAttempted(false);
     await signup(
       email,
       password,
       confirmPassword,
       dob,
       sentCode,
-      verifyCode
-    ).then(() => {
-      if (error === "" || error === null) {
-        var locModal = document.getElementById("login");
-        locModal.setAttribute("aria-hidden", "true");
-        locModal.className = "modal fade";
-        const backdrop = document.querySelector(".modal-backdrop.fade.show");
-        backdrop.classList.remove("show");
-        setTimeout(() => {
-          locModal.classList.remove("show");
-        });
-        setTimeout(() => {
-          locModal.style.display = "none";
-          backdrop.remove();
-        }, 500);
-      }
-    });
+      verifyCode,
+      userName,
+    );
+    setSignUpAttempted(true);
   };
 
   const handleAdvertiserSubmit = async (e) => {
     e.preventDefault();
-
+    setSignUpAttempted(false);
     await advertiserSignup(
       brand,
       advertiserEmail,
@@ -70,10 +61,11 @@ const Signup = () => {
       verifyCode
     );
     setRole(role);
+    setSignUpAttempted(true);
   };
 
   const sendEmail = async () => {
-    const response = await fetch("api/user/verifyemail", {
+    const response = await fetch(`${backendURL}/api/user/verifyemail`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -89,7 +81,7 @@ const Signup = () => {
   };
 
   const sendAdvertiserEmail = async () => {
-    const response = await fetch("api/user/verifyadvertiseremail", {
+    const response = await fetch(`${backendURL}/api/user/verifyadvertiseremail`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -104,10 +96,31 @@ const Signup = () => {
     }
   };
 
+  function checkError() {
+    if (signUpAttempted && (error === null || error === "")) {
+      if (modalRef.current) {
+        modalRef.current.classList.remove("show");
+        modalRef.current.style.display = "none";
+        // Also remove the modal backdrop
+        const backdrop = document.querySelector(".modal-backdrop");
+        if (backdrop) {
+          backdrop.parentNode.removeChild(backdrop);
+        }
+        // Restore the ability to scroll on the body
+        document.body.classList.remove("modal-open");
+      }
+    }
+  }
+
+  useEffect(() => {
+    checkError();
+  }, [error, signUpAttempted]);
+
   return (
     <>
       <div
         class="modal fade"
+        ref={modalRef}
         id="signUp"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
@@ -141,6 +154,10 @@ const Signup = () => {
                     <label htmlFor="recipient-name" class="col-form-label">
                       Email
                     </label>
+                    <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
                     <input
                       type="email"
                       class="form-control"
@@ -153,6 +170,10 @@ const Signup = () => {
                     <label htmlFor="recipient-name" class="col-form-label">
                       Username
                     </label>
+                    <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
                     <input
                       type="text"
                       class="form-control"
@@ -164,6 +185,10 @@ const Signup = () => {
                   <label htmlFor="recipient-name" class="col-form-label">
                     Verification Code
                   </label>
+                  <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
                   <div class="input-group mb-3">
                     <input
                       type="text"
@@ -246,7 +271,7 @@ const Signup = () => {
                       class="btn btn-primary"
                       type="button"
                       onClick={handleSubmit}
-                      {...(error ? { "data-bs-dismiss": "modal" } : {})}
+                      // {...(error ? { "data-bs-dismiss": "modal" } : {})}
                     >
                       Register
                     </button>
@@ -270,7 +295,7 @@ const Signup = () => {
                 </form>
               )}
 
-              {/*Advertiser Form */}
+              {/* Advertiser Form */}
               {role === "advertiser" && (
                 <>
                   <h3>Advertiser</h3>
@@ -284,6 +309,10 @@ const Signup = () => {
                       <label htmlFor="recipient-name" class="col-form-label">
                         Company Email
                       </label>
+                      <label className="star fw-bold" style={{ color: "red" }}>
+                      {" "}
+                      *
+                    </label>
                       <input
                         type="email"
                         class="form-control"
@@ -370,11 +399,15 @@ const Signup = () => {
                         class="btn btn-primary"
                         type="button"
                         onClick={handleAdvertiserSubmit}
-                        {...(error ? { "data-bs-dismiss": "modal" } : {})}
+                        // {...(error ? { "data-bs-dismiss": "modal" } : {})}
                       >
                         Register
                       </button>
-                      {error && <div>{error}</div>}
+                      {error && (
+                        <div class="alert alert-warning" role="alert">
+                          {error}
+                        </div>
+                      )}
                     </div>
                     <br />
                     <div class="row mb-4 ">

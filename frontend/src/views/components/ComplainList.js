@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../Assets/css/complaints.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 function Dropdown(event){
   var BtnId = event.target.id
@@ -28,7 +29,7 @@ function Complains() {
   const [complaints, setComplaints] = useState([]);
 
   useEffect(() => {
-    fetch('/complaints/complainlist')
+    fetch(`${backendURL}/complaints/complainlist`)
       .then(response => response.json())
       .then(data => {
         setComplaints(data);
